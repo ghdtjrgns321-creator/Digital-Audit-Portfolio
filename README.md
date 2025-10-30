@@ -18,5 +18,6 @@ CPA 디지털 감사 포트폴리오
     - 반복문 (for, enumerate, .items())
     - 함수 (def, return)
     - f-string (문자열 포맷팅)
+      
 **실습 파일:**
     - [`day1_python_basics.ipynb`](./day1_python_basics.ipynb): 기초 문법 실습 퀴즈 3개 (리스트 필터링, 함수 만들기, 딕셔너리 반복)
