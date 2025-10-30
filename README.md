@@ -20,3 +20,18 @@ CPA 디지털 감사 포트폴리오
     - f-string (문자열 포맷팅)    
 - **실습 파일:**
     - [`day1_python_basics.ipynb`](./day1_python_basics.ipynb): 상세 학습 노트 및 기초 문법 실습 퀴즈 3종 (리스트 필터링, 함수 만들기, 딕셔너리 반복)
+    - 
+### Day 2: 2025.10.30 - 판다스(Pandas) 핵심
+
+- **목표:** 데이터 분석의 핵심 라이브러리인 판다스의 주요 기능 숙달
+- **학습 환경:** Google Colab
+- **주요 학습 내용:**
+    - 데이터 구조 (Series, DataFrame)
+    - 데이터 입출력 (CSV Read/Write)
+    - 데이터 탐색 (head, info, describe, value_counts)
+    - 데이터 전처리 (loc/iloc, fillna, drop, astype, apply)
+    - 필터링 (Boolean Indexing, isin, contains)
+    - 그룹핑 및 집계 (groupby, agg, pivot_table, unstack)
+    - 시계열 데이터 (to_datetime, .dt.dayofweek, Timedelta)
+- **실습 파일:**
+    - [`day2_pandas_practice.ipynb`](./day2_pandas_practice.ipynb): 판다스 상세 학습 노트 및 실습과 복습퀴즈 13문제
