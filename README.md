@@ -19,7 +19,7 @@ CPA 디지털 감사 포트폴리오
     - 함수 (def, return)
     - f-string (문자열 포맷팅)    
 - **실습 파일:**
-    - [`part1_python_basics.ipynb`](./part1_python_basics.ipynb): 상세 학습 노트 및 기초 문법 실습 퀴즈 3종 (리스트 필터링, 함수 만들기, 딕셔너리 반복)
+    - [`part1_python_basics.ipynb`](./part1_python_basics.ipynb): 상세 학습 노트 및 기초 문법 실습 퀴즈 (리스트 필터링, 함수 만들기, 딕셔너리 반복)
     - 
 ### Part 2: 판다스 핵심 (Pandas Core)
 
@@ -34,4 +34,4 @@ CPA 디지털 감사 포트폴리오
     - 그룹핑 및 집계 (groupby, agg, pivot_table, unstack)
     - 시계열 데이터 (to_datetime, .dt.dayofweek, Timedelta)
 - **실습 파일:**
-    - [`day2_pandas_practice.ipynb`](./day2_pandas_practice.ipynb): 판다스 상세 학습 노트 및 실습과 복습퀴즈 13문제
+    - [`day2_pandas_practice.ipynb`](./day2_pandas_practice.ipynb): 판다스 상세 학습 노트 및 실습과 퀴즈
