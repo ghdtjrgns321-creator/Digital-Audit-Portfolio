@@ -35,3 +35,16 @@ CPA 디지털 감사 포트폴리오
     - 시계열 데이터 (to_datetime, .dt.dayofweek, Timedelta)
 - **실습 파일:**
     - [`part2_pandas_practice.ipynb`](./part2_pandas_practice.ipynb): 판다스 상세 학습 노트 및 실습과 퀴즈
+
+### Part 3: 판다스 실전 모의문제 (Pandas Practice)
+
+- **목표:** : Part 1, 2에서 배운 파이썬 및 판다스 기본 문법을 활용하여, 실제 데이터 분석 문제(데이터 클리닝, 전처리, 그룹핑)를 해결하는 실습을 진행함.
+- **학습 환경:** Google Colab
+- **주요 학습 내용:**
+    - 결측치 처리: fillna(median/mode), dropna(subset=[...]), fillna(method='bfill')
+    - 데이터 변환: replace(), map(), select_dtypes(), .T (전치)
+    - 이상치 탐지(Outlier): IQR 로직 (Q3-Q1), 고급 필터링 (~, != round())
+    - 데이터 집계: groupby().agg(), groupby().sum(numeric_only=True), sort_values(), .iloc[]
+    - 시계열: to_datetime(), .dt.month
+- **실습 파일:**
+    - [`part3_pandas_practice.ipynb`](./part3_pandas_practice.ipynb): 판다스 실전 모의문제 풀이
