@@ -34,4 +34,4 @@ CPA 디지털 감사 포트폴리오
     - 그룹핑 및 집계 (groupby, agg, pivot_table, unstack)
     - 시계열 데이터 (to_datetime, .dt.dayofweek, Timedelta)
 - **실습 파일:**
-    - [`part2_pandas_practice.ipynb`](./day2_pandas_practice.ipynb): 판다스 상세 학습 노트 및 실습과 퀴즈
+    - [`part2_pandas_practice.ipynb`](./part2_pandas_practice.ipynb): 판다스 상세 학습 노트 및 실습과 퀴즈
