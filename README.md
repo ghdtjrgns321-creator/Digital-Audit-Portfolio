@@ -21,7 +21,7 @@ CPA 디지털 감사 포트폴리오
 - **실습 파일:**
     - [`part1_python_basics.ipynb`](./part1_python_basics.ipynb): 기본 문법 및 자료구조 상세 학습 노트 및 기초 문법 실습 퀴즈 (리스트 필터링, 함수 만들기, 딕셔너리 반복)
   
-### Part 2: 판다스 핵심
+### Part 2-1: 판다스 핵심
 
 - **목표:** 데이터 분석의 핵심 라이브러리인 판다스의 주요 기능 숙달
 - **학습 환경:** Google Colab
@@ -34,9 +34,9 @@ CPA 디지털 감사 포트폴리오
     - 그룹핑 및 집계 (groupby, agg, pivot_table, unstack)
     - 시계열 데이터 (to_datetime, .dt.dayofweek, Timedelta)
 - **실습 파일:**
-    - [`part2_pandas_practice.ipynb`](./part2_pandas_practice.ipynb): 판다스 상세 학습 노트 및 실습과 퀴즈
+    - [`part2-1_pandas_practice.ipynb`](./part2-1_pandas_practice.ipynb): 판다스 상세 학습 노트 및 실습과 퀴즈
 
-### Part 2-1: 판다스 실전 모의문제
+### Part 2-2: 판다스 실전 모의문제
 
 - **목표:** : Part 1, 2에서 배운 파이썬 및 판다스 기본 문법을 활용하여, 실제 데이터 분석 문제(데이터 클리닝, 전처리, 그룹핑)를 해결하는 실습을 진행
 - **학습 환경:** Google Colab
@@ -47,9 +47,9 @@ CPA 디지털 감사 포트폴리오
     - 데이터 집계: groupby().agg(), groupby().sum(numeric_only=True), sort_values(), .iloc[]
     - 시계열: to_datetime(), .dt.month
 - **실습 파일:**
-    - [`part2-1_pandas_practice.ipynb`](./part2-1_pandas_practice.ipynb): 판다스 실전 모의문제 풀이
+    - [`part2-2_pandas_practice.ipynb`](./part2-2_pandas_practice.ipynb): 판다스 실전 모의문제 풀이
 
-### Part 2-2: 판다스 심화
+### Part 2-3: 판다스 심화
 
 - **목표:** : 판다스 스킬 다지기. loc/iloc 등 기본 복습부터 groupby 심화, 시계열(resample), 실전 처리 워크플로우까지 총정리.
 - **학습 환경:**: Google Colab
@@ -61,4 +61,4 @@ CPA 디지털 감사 포트폴리오
     - 데이터 범주화: pd.cut (길이 기준), pd.qcut (개수 기준)
     - 알고리즘: '조건을 만족하는 최대 연속 횟수' (cumsum/mul/diff/where/ffill/add) 로직 복습 및 실전 적용
 - **실습 파일:**
-    - [`part2-2_pandas_deep_dive.ipynb`](./part2-2_pandas_deep_dive.ipynb): 판다스 심화 메서드, 실전 프로세스 및 복습문제 3종 풀이 노트
+    - [`part2-3_pandas_deep_dive.ipynb`](./part2-3_pandas_deep_dive.ipynb): 판다스 심화 메서드, 실전 프로세스 및 복습문제 3종 풀이 노트
