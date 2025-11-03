@@ -8,7 +8,7 @@ CPA 디지털 감사 포트폴리오
 
 ### Part 1: 파이썬 기초 문법
 
-- **목표:** 파이썬 기본 문법 및 자료구조(리스트, 딕셔너리) 복습
+- **목표:** 파이썬 기본 문법 및 자료구조(리스트, 딕셔너리) 학습습
 - **학습 환경:** Google Colab
 - **주요 학습 내용:**
     - 변수, 자료형 (int, float, str, bool)
@@ -19,7 +19,7 @@ CPA 디지털 감사 포트폴리오
     - 함수 (def, return)
     - f-string (문자열 포맷팅)    
 - **실습 파일:**
-    - [`part1_python_basics.ipynb`](./part1_python_basics.ipynb): 기본 문법 및 자료구조 상세 학습 노트 및 기초 문법 실습 퀴즈 (리스트 필터링, 함수 만들기, 딕셔너리 반복)
+    - [`part1_python_basics.ipynb`](./part1_python_basics.ipynb): 기본 문법 및 자료구조 상세 학습 노트 및 기초 문법 실습 퀴즈
   
 ### Part 2-1: 판다스 핵심
 
@@ -61,4 +61,37 @@ CPA 디지털 감사 포트폴리오
     - 데이터 범주화: pd.cut (길이 기준), pd.qcut (개수 기준)
     - 알고리즘: '조건을 만족하는 최대 연속 횟수' (cumsum/mul/diff/where/ffill/add) 로직 복습 및 실전 적용
 - **실습 파일:**
-    - [`part2-3_pandas_deep_dive.ipynb`](./part2-3_pandas_deep_dive.ipynb): 판다스 심화 메서드, 실전 프로세스 및 복습문제 3종 풀이 노트
+    - [`part2-3_pandas_deep_dive.ipynb`](./part2-3_pandas_deep_dive.ipynb): 판다스 심화 메서드, 실전 프로세스 및 복습문제 풀이 노트
+ 
+### Part 2-4: 판다스 심화
+
+- **목표:** : Part 4까지 배운 판다스 심화 기능을 다양한 모의문제와 실전 프로세스 복습을 통해 체화
+- **학습 환경:**: Google Colab
+- **주요 학습 내용:**
+    - 판다스 퀴즈 복습: 필터링(loc), 결측치(fillna), 시계열(dt.day), 인덱싱(index[0]), 파생 변수, 정렬(sort_values), iloc
+    - 핵심 메서드 복습: select_dtype, set_index, filter, rename, value_counts, unique, map(lambda), query(@)
+    - GroupBy 심화: agg(다중 함수), apply(사용자 정의 함수), 그룹별 fillna
+    - 시계열 심화: resample, pd.Grouper
+    - 데이터 처리 실전: clip(이상치), interpolate(결측치), explode(행 쪼개기)
+    - '연속 횟수' 로직을 실전 데이터(애플 주가)에 적용
+- **실습 파일:**
+    - [`part2-4_pandas_deep_dive.ipynb`](./part2-4_pandas_deep_dive.ipynb):: 판다스 심화 메서드, 실전 프로세스 및 복습문제 풀이 노트
+
+### Part 3-1: 판다스 심화데이터 시각화 - 기초
+- **목표:** : Matplotlib, Seaborn, Plotly를 사용한 핵심 그래프(Scatter, Line, Box)의 기본 사용법과 주요 파라미터(인자)를 숙달
+- **학습 환경:**: Google Colab
+- **주요 학습 내용:**
+    - 시각화 기본: Figure, Axes 개념
+    - Matplotlib & Seaborn
+        sns.scatterplot (산점도): hue, palette, style, markers, s, size
+        sns.regplot (회귀선): ci, order(다항식), scatter_kws, line_kws
+        sns.lineplot (선 그래프): hue, style, scatterplot과 겹치기
+        sns.boxplot (박스 플롯): order
+        sns.stripplot, sns.swarmplot (분포 확인)
+    - Plotly Express (px):
+        px.scatter: color, symbol, size
+        Regression Plot : px.scatter 함수 내 trendline='ols' 인자를 사용
+        px.line: line_dash
+        px.box: points='all', category_orders
+- **실습 파일:**
+    - [`part3-1_visualization_basics.ipynb`](./part3-1_visualization_basics.ipynb):: Matplotlib, Seaborn, Plotly 기초 학습 노트
