@@ -19,7 +19,8 @@ CPA 디지털 감사 포트폴리오
     - 함수 (def, return)
     - f-string (문자열 포맷팅)    
 - **실습 파일:**
-    - [`part1_python_basics.ipynb`](./part1_python_basics.ipynb): 기본 문법 및 자료구조 상세 학습 노트 및 기초 문법 실습 퀴즈
+    - [`part1_python_basics.md`](./part1_python_basics.md): 기초 문법 실습 퀴즈
+    - [`part1_python_basics_quiz.ipynb`](./part1_python_basics_quiz.ipynb) : 기본 문법 및 자료구조 상세 학습 노트
   
 ### Part 2-1: 판다스 기초
 
@@ -78,20 +79,34 @@ CPA 디지털 감사 포트폴리오
     - [`part2-4_pandas_advanced.ipynb`](./part2-4_pandas_advanced.ipynb):: 판다스 심화 메서드, 실전 프로세스 및 복습문제 풀이 노트
 
 ### Part 3-1: 데이터 시각화 기초
-- **목표:** : Matplotlib, Seaborn, Plotly를 사용한 핵심 그래프(Scatter, Line, Box)의 기본 사용법과 주요 파라미터(인자)를 숙달
+
+- **목표:** : Matplotlib, Seaborn, Plotly를 사용한 핵심 그래프(Scatter, Line, Box, Histogram, Heatmap)의 기본 사용법과 주요 파라미터(인자)를 숙달
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
+    - [복습] 판다스 퀴즈 : select_dtype, def/return/apply (실수 교정), groupby/agg/def (실수 교정), pd.qcut, | 필터링, .loc (실수 교정)
     - 시각화 기본: Figure, Axes 개념
-    - Matplotlib & Seaborn
+    - Matplotlib & Seaborn (Axes-level):
         - sns.scatterplot (산점도): hue, palette, style, markers, s, size
         - sns.regplot (회귀선): ci, order(다항식), scatter_kws, line_kws
         - sns.lineplot (선 그래프): hue, style, scatterplot과 겹치기
         - sns.boxplot (박스 플롯): order
         - sns.stripplot, sns.swarmplot (분포 확인)
+        - sns.histplot (히스토그램): bins, hue, multiple='stack'
+        - sns.heatmap (히트맵): annot, fmt, vmax/vmin, cmap
+    - Seaborn (Figure-level):
+        - sns.lmplot, sns.relplot (Figure-level의 개념)
+        - col, row, col_wrap (그룹별 subplot 나누기)
+        - sns.FacetGrid + .map_dataframe() (Axes-level을 Figure-level처럼 쓰기)
     - Plotly Express (px):
         - px.scatter: color, symbol, size
         - Regression Plot : px.scatter 함수 내 trendline='ols' 인자를 사용
         - px.line: line_dash
         - px.box: points='all', category_orders
+        - px.histogram: nbins, color, barmode
+        - px.imshow (히트맵): text_auto, color_continuous_scale
+        - facet_col, facet_row (Plotly의 subplot 기능)
+    - 그래프 튜닝: tick_params, set_title, suptitle, grid, tight_layout, update_layout
 - **실습 파일:**
-    - [`part3-1_visualization_basics.ipynb`](./part3-1_visualization_basics.ipynb):: Matplotlib, Seaborn, Plotly 기초 학습 노트
+    - [`part3-1_visualization_basics.ipynb`](./part3-1_visualization_basics.ipynb):: 판다스/시각화 융합 퀴즈 및 시각화 기초 학습 노트
+
+
