@@ -83,15 +83,15 @@ CPA 디지털 감사 포트폴리오
 - **주요 학습 내용:**
     - 시각화 기본: Figure, Axes 개념
     - Matplotlib & Seaborn
-        sns.scatterplot (산점도): hue, palette, style, markers, s, size
-        sns.regplot (회귀선): ci, order(다항식), scatter_kws, line_kws
-        sns.lineplot (선 그래프): hue, style, scatterplot과 겹치기
-        sns.boxplot (박스 플롯): order
-        sns.stripplot, sns.swarmplot (분포 확인)
+        - sns.scatterplot (산점도): hue, palette, style, markers, s, size
+        - sns.regplot (회귀선): ci, order(다항식), scatter_kws, line_kws
+        - sns.lineplot (선 그래프): hue, style, scatterplot과 겹치기
+        - sns.boxplot (박스 플롯): order
+        - sns.stripplot, sns.swarmplot (분포 확인)
     - Plotly Express (px):
-        px.scatter: color, symbol, size
-        Regression Plot : px.scatter 함수 내 trendline='ols' 인자를 사용
-        px.line: line_dash
-        px.box: points='all', category_orders
+        - px.scatter: color, symbol, size
+        - Regression Plot : px.scatter 함수 내 trendline='ols' 인자를 사용
+        - px.line: line_dash
+        - px.box: points='all', category_orders
 - **실습 파일:**
     - [`part3-1_visualization_basics.ipynb`](./part3-1_visualization_basics.ipynb):: Matplotlib, Seaborn, Plotly 기초 학습 노트
