@@ -40,8 +40,9 @@ CPA 디지털 감사 포트폴리오
     - 데이터 집계: groupby().agg(), groupby().sum(numeric_only=True), sort_values(), .iloc[]
 - **실습 파일:**
     - [`part2-1_pandas_basics.md`](./part2-1_pandas_basics.md): 판다스 상세 학습 노트
-    - [`part2-1_pandas_basics_quiz.ipynb`](./part2-1_pandas_basics_quiz.ipynb): 판다스 실습과 퀴즈
-    - 
+    - [`part2-1_pandas_basics_quiz1.ipynb`](./part2-1_pandas_basics_quiz1.ipynb): 판다스 실습과 퀴즈
+    - [`part2-1_pandas_basics_quiz2.ipynb`](./part2-1_pandas_basics_quiz2.ipynb): 판다스 실습과 퀴즈
+      
 ### Part 2-2: 판다스 심화
 
 - **목표:** : 판다스 스킬 다지기. loc/iloc 등 기본 복습부터 groupby 심화, 시계열(resample), 실전 처리 워크플로우, 다양한 모의문제까지 총정리.
@@ -62,7 +63,7 @@ CPA 디지털 감사 포트폴리오
 - **실습 파일:**
     - [`part2-2_pandas_advanced.md`](./part2-2_pandas_advanced.md): 판다스 심화 메서드, 실전 프로세스 학습 노트
     - [`part2-2_pandas_advanced_quiz.ipynb`](./part2-2_pandas_advanced_quiz.ipynb): 판다스 심화 메서드, 실전 프로세스 퀴즈
-    - 
+      
 ### Part 3-1: 데이터 시각화 기초
 
 - **목표:** : Matplotlib, Seaborn, Plotly를 사용한 핵심 그래프(Scatter, Line, Box, Histogram, Heatmap)의 기본 사용법과 주요 파라미터(인자)를 숙달
