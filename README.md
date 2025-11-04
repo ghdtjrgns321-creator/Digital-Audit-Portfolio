@@ -93,6 +93,6 @@ CPA 디지털 감사 포트폴리오
     - 그래프 튜닝: tick_params, set_title, suptitle, grid, tight_layout, update_layout
 - **실습 파일:**
     - [`part3-1_visualization_basics.md`](./part3-1_visualization_basics.md):: 시각화 기초 학습 노트
-    - [`part3-1_visualization_basics_quiz.ipynb`](./part3-1_visualization_basics_quiz.ipynb):: 시각화 기초 퀴즈
+    - [`part3-1_visualization_basics_quiz.ipynb`](./part3-1_visualization_basics_quiz.ipynb):: 시각화 기초 퀴즈 + 판다스 복습 퀴즈
 
 
