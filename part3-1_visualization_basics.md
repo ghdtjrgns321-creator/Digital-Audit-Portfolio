@@ -5,9 +5,6 @@
 - Figure : 여러 개의 그래프들이 들어갈 수 있는 공간
 - axes : figure에 그래프를 그리기 위한 컷
     
-    ![스크린샷 2025-11-03 160301.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-03_160301.png)
-    
-
 ## Scatterplot
 
 ★★mat : data=df, ax=ax★★
@@ -66,8 +63,6 @@
     
     sns.scatterplot(x=’total_bill’, y=’tip’, data=df, ax=ax, hue=’smoker’, style=’time’, size=’size’)
     
-    ![스크린샷 2025-11-03 162159.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-03_162159.png)
-    
 
 ### Plotly
 
@@ -80,9 +75,7 @@
     fig = px.scatter(data_frame=df, x=’Year’, y=’No of Internet Users’, width =400, height=400)
     
     fig.show()
-    
-    ![스크린샷 2025-11-03 162814.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-03_162814.png)
-    
+
 - color 인자 ← 색 나눠줌 (=seaborn의 hue)
     - color_descrete_map, color_descrete_sequence 를 통해 색 조절 가능
     
@@ -108,9 +101,7 @@
 - color, symbol, size 인자 혼합해서 사용 가능
     
     fig = px.scatter(data_frame = df, x=’total_bill’, y=’tips’, color=’smoker’, size=’size’, symbol=’time’, width=600, height=400)
-    
-    ![스크린샷 2025-11-03 164008.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-03_164008.png)
-    
+
 
 ## Regression Plot
 
@@ -143,9 +134,6 @@ sns.regplot(x=’total_bill’, y=’tip’, data=df, ax=ax)
 - line_kws ←색 과 선 모양 조절 가능
     
     sns.regplot(x=x, y=y, ax=ax, order=3, scatter_kws={’s’ : 80}, line_kws={’color’:’red’ , ‘linestyle’:’- -’})
-    
-    ![스크린샷 2025-11-03 165651.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-03_165651.png)
-    
 
 ### plotly
 
@@ -196,7 +184,6 @@ sns.regplot(x=’total_bill’, y=’tip’, data=df, ax=ax)
 
 ### Matplotlib & Seaborn
 
-![스크린샷 2025-11-03 175443.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-03_175443.png)
 
 - IQR = Q3 - Q1
 - 범위 : Q3 + 1.5IQR ~ Q1 - 1.5IQR
@@ -220,8 +207,7 @@ sns.regplot(x=’total_bill’, y=’tip’, data=df, ax=ax)
     
     sns. boxplot(x=’weekday’, y=kwhTotal’, data=df, ax=ax)
     
-    ![스크린샷 2025-11-03 183951.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-03_183951.png)
-    
+
 - order 메서드 ← boxplot 순서 정렬 가능 cf) stipplot, swarmplot 적용시 똑같이 order 적용해야함
     
     weekday_order = [’Mon’, ‘Tue’, ‘Wed’, ‘Thr’, ‘Fri’, ‘Sat’, ‘Sun’] ← 리스트형태
@@ -296,9 +282,7 @@ sns.regplot(x=’total_bill’, y=’tip’, data=df, ax=ax)
     fig, ax = plt.subplots()
     
     sns.heatmap(pivot_df, ax=ax, annot=True)
-    
-    ![스크린샷 2025-11-04 201433.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-04_201433.png)
-    
+
 - fmt ← 각 셀에 표현되는 수치 값의 형식 변경 가능
     - fmt=’.2e’ ←소숫점아래 두자리 까지 표현 f←실수값, e←10의자승
 - vmax, vmin ← color bar의 범위 설정 가능
@@ -340,8 +324,7 @@ sns.regplot(x=’total_bill’, y=’tip’, data=df, ax=ax)
     - scatterplot, boxplot, heatmap 등
 - fig, ax = plt.subplots(2, 2, figsize=(12,12)) ← 2행 2열짜리 fig, 사이즈는 12,12
     
-    ![스크린샷 2025-11-04 204239.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-04_204239.png)
-    
+
 - axes-level plot을 특정 변수의 그룹별로 subplot으로 나눠 그리기
 
 figm ax = plt.subplots(2, 2, figsize=(12,12))
@@ -354,8 +337,6 @@ sns.regplot(x=’bmi’, y=’charges’, data=df.query(’region == “northwes
 
 sns.regplot(x=’bmi’, y=’charges’, data=df.query(’region == “northeast”’), ax=ax[1][1])
 
-![스크린샷 2025-11-04 204752.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-04_204752.png)
-
 - figure-level plot을 특정 변수의 그룹별로 subplot으로 나눠 그리기
 
 sns.Implot(x=’bmi’, y=’charges’, data=df, col=’region’, col_wrap=2, sharex=False, sharey=False)
@@ -364,13 +345,10 @@ col_wrap ← 2개씩 끊어서 밑으로 내리기
 
 sharex, sharey ← x축,y축 통일?
 
-![스크린샷 2025-11-04 204752.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-04_204752%201.png)
 
 - Implot에서는 regplot에서 사용 불가능하던 hue 인자 사용 가능
 
 sns.Implot(x=’bmi’, y=’charges’, data=df, col=’smoker’, row=’region’, hue=’sex’, sharex=False, sharey=False)
-
-![스크린샷 2025-11-04 205303.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-04_205303.png)
 
 - axes-level plot을 figure-level plot 처럼 그리기
     - facetgrid를 이용하여 axes-level plot을 figure-level plot처럼 그리기 가능
@@ -384,7 +362,6 @@ g = sns.FacetGrid(data=df, col=’region’, col_wrap=2, sharex=False, sharey=Fa
 
 g.map_dataframe(sns.boxplot, x=’smoker’, y=’charges’, hue=’sex’)
 
-![스크린샷 2025-11-04 205615.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-04_205615.png)
 
 - Plotly express 함수들의 facet 사용
     - Plotly express 대부분의 함수는 facet을 나눠그릴 수 있음
@@ -394,13 +371,9 @@ fig = px.scatter(data_frame=df, x=’bmi’, y=’charges’, color=’sex’, f
 
 fig.show()
 
-![스크린샷 2025-11-04 205859.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-04_205859.png)
-
 fig = px.box(data_frame=df, x=’smoker’, y=’charges’, facet_col=’region’, facet_col_wrap=2, color=’sex’, width=700, height=700)
 
 fig.show()
-
-![스크린샷 2025-11-04 210322.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-04_210322.png)
 
 ## 그래프 세부 요소 튜닝하기
 
@@ -467,17 +440,11 @@ fig.show()
         ax[idx][jdx].set_title(’title’)
         
         plt.tight_layout()
-        
-        ![스크린샷 2025-11-04 211919.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-04_211919.png)
-        
+
         plt.tight_layout(w_pad=5, h_pad=1, pad=4)
-        
-        ![스크린샷 2025-11-04 212010.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-04_212010.png)
-        
+ 
         plt.tight_layout(rect=(0.5, 0, 1, 1))
-        
-        ![스크린샷 2025-11-04 212040.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-04_212040.png)
-        
+
 - Subplot 위치 조절
     - Plotly express 그래프 함수의 facet_col_spacing, facet_row_spacing 메서드 사용
         
