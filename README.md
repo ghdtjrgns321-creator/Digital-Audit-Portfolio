@@ -19,8 +19,8 @@ CPA 디지털 감사 포트폴리오
     - 함수 (def, return)
     - f-string (문자열 포맷팅)    
 - **실습 파일:**
-    - [`part1_python_basics.md`](./part1_python_basics.md): 기초 문법 실습 퀴즈
-    - [`part1_python_basics_quiz.ipynb`](./part1_python_basics_quiz.ipynb) : 기본 문법 및 자료구조 상세 학습 노트
+    - [`part1_python_basics.md`](./part1_python_basics.md): 기본 문법 및 자료구조 상세 학습 노트
+    - [`part1_python_basics_quiz.ipynb`](./part1_python_basics_quiz.ipynb) : 기초 문법 실습 퀴즈
   
 ### Part 2-1: 판다스 기초
 
