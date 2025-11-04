@@ -24,7 +24,7 @@ CPA 디지털 감사 포트폴리오
   
 ### Part 2-1: 판다스 기초
 
-- **목표:** 데이터 분석의 핵심 라이브러리인 판다스의 주요 기능 숙달
+- **목표:** 데이터 분석의 핵심 라이브러리인 판다스의 주요 기능 숙달, 실제 데이터 분석 문제(데이터 클리닝, 전처리, 그룹핑)를 해결하는 실습 진행
 - **학습 환경:** Google Colab
 - **주요 학습 내용:**
     - 데이터 구조 (Series, DataFrame)
@@ -34,25 +34,17 @@ CPA 디지털 감사 포트폴리오
     - 필터링 (Boolean Indexing, isin, contains)
     - 그룹핑 및 집계 (groupby, agg, pivot_table, unstack)
     - 시계열 데이터 (to_datetime, .dt.dayofweek, Timedelta)
-- **실습 파일:**
-    - [`part2-1_pandas_basics.ipynb`](./part2-1_pandas_basics.ipynb): 판다스 상세 학습 노트 및 실습과 퀴즈
-
-### Part 2-2: 판다스 기초
-
-- **목표:** : 파이썬 및 판다스 기본 문법을 활용하여, 실제 데이터 분석 문제(데이터 클리닝, 전처리, 그룹핑)를 해결하는 실습을 진행
-- **학습 환경:** Google Colab
-- **주요 학습 내용:**
     - 결측치 처리: fillna(median/mode), dropna(subset=[...]), fillna(method='bfill')
     - 데이터 변환: replace(), map(), select_dtypes(), .T (전치)
     - 이상치 탐지(Outlier): IQR 로직 (Q3-Q1), 고급 필터링 (~, != round())
     - 데이터 집계: groupby().agg(), groupby().sum(numeric_only=True), sort_values(), .iloc[]
-    - 시계열: to_datetime(), .dt.month
 - **실습 파일:**
-    - [`part2-2_pandas_basics.ipynb`](./part2-2_pandas_basics.ipynb): 판다스 실전 모의문제 풀이
+    - [`part2-1_pandas_basics.md`](./part2-1_pandas_basics.md): 판다스 상세 학습 노트
+    - [`part2-1_pandas_basics_quiz.ipynb`](./part2-1_pandas_basics_quiz.ipynb): 판다스 실습과 퀴즈
+    - 
+### Part 2-2: 판다스 심화
 
-### Part 2-3: 판다스 심화
-
-- **목표:** : 판다스 스킬 다지기. loc/iloc 등 기본 복습부터 groupby 심화, 시계열(resample), 실전 처리 워크플로우까지 총정리.
+- **목표:** : 판다스 스킬 다지기. loc/iloc 등 기본 복습부터 groupby 심화, 시계열(resample), 실전 처리 워크플로우, 다양한 모의문제까지 총정리.
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
     - 데이터 선택: loc/iloc, select_dtype, filter, query (외부 변수 @ 활용)
@@ -61,14 +53,6 @@ CPA 디지털 감사 포트폴리오
     - 시계열 데이터: to_datetime, set_index (시계열), resample (7d, B)
     - 데이터 범주화: pd.cut (길이 기준), pd.qcut (개수 기준)
     - 알고리즘: '조건을 만족하는 최대 연속 횟수' (cumsum/mul/diff/where/ffill/add) 로직 복습 및 실전 적용
-- **실습 파일:**
-    - [`part2-3_pandas_advanced.ipynb`](./part2-3_pandas_advanced.ipynb): 판다스 심화 메서드, 실전 프로세스 및 복습문제 풀이 노트
- 
-### Part 2-4: 판다스 심화
-
-- **목표:** : 판다스 심화 기능을 다양한 모의문제와 실전 프로세스 복습을 통해 체화
-- **학습 환경:**: Google Colab
-- **주요 학습 내용:**
     - 판다스 퀴즈 복습: 필터링(loc), 결측치(fillna), 시계열(dt.day), 인덱싱(index[0]), 파생 변수, 정렬(sort_values), iloc
     - 핵심 메서드 복습: select_dtype, set_index, filter, rename, value_counts, unique, map(lambda), query(@)
     - GroupBy 심화: agg(다중 함수), apply(사용자 정의 함수), 그룹별 fillna
@@ -76,14 +60,14 @@ CPA 디지털 감사 포트폴리오
     - 데이터 처리 실전: clip(이상치), interpolate(결측치), explode(행 쪼개기)
     - '연속 횟수' 로직을 실전 데이터(애플 주가)에 적용
 - **실습 파일:**
-    - [`part2-4_pandas_advanced.ipynb`](./part2-4_pandas_advanced.ipynb):: 판다스 심화 메서드, 실전 프로세스 및 복습문제 풀이 노트
-
+    - [`part2-2_pandas_advanced.md`](./part2-2_pandas_advanced.md): 판다스 심화 메서드, 실전 프로세스 학습 노트
+    - [`part2-2_pandas_advanced_quiz.ipynb`](./part2-2_pandas_advanced_quiz.ipynb): 판다스 심화 메서드, 실전 프로세스 퀴즈
+    - 
 ### Part 3-1: 데이터 시각화 기초
 
 - **목표:** : Matplotlib, Seaborn, Plotly를 사용한 핵심 그래프(Scatter, Line, Box, Histogram, Heatmap)의 기본 사용법과 주요 파라미터(인자)를 숙달
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
-    - [복습] 판다스 퀴즈 : select_dtype, def/return/apply (실수 교정), groupby/agg/def (실수 교정), pd.qcut, | 필터링, .loc (실수 교정)
     - 시각화 기본: Figure, Axes 개념
     - Matplotlib & Seaborn (Axes-level):
         - sns.scatterplot (산점도): hue, palette, style, markers, s, size
@@ -107,6 +91,7 @@ CPA 디지털 감사 포트폴리오
         - facet_col, facet_row (Plotly의 subplot 기능)
     - 그래프 튜닝: tick_params, set_title, suptitle, grid, tight_layout, update_layout
 - **실습 파일:**
-    - [`part3-1_visualization_basics.ipynb`](./part3-1_visualization_basics.ipynb):: 판다스/시각화 융합 퀴즈 및 시각화 기초 학습 노트
+    - [`part3-1_visualization_basics.md`](./part3-1_visualization_basics.md):: 시각화 기초 학습 노트
+    - [`part3-1_visualization_basics_quiz.ipynb`](./part3-1_visualization_basics_quiz.ipynb):: 시각화 기초 퀴즈
 
 
