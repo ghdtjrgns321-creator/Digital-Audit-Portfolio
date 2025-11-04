@@ -34,7 +34,7 @@ CPA 디지털 감사 포트폴리오
     - 그룹핑 및 집계 (groupby, agg, pivot_table, unstack)
     - 시계열 데이터 (to_datetime, .dt.dayofweek, Timedelta)
 - **실습 파일:**
-    - [`part2-1_pandas_practice.ipynb`](./part2-1_pandas_practice.ipynb): 판다스 상세 학습 노트 및 실습과 퀴즈
+    - [`part2-1_pandas_basics.ipynb`](./part2-1_pandas_basics.ipynb): 판다스 상세 학습 노트 및 실습과 퀴즈
 
 ### Part 2-2: 판다스 기초
 
@@ -47,7 +47,7 @@ CPA 디지털 감사 포트폴리오
     - 데이터 집계: groupby().agg(), groupby().sum(numeric_only=True), sort_values(), .iloc[]
     - 시계열: to_datetime(), .dt.month
 - **실습 파일:**
-    - [`part2-2_pandas_practice.ipynb`](./part2-2_pandas_practice.ipynb): 판다스 실전 모의문제 풀이
+    - [`part2-2_pandas_basics.ipynb`](./part2-2_pandas_basics.ipynb): 판다스 실전 모의문제 풀이
 
 ### Part 2-3: 판다스 심화
 
@@ -61,7 +61,7 @@ CPA 디지털 감사 포트폴리오
     - 데이터 범주화: pd.cut (길이 기준), pd.qcut (개수 기준)
     - 알고리즘: '조건을 만족하는 최대 연속 횟수' (cumsum/mul/diff/where/ffill/add) 로직 복습 및 실전 적용
 - **실습 파일:**
-    - [`part2-3_pandas_deep_dive.ipynb`](./part2-3_pandas_deep_dive.ipynb): 판다스 심화 메서드, 실전 프로세스 및 복습문제 풀이 노트
+    - [`part2-3_pandas_advanced.ipynb`](./part2-3_pandas_advanced.ipynb): 판다스 심화 메서드, 실전 프로세스 및 복습문제 풀이 노트
  
 ### Part 2-4: 판다스 심화
 
@@ -75,7 +75,7 @@ CPA 디지털 감사 포트폴리오
     - 데이터 처리 실전: clip(이상치), interpolate(결측치), explode(행 쪼개기)
     - '연속 횟수' 로직을 실전 데이터(애플 주가)에 적용
 - **실습 파일:**
-    - [`part2-4_pandas_deep_dive.ipynb`](./part2-4_pandas_deep_dive.ipynb):: 판다스 심화 메서드, 실전 프로세스 및 복습문제 풀이 노트
+    - [`part2-4_pandas_advanced.ipynb`](./part2-4_pandas_advanced.ipynb):: 판다스 심화 메서드, 실전 프로세스 및 복습문제 풀이 노트
 
 ### Part 3-1: 데이터 시각화 기초
 - **목표:** : Matplotlib, Seaborn, Plotly를 사용한 핵심 그래프(Scatter, Line, Box)의 기본 사용법과 주요 파라미터(인자)를 숙달
