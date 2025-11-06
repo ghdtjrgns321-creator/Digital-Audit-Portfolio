@@ -95,7 +95,7 @@ CPA 디지털 감사 포트폴리오
     - [`part3-1_visualization_basics.md`](./part3-1_visualization_basics.md):: 시각화 기초 학습 노트
     - [`part3-1_visualization_basics_quiz.ipynb`](./part3-1_visualization_basics_quiz.ipynb):: 시각화 기초 퀴즈 + 판다스 복습 퀴즈
 
-### Part 4-1: 머신러닝 기초
+### Part 5-1: 머신러닝 기초
 
 - **목표:** : 머신러닝의 기본 프로세스(문제 정의 ~ 평가)를 이해하고, Scikit-learn 및 LightGBM을 활용한 분류(Classification)와 회귀(Regression) 모델링의 기초를 숙달
 - **학습 환경:**: Google Colab
@@ -112,5 +112,5 @@ CPA 디지털 감사 포트폴리오
     - 모델 평가 (분류): predict_proba, roc_auc_score, accuracy_score, f1_score
     - 모델 평가 (회귀): root_mean_squared_error (RMSE), mean_squared_error (MSE), mean_absolute_error (MAE), r2_score
 - **실습 파일:**
-    - [`part4-1_ml_basics.md`](./part4-1_ml_basics.md):: 머신러닝 프로세스 상세 학습 노트
-    - [`part4-1_ml_basics_quiz.ipynb`](./part4-1_ml_basics_quiz.ipynb):: 판다스/시각화 복습 퀴즈즈
+    - [`part5-1_ml_basics.md`](./part4-1_ml_basics.md):: 머신러닝 프로세스 상세 학습 노트
+    - [`part5-1_ml_basics_quiz.ipynb`](./part4-1_ml_basics_quiz.ipynb):: 판다스/시각화 복습 퀴즈즈
