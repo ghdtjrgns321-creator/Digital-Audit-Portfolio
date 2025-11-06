@@ -40,8 +40,8 @@ CPA 디지털 감사 포트폴리오
     - 데이터 집계: groupby().agg(), groupby().sum(numeric_only=True), sort_values(), .iloc[]
 - **실습 파일:**
     - [`part2-1_pandas_basics.md`](./part2-1_pandas_basics.md): 판다스 상세 학습 노트
-    - [`part2-1_pandas_basics_quiz1.ipynb`](./part2-1_pandas_basics_quiz1.ipynb): 판다스 실습과 퀴즈
-    - [`part2-1_pandas_basics_quiz2.ipynb`](./part2-1_pandas_basics_quiz2.ipynb): 판다스 실습과 퀴즈
+    - [`part2-1_pandas_basics_quiz1.ipynb`](./part2-1_pandas_basics_quiz1.ipynb): 판다스 실습과 퀴즈1
+    - [`part2-1_pandas_basics_quiz2.ipynb`](./part2-1_pandas_basics_quiz2.ipynb): 판다스 실습과 퀴즈2
       
 ### Part 2-2: 판다스 심화
 
@@ -95,4 +95,22 @@ CPA 디지털 감사 포트폴리오
     - [`part3-1_visualization_basics.md`](./part3-1_visualization_basics.md):: 시각화 기초 학습 노트
     - [`part3-1_visualization_basics_quiz.ipynb`](./part3-1_visualization_basics_quiz.ipynb):: 시각화 기초 퀴즈 + 판다스 복습 퀴즈
 
+### Part 4-1: 머신러닝 기초
 
+- **목표:** : 머신러닝의 기본 프로세스(문제 정의 ~ 평가)를 이해하고, Scikit-learn 및 LightGBM을 활용한 분류(Classification)와 회귀(Regression) 모델링의 기초를 숙달
+- **학습 환경:**: Google Colab
+- **주요 학습 내용:**
+    - 머신러닝 프로세스: 문제 정의 ➡️ 데이터 로드 ➡️ EDA ➡️ 데이터 전처리 ➡️ 검증 데이터 분할 ➡️ 모델 학습 및 평가
+    - 데이터 전처리 (ML):
+        - 결측치 처리: dropna, fillna(mode, mean, median), 'X' (새 카테고리)
+        - 인코딩 (문자 ➡️ 숫자): pd.get_dummies (원핫 인코딩), LabelEncoder (레이블 인코딩)
+        - 스케일링: MinMaxScaler, StandardScaler, RobustScaler
+        - 타겟 분리: pop()
+    - 검증 데이터 분할: train_test_split
+    - 모델 학습 (분류): RandomForestClassifier, LGBMClassifier
+    - 모델 학습 (회귀): LinearRegression, RandomForestRegressor, LGBMRegressor
+    - 모델 평가 (분류): predict_proba, roc_auc_score, accuracy_score, f1_score
+    - 모델 평가 (회귀): root_mean_squared_error (RMSE), mean_squared_error (MSE), mean_absolute_error (MAE), r2_score
+- **실습 파일:**
+    - [`part4-1_ml_basics.md`](./part4-1_ml_basics.md):: 머신러닝 프로세스 상세 학습 노트
+    - [`part4-1_ml_basics_quiz.ipynb`](./part4-1_ml_basics_quiz.ipynb):: 판다스/시각화 복습 퀴즈즈
