@@ -7,7 +7,6 @@ CPA 디지털 감사 포트폴리오
 파이썬(Pandas)과 SQL을 활용한 감사 포트폴리오를 구축하는 과정을 기록합니다.
 
 ### Part 1: 파이썬 기초
-
 - **목표:** 파이썬 기본 문법 및 자료구조(리스트, 딕셔너리) 학습습
 - **학습 환경:** Google Colab
 - **주요 학습 내용:**
@@ -23,7 +22,6 @@ CPA 디지털 감사 포트폴리오
     - [`part1_python_basics_quiz.ipynb`](./part1_python_basics_quiz.ipynb) : 기초 문법 실습 퀴즈
   
 ### Part 2-1: 판다스 기초
-
 - **목표:** 데이터 분석의 핵심 라이브러리인 판다스의 주요 기능 숙달, 실제 데이터 분석 문제(데이터 클리닝, 전처리, 그룹핑)를 해결하는 실습 진행
 - **학습 환경:** Google Colab
 - **주요 학습 내용:**
@@ -44,7 +42,6 @@ CPA 디지털 감사 포트폴리오
     - [`part2-1_pandas_basics_quiz2.ipynb`](./part2-1_pandas_basics_quiz2.ipynb): 판다스 실습과 퀴즈2
       
 ### Part 2-2: 판다스 심화
-
 - **목표:** : 판다스 스킬 다지기. loc/iloc 등 기본 복습부터 groupby 심화, 시계열(resample), 실전 처리 워크플로우, 다양한 모의문제까지 총정리.
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
@@ -65,7 +62,6 @@ CPA 디지털 감사 포트폴리오
     - [`part2-2_pandas_advanced_quiz.ipynb`](./part2-2_pandas_advanced_quiz.ipynb): 판다스 심화 메서드, 실전 프로세스 퀴즈
       
 ### Part 3-1: 데이터 시각화 기초
-
 - **목표:** : Matplotlib, Seaborn, Plotly를 사용한 핵심 그래프(Scatter, Line, Box, Histogram, Heatmap)의 기본 사용법과 주요 파라미터(인자)를 숙달
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
@@ -96,7 +92,6 @@ CPA 디지털 감사 포트폴리오
     - [`part3-1_visualization_basics_quiz.ipynb`](./part3-1_visualization_basics_quiz.ipynb):: 시각화 기초 퀴즈 + 판다스 복습 퀴즈
 
 ### Part 5-1: 머신러닝 기초
-
 - **목표:** : 머신러닝의 기본 프로세스(문제 정의 ~ 평가)를 이해하고, Scikit-learn 및 LightGBM을 활용한 분류(Classification)와 회귀(Regression) 모델링의 기초를 숙달
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
@@ -113,4 +108,29 @@ CPA 디지털 감사 포트폴리오
     - 모델 평가 (회귀): root_mean_squared_error (RMSE), mean_squared_error (MSE), mean_absolute_error (MAE), r2_score
 - **실습 파일:**
     - [`part5-1_ml_basics.md`](./part5-1_ml_basics.md):: 머신러닝 프로세스 상세 학습 노트
-    - [`part5-1_ml_basics_quiz.ipynb`](./part5-1_ml_basics_quiz.ipynb):: 판다스/시각화 복습 퀴즈즈
+    - [`part5-1_ml_basics_quiz.ipynb`](./part5-1_ml_basics_quiz.ipynb):: 판다스/시각화 복습 퀴즈
+ 
+- ### Part 5-2: 머신러닝 실습
+- **목표:** : 머신러닝의 기본 프로세스(EDA, 전처리, 모델링, 평가)를 이해하고, Scikit-learn/XGBoost를 활용한 '분류(Classification)'와 '회귀(Regression)' 실전 프로젝트 3종을 수행
+- **학습 환경:**: Google Colab
+- **주요 학습 내용:**
+    - 머신러닝 프로세스: EDA ➡️ 데이터 전처리 ➡️ 검증 데이터 분할 ➡️ 모델 학습/평가 ➡️ 예측 및 제출
+    - 데이터 전처리:
+        - 타겟 분리: .pop()
+        - 결측치 처리: .fillna(0)
+        - 인코딩 (비교): Baseline(drop), LabelEncoder, pd.get_dummies (One-Hot)
+        - (실수 교정) train/test 컬럼 불일치 해결 (pd.concat)
+    - 검증 데이터 분할: train_test_split
+    - 모델링 (분류): RandomForestClassifier, XGBClassifier
+    - 모델링 (회귀): LinearRegression, Ridge, Lasso, RandomForestRegressor, XGBRegressor
+    - 모델 평가 (분류):
+        - (실수 교정) .predict() vs .predict_proba()
+        - accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+    - 모델 평가 (회귀):
+        - (실수 교정) y_val(정답지) vs pred(답안지)
+        - r2_score, MAE, MSE, RMSE, RMSLE, MAPE (사용자 정의 함수)
+    - 하이퍼파라미터 튜닝: max_depth, n_estimators (수동 튜닝)
+- **실습 파일:**
+    - [`part5-2_ml_practice1.ipynb`](./part5-2_ml_practice1.ipynb):: 머신러닝 실전 프로젝트1
+    - [`part5-2_ml_practice2.ipynb`](./part5-2_ml_practice2.ipynb):: 머신러닝 실전 프로젝트2
+    - [`part5-2_ml_practice3.ipynb`](./part5-2_ml_practice3.ipynb):: 머신러닝 실전 프로젝트3
