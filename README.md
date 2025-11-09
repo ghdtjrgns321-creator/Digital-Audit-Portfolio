@@ -91,7 +91,7 @@ CPA 디지털 감사 포트폴리오
     - [`part3-1_visualization_basics.md`](./part3-1_visualization_basics.md):: 시각화 기초 학습 노트
     - [`part3-1_visualization_basics_quiz.ipynb`](./part3-1_visualization_basics_quiz.ipynb):: 시각화 기초 퀴즈 + 판다스 복습 퀴즈
       
-### Part 4: 파이썬을 활용한 통계분석 기초
+### Part 4: 파이썬을 활용한 통계분석
 - **목표:** : 파이썬(Scipy, Statsmodels)을 활용한 가설 검정(Hypothesis Testing)의 기본 개념과 T-test, ANOVA, 카이제곱 검정(Chi-square), 회귀 분석(OLS)을 숙달
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
@@ -105,7 +105,7 @@ CPA 디지털 감사 포트폴리오
     - 사후 검정: pairwise_tukeyhsd (Tukey), MultiComparison (Bonferroni)
     - 비모수 검정 (ANOVA): stats.kruskal (Kruskal-Wallis)
 - **실습 파일:**
-    - [`part4_statistics_basics.md`](./part4_statistics_basics.md):: 통계 분석 기초 상세 학습 노트
+    - [`part4_statistics.md`](./part4_statistics.md):: 통계 분석 상세 학습 노트
 
 ### Part 5-1: 머신러닝 기초
 - **목표:** : 머신러닝의 기본 프로세스(문제 정의 ~ 평가)를 이해하고, Scikit-learn 및 LightGBM을 활용한 분류(Classification)와 회귀(Regression) 모델링의 기초를 숙달
