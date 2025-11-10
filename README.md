@@ -106,6 +106,7 @@ CPA 디지털 감사 포트폴리오
     - 비모수 검정 (ANOVA): stats.kruskal (Kruskal-Wallis)
 - **실습 파일:**
     - [`part4_statistics.md`](./part4_statistics.md):: 통계 분석 상세 학습 노트
+    - [`part4_statistics_quiz.md`](./part4_statistics_quiz.md):: 판다스/시각화 복습퀴즈
 
 ### Part 5-1: 머신러닝 기초
 - **목표:** : 머신러닝의 기본 프로세스(문제 정의 ~ 평가)를 이해하고, Scikit-learn 및 LightGBM을 활용한 분류(Classification)와 회귀(Regression) 모델링의 기초를 숙달
