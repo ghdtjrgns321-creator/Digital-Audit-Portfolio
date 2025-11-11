@@ -62,7 +62,6 @@ df.loc[df[’Review’] == ‘Superb 9.0’, ‘Review’] = ‘Superb’ ← Re
 
 df[’Total_Review’].unique() ← 모든 고유값들 반환
 
-![스크린샷 2025-11-02 181606.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-02_181606.png)
 
 cf) 모든 total review를 숫자로 바꾸기
 
@@ -559,7 +558,6 @@ df = df.reset_index()
 
 df[’path’] = df.groupby(’product_id’)[’operator’].transform(lambda x : ‘_’.join(x))
 
-![스크린샷 2025-11-03 145117.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-03_145117.png)
 
 df[’path’] = df[’factory’] + ‘_’ + df[’path’]
 
@@ -595,5 +593,4 @@ df.groupby([’passfail’])[’date’].value_counts()
         process_map = { ‘1’ : ‘P1’, ‘2’ : ‘P1’, ‘W’ : ‘P2’ , ‘V’ : ‘P2’, ‘X’ : ‘P3’, ‘Y’ : ‘P3’}
         
         df[’process’] = df[’path’].map(process_map)
-        
-        ![스크린샷 2025-11-03 150431.png](%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-03_150431.png)
+  
