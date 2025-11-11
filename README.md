@@ -90,6 +90,31 @@ CPA 디지털 감사 포트폴리오
 - **실습 파일:**
     - [`part3-1_visualization_basics.md`](./part3-1_visualization_basics.md):: 시각화 기초 학습 노트
     - [`part3-1_visualization_basics_quiz.ipynb`](./part3-1_visualization_basics_quiz.ipynb):: 시각화 기초 퀴즈 + 판다스 복습 퀴즈
+
+### Part 3-2: 데이터 시각화 심화
+- **목표:** : Matplotlib, Seaborn, Plotly를 활용하여 '고급' 그래프(Histogram, Heatmap)를 익히고, '여러 개'의 그래프를 '동시'에 그리는 FacetGrid 및 facet_col의 원리를 이해하며, 그래프를 '세부 튜닝'하는 방법을 숙달
+- **학습 환경:**: Google Colab
+- **주요 학습 내용:**
+    - 고급 그래프 (Seaborn/Plotly):
+        - sns.histplot / px.histogram (히스토그램): bins, hue/color, multiple/barmode
+        - sns.heatmap / px.imshow (히트맵): annot/text_auto, fmt, cmap/color_continuous_scale
+    - 다중 그래프 (Facet):
+        - Seaborn: Axes-level vs Figure-level (lmplot) 비교, FacetGrid + .map_dataframe()
+        - Plotly: facet_col, facet_row, facet_col_wrap
+    - 그래프 세부 튜닝 (Matplotlib/Plotly):
+        - 축(Axis) 튜닝: tick_params (회전), update_xaxes (포맷), set_yscale('log'), grid
+        - 다중 축(Y-axis): ax.twinx(), make_subplots(specs=[...])
+        - 범례(Legend): ax.legend(bbox_to_anchor=...), update_layout(legend_x=...)
+        - 텍스트/주석: ax.text(), ax.annotate(), fig.add_annotation()
+        - 선/테두리: ax.axhline(), fig.add_hline(), ax.spines
+    - 고급 튜닝 (FacetGrid / Plotly):
+        - for 문 / def 함수를 활용한 '그룹별' 튜닝 (e.g., 그룹별 '평균선' 추가, '이상치' 강조)
+    - 색상 (Color):
+        - palette (Seaborn) / color_continuous_scale (Plotly)
+        - '수동' 색상 지정 (List, Dictionary)
+        - '커스텀' Color Map 만들기 (LinearSegmentedColormap)
+- **실습 파일:**
+    - [`part3-2_visualization_advanced.md`](./part3-2_visualization_advanced.md):: 시각화 심화(히스토그램/히트맵/Facet/튜닝) 상세 학습 노트
       
 ### Part 4: 파이썬을 활용한 통계분석
 - **목표:** : 파이썬(Scipy, Statsmodels)을 활용한 가설 검정(Hypothesis Testing)의 기본 개념과 T-test, ANOVA, 카이제곱 검정(Chi-square), 회귀 분석(OLS)을 숙달
