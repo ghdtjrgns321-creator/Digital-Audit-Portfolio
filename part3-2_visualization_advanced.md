@@ -20,7 +20,7 @@ sns.lineplot(x=’Date’, y=’Close’, ax=ax, data=df)
 
 ax.tick_paramas(axis=’x’, labelrotation=60)
 
-![image.png](image.png)
+
 
 - 시계열 그래프 x축 깔끔하게 표시하기 위한 코드
 
@@ -32,7 +32,6 @@ sns.lineplot(x=’Date’, y=’Close’, data=df, ax=ax)
 
 ax.xaxis.set_major_formatter(mpl.dates.ConciseDateFormatter(ax.xaxis.get_major_locator()))
 
-![image.png](image%201.png)
 
 ## x축이 날짜인 시계열 그래프(Plotly)
 
@@ -43,15 +42,12 @@ fig = px.line(df, x=’Date’, y=’Close’, width=500, height=400)
 
 fig.show()
 
-![image.png](image%202.png)
-
 fig = px.line(df, x=’Date’, y=’Close’, width=500, height=400)
 
 fig.update_xaxes(tickformat=’%Y-%m-%d’)
 
 fig.show()
 
-![image.png](image%203.png)
 
 # 다중 축 그래프 그리기
 
@@ -73,7 +69,6 @@ ax2.tick_params(axis=’y, labelcolor=’blue’)
 
 ax2.yaxis.label.se_color(’blue’)
 
-![image.png](image%204.png)
 
 ## 3개의 y축을 가지는 그래프 그리기(Matplotlib)
 
@@ -107,7 +102,6 @@ ax2.tick_params(axis=’y’, labelcolor=’blue’)
 
 ax3.tick_params(axis=’y’, labelcolor=’green’)
 
-![image.png](image%205.png)
 
 ## 2개의 y축을 가지는 그래프 그리기(Plotly)
 
@@ -141,7 +135,6 @@ fig.update_layout(width=500, height=400)
 
 fig.show()
 
-![image.png](image%206.png)
 
 ## 3개의 y축을 가지는 그래프 그리기(Plotly) (심화)
 
@@ -217,7 +210,6 @@ fig.layout.yaxis3.color=’green’
 
 fig.show()
 
-![image.png](image%207.png)
 
 # 범례(legend) 위치 조절하기
 
@@ -231,7 +223,6 @@ sns.scatterplot(x=’Fuel Consumption Comb (L/100 km)’, y=’CO2 Emissions(g/k
 
 ax.legend(bbox_to_anchor=(1.01, 1.05)) ← 범례 위치를 x축 1.01만큼 더가고 y축 1.05만큼 더가라
 
-![image.png](image%208.png)
 
 ## Plotly
 
@@ -243,7 +234,6 @@ fig.update_layout(legend_x=1.2, legend_y=1)
 
 fig.show()
 
-![image.png](image%209.png)
 
 # 그래프의 테두리(spine) 강조하기
 
@@ -263,8 +253,6 @@ ax.spines[spine].set_color(’blue’)
 
 ax.spines[spine].set_linewidth(3)
 
-![image.png](image%2010.png)
-
 ## Plotly
 
 fig = px.box(df, x=’Cylinders’, y=’CO2 Emissions(g/km)’, width=500, height=400)
@@ -275,7 +263,6 @@ fig.update_yaxes(showline=True, linecolor=’black’, linewidth=3, mirror=True)
 
 fig.show()
 
-![image.png](image%2011.png)
 
 # 그래프 내 텍스트 표현
 
@@ -300,10 +287,6 @@ ax.annotate(text=’etanol is efficient’, xy=(0.95, 0.7), xytext=(0.73, 0.5), 
 
 arrowprops → 화살표넣기, xy → 화살표가 가리키는 대상, xytext → 텍스트가 쓰이는 위치
 
-![image.png](image%2012.png)
-
-![image.png](image%2013.png)
-
 ## Plotly
 
 - Plotly figure의 add_annotation 메서드를 이용해 표현
@@ -320,7 +303,6 @@ arrowhead ← 화살표 모양
 
 fig.show()
 
-![image.png](image%2014.png)
 
 # 수평선과 수직선 그리기
 
@@ -340,7 +322,7 @@ ax.axhiline(df[’target’].iloc[-1], color=’red’, linewidth=0.5)
 
 ax.axhline(df[’upper_spec’].iloc[-1], color=’red’, linewidth=0.5)
 
-![image.png](image%2015.png)
+
 
 ## Plotly
 
@@ -355,7 +337,7 @@ fig.add_hline(df[target’].iloc)[-1], line_color=’red’, line_width=0.5)
 
 fig.add_hline(df[’upper_spec’].iloc)[-1], line_color=’red’, line_width=0.5)
 
-![image.png](image%2016.png)
+
 
 # FacetGrid로 나눈 각 ax별 mapping으로 그래프 세부튜닝하기
 
@@ -384,7 +366,6 @@ ax.xaxis.set_major_formatter(mp1.dates.ConciseDateFormatter(ax.xaxis.get_major_l
 
 g.map(custom, ‘lower_spec’, ‘target’, ‘upper_spec’)
 
-![image.png](image%2017.png)
 
 1. for 문으로 처리하는 방법
 
@@ -431,7 +412,7 @@ ax.text(x=0.02, y=mean, s=’mean: {:.1f}’.format(mean), fontdict={’fontsize
 
 g.map(custom, ‘value’, ‘lower_spec’, ‘target’, ‘upper_spec’)
 
-![image.png](image%2018.png)
+
 
 ## Plotly facet을 통해 그린 subplot들을 각 그룹별 통계값으로 튜닝하기
 
@@ -467,7 +448,6 @@ fig.update_yaxes(showticklabels=True)
 
 fig.show()
 
-![image.png](image%2019.png)
 
   # 각 subplot 별 데이터의 median 값 표시
 
@@ -477,7 +457,7 @@ fig.add_hline(y=med, line_color=’black’, line_width=3, line_dash=’dot’, 
 
 fig.add_annotation(text=’median’: {:.1f}’.format(med), showarrow=False, bordercolor=’black’, borderwidth=1, bgcolor=’rgb(256,256,256)’, x=0.02, y=med, xref=’x domain’, row=1, col=idx+1,)
 
-![image.png](image%2020.png)
+
 
 # 특정 조건을 만족하는 subplot 강조하기
 
@@ -525,8 +505,6 @@ g.map(custom, ‘lower_spec’, ‘target’, ‘upper_spec’)
 
 g.map(if_spec_out, ‘spec_out’)
 
-![image.png](image%2021.png)
-
 ### Seaborn FacetGrid에서 조건 만족시 화살표 표시넣기
 
 g = sns.FacetGrid(df, sharex=False, sharey=False, col=’inspection_step’, aspect=1.6)
@@ -561,7 +539,7 @@ xytext=(spec_out_df.iloc[idx][’date’], spec_out_df.iloc[idx][’value’]*1.
 
 text=’spec_out’, arrowprops={’color’:’red’,’width’:2}, color=’red’, weight=’bold’)
 
-![image.png](image%2022.png)
+
 
 ## Plotly Facet에서 특정 조건을 만족하는 sublot 강조
 
@@ -599,7 +577,7 @@ fig.update_yaxes(maches=None, showticklabels=True)
 
 fig.show()
 
-![image.png](image%2023.png)
+
 
 ## Plotly 조건 만족시 화살표 표시넣기
 
@@ -666,7 +644,6 @@ sns.regplot(x=’horsepower’m y=’weight’, data=df, ax=ax, line_kws={’lab
 
 ax.legend()
 
-![image.png](image%2024.png)
 
 1. 
 
@@ -675,8 +652,7 @@ fig, ax= plt.subplots()
 sns.regplot(x=’horsepower’, y=’weight’, data=df, ax=ax)
 
 ax.text(x=0.05, y=0.9, s=’y={:.2f}x+{:.2f}, R^2={:.2f}’.format(s, i, r**2), transform=ax.transAxes)
-
-![image.png](image%2025.png)
+ 
 
 ## Plotly 를 통해 그린 선형회귀 수식 표시
 
@@ -690,15 +666,11 @@ results = results.iloc[0][”px_fit_results”]
 
 print(results.summaty())
 
-![image.png](image%2026.png)
-
-![image.png](image%2027.png)
 
 fig.add_annotation(text=’y= {:.1f}x + {:.1f}, R^2={:.2f}’.format(results.params[1], results.params[0], results.rsquared), x=0.05, y=0.95, xref=’x domain’, yref=’y domain’, showarrow=False)
 
 fig.show()
 
-![image.png](image%2028.png)
 
 # 그래프의 축 log 형식으로 변환하기
 
@@ -716,7 +688,6 @@ ax.xaxis.set_major_formatter(mp1.dates.ConciseDateFormatter(ax.xaxis.get_manjor_
 
 ax.set_ysclae(’log’)
 
-![image.png](image%2029.png)
 
 ## Ployly 에서 적용
 
@@ -724,7 +695,6 @@ fig = px.line(data_frame=df, x=’date’, y=’confirmed’, width=500, height=
 
 fig.show()
 
-![image.png](image%2030.png)
 
 # Color Palette및 Color Map 활용
 
@@ -767,7 +737,6 @@ fig, ax = plt.subplots(figsize=(8,6))
 
 sns.heatmap(pivot[clarity_order], annot=True, fmt=’.0f’)
 
-![image.png](image%2031.png)
 
 fig, ax = plt.subplots(figsize=(8,6))
 
@@ -775,7 +744,6 @@ sns.heatmap(pivot[clarity_order], annot=True, fmt=’.0f’,
 
 cmap = [’black’, ‘darkgrey’, ‘lightgrey’, ‘white’])
 
-![image.png](image%2032.png)
 
 - (참고) color map 직접 만들어서 사용
 
@@ -787,7 +755,6 @@ fig, ax = plt.subplots(figsize=(8,,6))
 
 sns.heatmap(pivot[clarity_order], annot=True, fmt=’.0f’, linewidth=0.5, linecolor=’black’, cmap=color)
 
-![image.png](image%2033.png)
 
 # Plotly 에서 color 활용
 
@@ -795,7 +762,6 @@ fig = px.colors.qulitative.swatches() ← 컬러 예시 보는 코드
 
 fig.show()
 
-![image.png](image%2034.png)
 
 fig = px.colors.sequential.swatches_continuous()
 
@@ -809,19 +775,18 @@ fig = px.scatter(df, x=’total_bill’, y=’tip’, width=500, height=400, col
 
 fig.show()
 
-![image.png](image%2035.png)
+
 
 - 범주형 데이터 인자에 적용하기
 
 fig = px.scatter(df, x=’total_bill’, y=’tip’, width=500, height=400, color=’day’, color_discrete_sequence=px.colors.qualitative.Light24)
 
-![image.png](image%2036.png)
 
 - 색 직접 지정하기
 
 fig = px.scatter(df, x=’total_bill’, y=’tip’, width=500, height=400, color=’day’, color_discrete_sequence=[’rgb(255, 255, 255)’, ’rgb(0, 0, 0)’, ’rgb(128, 128, 128)’, ’rgb(64, 255, 192)’]
 
-![image.png](image%2037.png)
+
 
 - 색 직접 지정하기2
 
@@ -841,12 +806,9 @@ colors = [’black’, ‘darkgrey’, ‘lightgrey’, ‘white’
 
 fig = px.imshow(pivot[clarity_order], width=500, height=400, text_auto=’4d’, color_continuous_scale=colors)
 
-![image.png](image%2038.png)
 
 - (활용) color map 직접 만들어서 활용하기
 
 fig = px.imshow(pivot[clarity_order], width=500, height=400, text_auto=’4d’)
 
 fig.update_coloraxes(showscale=True, colorsclae=[(0.0, ‘#FFFFFF’), (0.5, ‘#FFFFFF’), (1, ‘#0000FF’),],)
-
-![image.png](image%2039.png)
