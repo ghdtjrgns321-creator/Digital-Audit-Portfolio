@@ -337,7 +337,6 @@ from statsmodels.formula.api import ols
 model = ols('키 ~ 몸무게', data=df).fit()
 print(model.summary())
 
-![image.png](image.png)
 
 - 결과 해석
 
@@ -386,8 +385,6 @@ pred = model.get_prediction(newdata)
 
 pred.summary_frame(alpha=0.05)
 
-![image.png](image%201.png)
-
 신뢰구간 : 155.695318 ~ 165.323136
 
 예측구간 : 146.068566 ~ 174.949888
@@ -415,7 +412,6 @@ from statsmodels.formula.api import ols
 model = ols('매출액 ~ 광고비 + 플랫폼', data=df).fit()
 print(model.summary())
 
-![image.png](image%202.png)
 
 - 결과 해석
 
@@ -487,8 +483,6 @@ from statsmodels.formula.api import ols
 model = ols('매출액 ~ 광고비 + 유형', data=df).fit()
 print(model.summary())
 
-![image.png](image%203.png)
-
 - 원핫인코딩
 
 df2 = pd.,get_dummies(df)
@@ -503,7 +497,6 @@ from statsmodels.formula.api import ols
 model = ols('매출액 ~ 광고비 + 유형_B + 유형_C', data=df).fit()
 print(model.summary())
 
-![image.png](image%204.png)
 
 # 분산분석
 
@@ -538,7 +531,6 @@ PR(>F): p-value
 
 ### 프로세스
 
-![image.png](image%205.png)
 
 정규성검정(샤피로) → yes: 등분산검정, no:크루스칼-윌리스 비모수검정 → 일원분산분석 → 사후 : Turkey HSD or Bonferroni
 
@@ -591,7 +583,6 @@ from statsmodels.stats.anova import anova_lm
 model = ols('value ~ variable', data=df_melt).fit()
 anova_lm(model)
 
-![image.png](image%206.png)
 
 ### 사후검정 : 어떤 그룹들간 통계적으로 유의미한 차이가 있는지 구체적으로 파악
 
@@ -607,7 +598,6 @@ mc = MultiComparison(df_melt['value'], df_melt['variable'])
 bon_result = mc.allpairtest(stats.ttest_ind, method='bonf')
 print(bon_result[0])
 
-![image.png](image%207.png)
 
 reject = True → 차이가 있는 그룹임
 
@@ -658,7 +648,6 @@ stats.kruskal(df['A'], df['B'], df['C'], df['D'])
 model = ols('종속변수 ~ C(요인1) * C(요인2)', data=df).fit()
 print(anova_lm(model))
 
-![image.png](image%208.png)
 
 가정에서 재배하고 있는 네 가지 토마토 종자(A, B, C, D)에 대해 세 가지 종류의 비료 (11, 12, 13)를 사용하여 재배된 토마토 수를 조사하였다. 종자 및 비료 종류 간의 토마토 수의 차이가 있는지 유의수준 0.05하에서 검정하시오.
 (단, 정규성, 등분산성에 만족한 데이터)
@@ -681,7 +670,6 @@ from statsmodels.stats.anova import anova_lm
 model = ols('토마토수 ~ 종자 + 비료 + 종자:비료', data=df).fit()
 anova_lm(model)
 
-![image.png](image%209.png)
 
  범주형 데이터 처리
 from statsmodels.formula.api import ols
@@ -689,7 +677,7 @@ from statsmodels.stats.anova import anova_lm
 model = ols('토마토수 ~ C(종자) + C(비료) + C(종자):C(비료)', data=df).fit()
 anova_lm(model)
 
-![image.png](image%2010.png)
+
 
  일반표기법 format(지수표기법, '.10f')
 print(format(7.254117e-10,'.10f'))
@@ -704,7 +692,7 @@ from statsmodels.stats.anova import anova_lm
 or model = ols('토마토수 ~ C(종자) * C(비료)', data=df).fit()
 anova_lm(model)
 
-![image.png](image%2011.png)
+
 
 ### 사후검정
 
@@ -712,7 +700,7 @@ anova_lm(model)
 model = ols('토마토수 ~ C(종자) + C(비료) + C(종자):C(비료)', data=df).fit()
 anova_lm(model)
 
-![image.png](image%2012.png)
+
 
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 
@@ -722,7 +710,7 @@ tukey_summary2 = pairwise_tukeyhsd(df['토마토수'], df['비료'].astype(str),
 print(tukey_summary1)
 print(tukey_summary2)
 
-![image.png](image%2013.png)
+
 
 # Bonferroni
 from scipy import stats
@@ -736,7 +724,7 @@ mc = MultiComparison(df['토마토수'], df['비료'])
 bon_result = mc.allpairtest(stats.ttest_ind, method="bonf")
 print(bon_result[0])
 
-![image.png](image%2014.png)
+
 
 ### 정규성, 등분산
 
