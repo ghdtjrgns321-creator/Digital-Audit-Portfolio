@@ -32,17 +32,15 @@ streamlit run main_streamlit_df.py
     st.subheader(’This is subheader’)
     
 
-![image.png](image.png)
+
 
 - Streamlit 마크다운, 텍스트, 코드
 
 st.markdown( ‘’’ This is main text. This is how to change the color of text : red[Red,] :blue[Blue,] :green[Green.] This is **Bold** and *Italic* text’’’)
 
-![image.png](image%201.png)
 
 st.text( ‘’’ This is main text. This is how to change the color of text : red[Red,] :blue[Blue,] :green[Green.] This is **Bold** and *Italic* text’’’)
 
-![image.png](image%202.png)
 
 code = ‘’’
 
@@ -64,7 +62,7 @@ ax.xaixs.set_minor_locator(MultipleLocator(1))
 
 st.code(code, language=’python’)
 
-![image.png](image%203.png)
+
 
 - 페이지 나누기 : divide 함수
     - 페이지에 가로선 삽입
@@ -79,7 +77,7 @@ st.title(’Title 2’)
 
 st.text(’Text body2’)
 
-![image.png](image%204.png)
+
 
 ## Button
 
@@ -106,7 +104,7 @@ st.text(’Text body2’)
         st.write(’button activated’)
         
 
-![image.png](image%205.png)
+
 
 ## CheckBox
 
@@ -130,7 +128,7 @@ st.text(’Text body2’)
         st.checkbox(’I agree’, on_change=checkbox_write)
         
 
-![image.png](image%206.png)
+
 
 ## togglebox
 
@@ -148,7 +146,6 @@ else:
 
 st.text(’Switch is turend off!’)
 
-![image.png](image%207.png)
 
 ## selectbox
 
@@ -164,7 +161,8 @@ st.text(’you selected: {}’. format(option))
 
 option = st.selectbox(label = ‘yout selection is’, options=[’Car’, ‘Airplane’, ‘Train’, ‘Ship’], index=None, placeholder=’selecet transportation’)
 
-![image.png](image%208.png)
+
+
 
 ## radio button
 
@@ -179,8 +177,6 @@ if option:
 
 st.text(’You Selected {}’.format(option))
 
-![image.png](image%209.png)
-
 ## multiselect
 
 - 첫 번째로 전달되는 문자열 인자가 버튼의 제목으로 표시
@@ -191,8 +187,6 @@ st.text(’You Selected {}’.format(option))
 option = st.multiselect(label=’your selection is’, options=[’Car’,’Airplane’,’Train’,’Ship’], placeholder=’select transportation’)
 
 st.text(’yot selected: {}’.format(option))
-
-![image.png](image%2010.png)
 
 ## text input
 
@@ -208,15 +202,11 @@ if string:
 
 st.text(’Your answer is ‘+string)
 
-![image.png](image%2011.png)
-
 string = st.text_input(’Movie title’, placeholder=’write down the title of your favorite movie’, type=’password’)
 
 if string:
 
 st.text(’Your answer is ‘+string)
-
-![image.png](image%2012.png)
 
 ## File upload
 
@@ -233,8 +223,6 @@ df = pd.read_csv(file)
 
 st.write(df)
 
-![image.png](image%2013.png)
-
 ## Slider
 
 - 값 or 범위 선택 가능한 slider 생성. 첫 번째로 전달되는 문자열인자가 위젯의 label로 표시
@@ -247,8 +235,6 @@ score = st.slider(’Your score is …’, 0, 100, 1)
 
 st.text(’Score: {}’.format(score))
 
-![image.png](image%2014.png)
-
 from datetime import time
 
 start_time, end_time = st.slider(
@@ -258,8 +244,6 @@ start_time, end_time = st.slider(
 min_value=time(0), max_value=time(23), value=(time(8), time(18)),format=’HH:mm’)
 
 st.text(’Working time: {}, {}’.format(start_time, end_time))
-
-![image.png](image%2015.png)
 
 ## 차트 및 이미지 표현하기
 
@@ -277,8 +261,6 @@ sns.histplot(df, x=’total_bill’, ax=ax, hue=’time’)
 
 st.pyplot(fig)
 
-![image.png](image%2016.png)
-
 ### Ployly 를 통해 그린 그래프 표현
 
 import [plotly.express](http://plotly.express) as px
@@ -290,8 +272,6 @@ data_frame=df, x=’day’, y=’tip’, facet_col = ‘smoker’, facet_row = �
 )
 
 st.plotly_chart(fig2)
-
-![image.png](image%2017.png)
 
 ### (활용) streamlit 앱에서 원하는 변수를 선택하여 그래프 그리기
 
@@ -332,7 +312,6 @@ data_frame=df, x=x_option, y=y_option, width=500
 
 st.plotly_chart(fig) 
 
-![image.png](image%2018.png)
 
 ## 이미지 생성하기
 
@@ -347,7 +326,6 @@ img = Image.open(’datasets/images/image1.jpg’)
 
 st.image(img, width=300, caption=’Image from Unsplash’)
 
-![image.png](image%2019.png)
 
 ## Layout 이해하기
 
@@ -372,7 +350,6 @@ placeholder=’select transportation;
 
 )
 
-![image.png](image%2020.png)
 
 ### Column 생성하기
 
@@ -393,8 +370,6 @@ with col2:
 st.header(’Cocktail’)
 
 st.image(img3, width=300, caption=’Image from Unsplash’)
-
-![image.png](image%2021.png)
 
 ## tab 생성하기
 
@@ -421,7 +396,6 @@ data_frame=df, x=’bmi’, y=’charges’
 
 st.plotly_chart(fig)
 
-![image.png](image%2022.png)
 
 ### expander 생성하기
 
@@ -436,8 +410,6 @@ df= df.query(’region == “northwest”’)
 with st.expander(”See datatable”):
 
 st.table(df.head(5))
-
-![image.png](image%2023.png)
 
 ## Streamlit Session State 이해하기
 
@@ -459,7 +431,6 @@ i += 1
 
 st.text(’i = {}’.format(i))
 
-![image.png](image%2024.png)
 
 - 세션 초기화 시 변수들을 저장할 수 있는 session_state 제공
 - sessiont_state에 변수와 값을 변수:값 형태의 딕셔너리로 저장
@@ -478,7 +449,6 @@ st.sesstion_state[’i’] += 1
 
 st.text(’i = {}’.format(st.session_state[i]))
 
-![image.png](image%2025.png)
 
 ## 캐싱 이해하기
 
@@ -495,7 +465,6 @@ st.text(’Result: {}’.format(a+b))
 
 result = st.button(’Calculate’, on_click=expensive_computation, args(3, 4,))
 
-![image.png](image%2026.png)
 
 # Streamlit 웹 대시보드 제작 실습
 
