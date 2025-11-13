@@ -192,4 +192,5 @@ CPA 디지털 감사 포트폴리오
 - **실습 파일:**
     - [`part6_streamlit_study.md`](./part6_streamlit_study.md):: streamlit 상세 학습 노트
     - [`part6_streamlit_dashboard.py`](./part6_streamlit_dashboard.py):: 실전 프로젝트 대시보드 전체 소스 코드
+    - https://digital-audit-portfolio-zkwnvfuoyhgcbwqhxyypbh.streamlit.app/ 실습 페이지
 
