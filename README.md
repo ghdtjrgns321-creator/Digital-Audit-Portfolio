@@ -7,7 +7,7 @@ CPA 디지털 감사 포트폴리오
 파이썬(Pandas)과 SQL을 활용한 감사 포트폴리오를 구축하는 과정을 기록합니다.
 
 ### Part 1: 파이썬 기초
-- **목표:** 파이썬 기본 문법 및 자료구조(리스트, 딕셔너리) 학습습
+- **목표:** 파이썬 기본 문법 및 자료구조(리스트, 딕셔너리) 학습
 - **학습 환경:** Google Colab
 - **주요 학습 내용:**
     - 변수, 자료형 (int, float, str, bool)
@@ -92,7 +92,7 @@ CPA 디지털 감사 포트폴리오
     - [`part3-1_visualization_basics_quiz.ipynb`](./part3-1_visualization_basics_quiz.ipynb):: 시각화 기초 퀴즈 + 판다스 복습 퀴즈
 
 ### Part 3-2: 데이터 시각화 심화
-- **목표:** : Matplotlib, Seaborn, Plotly를 활용하여 '고급' 그래프(Histogram, Heatmap)를 익히고, '여러 개'의 그래프를 '동시'에 그리는 FacetGrid 및 facet_col의 원리를 이해하며, 그래프를 '세부 튜닝'하는 방법을 숙달
+- **목표:** : Matplotlib, Seaborn, Plotly를 활용하여 고급 그래프(Histogram, Heatmap)를 익히고, 여러 개의 그래프를 동시에 그리는 FacetGrid 및 facet_col의 원리를 이해하며, 그래프를 세부 튜닝하는 방법을 숙달
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
     - 고급 그래프 (Seaborn/Plotly):
@@ -153,7 +153,7 @@ CPA 디지털 감사 포트폴리오
     - [`part5-1_ml_basics_quiz.ipynb`](./part5-1_ml_basics_quiz.ipynb):: 판다스/시각화 복습 퀴즈
  
 - ### Part 5-2: 머신러닝 실습
-- **목표:** : 머신러닝의 기본 프로세스(EDA, 전처리, 모델링, 평가)를 이해하고, Scikit-learn/XGBoost를 활용한 '분류(Classification)'와 '회귀(Regression)' 실전 프로젝트 3종을 수행
+- **목표:** : 머신러닝의 기본 프로세스(EDA, 전처리, 모델링, 평가)를 이해하고, Scikit-learn/XGBoost를 활용한 분류(Classification)와 회귀(Regression) 실전 프로젝트 3종을 수행
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
     - 머신러닝 프로세스: EDA ➡️ 데이터 전처리 ➡️ 검증 데이터 분할 ➡️ 모델 학습/평가 ➡️ 예측 및 제출
@@ -176,3 +176,20 @@ CPA 디지털 감사 포트폴리오
     - [`part5-2_ml_practice1.ipynb`](./part5-2_ml_practice1.ipynb):: 머신러닝 실전 프로젝트1
     - [`part5-2_ml_practice2.ipynb`](./part5-2_ml_practice2.ipynb):: 머신러닝 실전 프로젝트2
     - [`part5-2_ml_practice3.ipynb`](./part5-2_ml_practice3.ipynb):: 머신러닝 실전 프로젝트3
+    - 
+### Part 6: 웹 대시보드 개발 (Streamlit)
+- **목표:** : Python만으로 데이터 분석 결과를 인터랙티브 웹 애플리케이션으로 구현하는 방법을 숙달, 실전 프로젝트 수행
+- **학습 환경:**: VS Code (로컬 개발), Jupyter Notebook (nbconvert), Terminal
+- **주요 학습 내용:**
+    - 기본 위젯: st.title/header, st.text/markdown (색상/강조), st.code, st.divider
+    - 입력 위젯: st.button (primary), st.checkbox, st.toggle, st.radio, st.selectbox, st.multiselect, st.slider (시간/범위), st.text_input (password), st.file_uploader (CSV 로드)
+    - 시각화 연동: st.pyplot (Matplotlib/Seaborn), st.plotly_chart (Plotly)
+    - 레이아웃(Layout): st.sidebar (사이드바), st.columns (단 나누기), st.tabs (탭), st.expander (접기/펼치기)
+    - 고급 기능:
+        - Session State: st.session_state (사용자 상호작용 시 변수 값 유지)
+        - Caching: @st.cache_data (대용량 연산 속도 최적화)
+    - 실전 프로젝트: '자동차 CO2 배출량 분석 대시보드' 제작 (Pandas 필터링 + Plotly 시각화 + Streamlit 인터랙티브 위젯 결합)
+- **실습 파일:**
+    - [`part6_streamlit_study.md`](./part6_streamlit_study.md):: streamlit 상세 학습 노트
+    - [`part6_streamlit_dashboard.py`](./part6_streamlit_dashboard.py):: 실전 프로젝트 대시보드 전체 소스 코드
+
