@@ -133,24 +133,39 @@ CPA 디지털 감사 포트폴리오
     - [`part4_statistics.md`](./part4_statistics.md):: 통계 분석 상세 학습 노트
     - [`part4_statistics_quiz.md`](./part4_statistics_quiz.md):: 판다스/시각화 복습퀴즈
 
-### Part 5-1: 머신러닝 기초
-- **목표:** : 머신러닝의 기본 프로세스(문제 정의 ~ 평가)를 이해하고, Scikit-learn 및 LightGBM을 활용한 분류(Classification)와 회귀(Regression) 모델링의 기초를 숙달
+### Part 5-1: 머신러닝 
+- **목표:** : 머신러닝의 전체 프로세스(EDA, 전처리, 모델링, 평가)를 이해하고, 고급 전처리 기법(스케일링, 인코딩, 차원 축소, 피처 엔지니어링)과 다양한 모델(RF, XGB, LGBM, SVM 등)을 실전에 적용하며, 모델 성능을 극대화하는 검증/튜닝 (K-Fold, GridSearchCV, Early Stopping) 방법을 숙달
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
-    - 머신러닝 프로세스: 문제 정의 ➡️ 데이터 로드 ➡️ EDA ➡️ 데이터 전처리 ➡️ 검증 데이터 분할 ➡️ 모델 학습 및 평가
+    - 머신러닝 프로세스: EDA ➡️ 데이터 전처리 ➡️ 검증 데이터 분할 ➡️ 모델 학습/평가 ➡️ 예측/제출
+    - EDA (탐색적 데이터 분석): .info(), .describe(), .isnull().sum(), sns.histplot (분포 확인)
     - 데이터 전처리 (ML):
-        - 결측치 처리: dropna, fillna(mode, mean, median), 'X' (새 카테고리)
-        - 인코딩 (문자 ➡️ 숫자): pd.get_dummies (원핫 인코딩), LabelEncoder (레이블 인코딩)
-        - 스케일링: MinMaxScaler, StandardScaler, RobustScaler
-        - 타겟 분리: pop()
-    - 검증 데이터 분할: train_test_split
-    - 모델 학습 (분류): RandomForestClassifier, LGBMClassifier
-    - 모델 학습 (회귀): LinearRegression, RandomForestRegressor, LGBMRegressor
-    - 모델 평가 (분류): predict_proba, roc_auc_score, accuracy_score, f1_score
-    - 모델 평가 (회귀): root_mean_squared_error (RMSE), mean_squared_error (MSE), mean_absolute_error (MAE), r2_score
+        - 결측치 처리: dropna(), fillna() (mode, mean, 'X')
+        - 타겟 분리: .pop()
+        - 인코딩 (Encoding): pd.get_dummies (One-Hot), LabelEncoder, (Train/Test '합치기/쪼개기')
+        - 스케일링 (Scaling): MinMaxScaler, StandardScaler (SVC 필수), RobustScaler
+    - 피처 엔지니어링 (Feature Engineering):
+        - PCA (차원 축소)
+        - SelectKBest (특성 선택)
+        - PolynomialFeatures (다항 회귀)
+        - np.log1p (로그 변환) (치우친 데이터)
+    - 검증 데이터 분할: train_test_split (stratify=target 중요!), KFold, StratifiedKFold, cross_validate
+    - 모델 학습 (분류): DecisionTreeClassifier, RandomForestClassifier, XGBClassifier, LGBMClassifier, KNeighborsClassifier, SVC, LogisticRegression, GradientBoostingClassifier
+    - 모델 학습 (회귀): LinearRegression (coef_, intercept_), RandomForestRegressor, LGBMRegressor, XGBRegressor
+    - 모델 학습 (군집): KMeans
+    - 모델 튜닝 (Optimization):
+        - GridSearchCV (하이퍼파라미터 튜닝)
+        - Early Stopping (XGB/LGBM 조기 종료)
+        - VotingClassifier (앙상블)
+    - 모델 평가 (분류):
+        - .predict() (최종 결과) / predict_proba() (확률 ➡️ ROC-AUC용)
+        - confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+        - 함수화, 평가표 자동화
+    - 모델 평가 (회귀): RMSE, MSE, MAE, r2_score
+    - 모델 평가 (군집): silhouette_score (최적의 K 찾기)
+    - 모델 시각화: export_graphviz (트리), plot_importance (XGB/LGBM), sns.barplot (LR 계수)
 - **실습 파일:**
-    - [`part5-1_ml_basics.md`](./part5-1_ml_basics.md):: 머신러닝 프로세스 상세 학습 노트
-    - [`part5-1_ml_basics_quiz.ipynb`](./part5-1_ml_basics_quiz.ipynb):: 판다스/시각화 복습 퀴즈
+    - [`part5-1_ml.md`](./part5-1_ml.md):: 머신러닝 기초/심화 프로세스 상세 학습 노트
  
 - ### Part 5-2: 머신러닝 실습
 - **목표:** : 머신러닝의 기본 프로세스(EDA, 전처리, 모델링, 평가)를 이해하고, Scikit-learn/XGBoost를 활용한 분류(Classification)와 회귀(Regression) 실전 프로젝트 3종을 수행
