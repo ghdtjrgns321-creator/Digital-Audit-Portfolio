@@ -167,31 +167,27 @@ CPA 디지털 감사 포트폴리오
 - **실습 파일:**
     - [`part5-1_ml.md`](./part5-1_ml.md):: 머신러닝 기초/심화 프로세스 상세 학습 노트
  
-- ### Part 5-2: 머신러닝 실습
-- **목표:** : 머신러닝의 기본 프로세스(EDA, 전처리, 모델링, 평가)를 이해하고, Scikit-learn/XGBoost를 활용한 분류(Classification)와 회귀(Regression) 실전 프로젝트 3종을 수행
+### Part 5-2: 머신러닝 실습
+- **목표:** : Part 5-1(ML 이론)에서 배운 머신러닝 프로세스(EDA, 전처리, 모델링, 평가)를 분류(Classification), 회귀(Regression), 군집(Clustering) 3가지 핵심 실전 프로젝트에 적용
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
-    - 머신러닝 프로세스: EDA ➡️ 데이터 전처리 ➡️ 검증 데이터 분할 ➡️ 모델 학습/평가 ➡️ 예측 및 제출
-    - 데이터 전처리:
-        - 타겟 분리: .pop()
-        - 결측치 처리: .fillna(0)
-        - 인코딩 (비교): Baseline(drop), LabelEncoder, pd.get_dummies (One-Hot)
-        - (실수 교정) train/test 컬럼 불일치 해결 (pd.concat)
-    - 검증 데이터 분할: train_test_split
-    - 모델링 (분류): RandomForestClassifier, XGBClassifier
-    - 모델링 (회귀): LinearRegression, Ridge, Lasso, RandomForestRegressor, XGBRegressor
-    - 모델 평가 (분류):
-        - (실수 교정) .predict() vs .predict_proba()
-        - accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
-    - 모델 평가 (회귀):
-        - (실수 교정) y_val(정답지) vs pred(답안지)
-        - r2_score, MAE, MSE, RMSE, RMSLE, MAPE (사용자 정의 함수)
-    - 하이퍼파라미터 튜닝: max_depth, n_estimators (수동 튜닝)
+    - 분류(Classification) 실습 (Project 1):
+        - EDA, .pop(), .drop(), LabelEncoder/pd.get_dummies(One-Hot) 비교
+        - train_test_split (검증 데이터 분리)
+        - 모델링: RandomForestClassifier
+        - 평가: accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+    - 회귀(Regression) 실습 (Project 2):
+        - EDA, .drop(), fillna(0), LabelEncoder
+        - 모델링 (5종 비교): LinearRegression, Ridge, Lasso, RandomForestRegressor, XGBRegressor
+        - 평가: R2, MAE, MSE, RMSE, RMSLE, MAPE (사용자 정의 함수)
+    - 군집(Clustering) 실습 (Project 3):
+        - KMeans (비지도 학습)
+        - 평가: silhouette_score (최적의 K 찾기)
 - **실습 파일:**
-    - [`part5-2_ml_practice1.ipynb`](./part5-2_ml_practice1.ipynb):: 머신러닝 실전 프로젝트1
-    - [`part5-2_ml_practice2.ipynb`](./part5-2_ml_practice2.ipynb):: 머신러닝 실전 프로젝트2
-    - [`part5-2_ml_practice3.ipynb`](./part5-2_ml_practice3.ipynb):: 머신러닝 실전 프로젝트3
-    - 
+    - [`part5_2_ml_practice1_분류.ipynb`](./part5_2_ml_practice1_분류.ipynb):: 머신러닝 실전 프로젝트 1 (분류)
+    - [`part5_2_ml_practice2_회귀.ipynb`](./part5_2_ml_practice2_회귀.ipynb):: 머신러닝 실전 프로젝트 2 (회귀)
+    - [`part5_2_ml_practice3_군집.ipynb`](./part5_2_ml_practice3_군집.ipynb):: 머신러닝 실전 프로젝트 3 (군집)
+
 ### Part 6: 웹 대시보드 개발 (Streamlit)
 - **목표:** : Python만으로 데이터 분석 결과를 인터랙티브 웹 애플리케이션으로 구현하는 방법을 숙달, 실전 프로젝트 수행
 - **학습 환경:**: VS Code (로컬 개발), Jupyter Notebook (nbconvert), Terminal
