@@ -23,6 +23,7 @@
 - 데이터 크기 : train.shape, test.shape
 - 자료형 확인 : train.info()
 - 타겟 시각화 : train[’Item_Outlet_Sales’].hist()
+    - 타겟 데이터가 1:1로 치우쳐져있지않은 경우, 정규분포를 띄는 경우 성능이 제일 확실해짐
 - 수치형 컬럼 통계값 확인 : train.describe(), test.describe()
 - 범주형 컬럼 통계값 확인 : train.describe(include = ‘0’), test.describe(include = ‘object’)
 - train 데이터와 test 데이터의 동질성 확인 :
@@ -31,6 +32,15 @@
     
 - 결측치 확인 : train.isnull().sum(), test.isnull().sum()
 - label(target) 별 개수 확인 : train[’income’].value_counts()
+- ★★value_counts(normalize=True) → 백분율 값으로 반환해줌
+- 상관관계 확인
+    
+    df.corr()
+    
+    import seaborn as sns
+    
+    sns.heatmap(df.corr(), annot=True) → 히트맵으로 확인
+    
 - 히스토그램으로 데이터 확인
 
 import matplotlib.pyplot as plt
@@ -45,7 +55,7 @@ attr = i * 5 + j
 
 sns.histplot(x = df.columns[attr], data = df, kde = True, ax=axs[i][j])
 
-![image.png](image.png)
+![image.png](attachment:69f44f09-3e55-4418-a6fa-15b9540ef92a:image.png)
 
 ### 데이터 전처리
 
@@ -102,6 +112,36 @@ train = train[cond]
 
 **★TEST 데이터 행은 삭제하면 안됨**
 
+### 로그 변환
+
+import numpy as np
+
+train[’SalePrice’] = np.log1p(train[’SalePrcie’])
+
+- 로그(`log`)보다 힘이 약한 **루트(`sqrt`)**를 씌우면 딱 적당하게 퍼질 가능성이 높습니다.
+
+import numpy as np
+
+df['TotalCharges_sqrt'] = np.sqrt(df['TotalCharges'])
+
+- Yeo-Johnson / Box-Cox 변환 (PowerTransformer) - ★ 추천 ← 데이터 왜곡 제일 줄여줌
+
+Scikit-Learn의 `PowerTransformer`를 쓰면, 컴퓨터가 **"가장 정규분포에 가까워지는 최적의 공식"**을 자동으로 계산해서 적용해 줍니다. 고민할 필요 없이 가장 확실한 방법입니다.
+
+- **특징:** 데이터의 상태를 보고 로그를 쓸지, 루트를 쓸지, 제곱을 할지 알아서 `lambda` 값을 찾아 변환합니다.
+
+from sklearn.preprocessing import PowerTransformer
+
+ #method='yeo-johnson' (음수, 0, 양수 모두 가능)
+
+ #method='box-cox' (양수만 가능)
+
+pt = PowerTransformer(method='yeo-johnson')
+
+ #2차원 배열로 넣어야 함
+
+df['TotalCharges_opt'] = pt.fit_transform(df[['TotalCharges']])
+
 ### 인코딩(문자 데이터를 숫자 데이터로 변형)
 
 y_train = train.pop(”income”)  ← 타겟 분리
@@ -109,6 +149,10 @@ y_train = train.pop(”income”)  ← 타겟 분리
 cf) pop → 기존 dataframe에서 열을 분리해서 없애고, 새로운 열만 가져오는기능
 
 - 원핫(one-hot) 인코딩 : 문자 데이터에 숫자부여
+    - ★원핫 → object 분리 안하고 해도 알아서 해줌
+    - 순서의 개념 완전히 제거
+    - 선형 회귀 같은 선형모델에서도 잘어울림
+    - 데이터 과도하게 사용될 수 있음
     
     train_oh = pd.get_dummies(train)
     
@@ -117,7 +161,7 @@ cf) pop → 기존 dataframe에서 열을 분리해서 없애고, 새로운 열�
 
 심화) train 과 test의 열 갯수가 다를 때 합쳐서 원핫인코딩 후 분리
 
-★data=pd.concat([’train’, ‘test’], axis=0) ← concat : 합치기
+★data=pd.concat([train, test], axis=0) ← concat : 합치기
 
 data_oh = pd.get_dummies(data)
 
@@ -126,29 +170,45 @@ train_oh = data_oh.iloc[:len(train)].copy() ← len(train) 기준으로 train과
 test_oh = data_oh.iloc[len(train):].copy()
 
 - 레이블(label)인코딩 : 사전을 미리 만들어서 하나씩 적용해주는 방법
-    
-     from sklearn.preprocessing import LabelEncoder
-    
-    cols = train.select_dtypes(include=’object’).columns ← object 컬럼목록(.columns)만 가져오기
-    
-    for col in cols: ←필수
-    
-    le = LabelEncoder()
-    
-    train[col] = le.fit_transform(train[col]) ← fit : 사전만들기 , transform : 하나씩 적용
-    
-    test[col] = le.transform(test[col])
-    
-    - 합쳐서 라벨인코딩
-    
-    for col in cols:
-    le = LabelEncoder()
-    combine[col] = le.fit_transform(combine[col])
-    
+    - RandomForest, XGBoost, LightGBM 같은 트리 기반과 잘맞음
+    - 숫자 할당이 순서가 있는것처럼 보일 수 있어서 선형회귀와 안어울림
+    - 데이터 아낄 수 있음
+
+ from sklearn.preprocessing import LabelEncoder
+
+cols = train.select_dtypes(include=’object’).columns ← object 컬럼목록(.columns)만 가져오기
+
+for col in cols: ←필수
+
+le = LabelEncoder()
+
+train[col] = le.fit_transform(train[col]) ← fit : 사전만들기 , transform : 하나씩 적용
+
+test[col] = le.transform(test[col])
+
+- 합쳐서 라벨인코딩
+
+for col in cols:
+le = LabelEncoder()
+combine[col] = le.fit_transform(combine[col])
+
+- 순서형 인코딩
+    - 순서가 있는 범주를 숫자로 매핑
+    - 나쁨, 보통, 좋음, 우수 등
+    - 순서정보가 명시적으로 모델에 전달됨
 
 ### 스케일링
 
+`★★★fit_transform` 같은 함수는 특성(Feature)이 여러 개일 때를 기본으로 설계되어 있어서, 특성이 하나뿐이라도 **반드시 2차원(DataFrame) 형태**로 넣어줘야 에러가 나지 않습니다.
+df[['score']] = scaler.fit_transform(df[['score']])
+
+★★★"규칙(fit)은 훈련 데이터에서만 만들고, 테스트 데이터는 그 규칙을 따르기만(transform) 해야 한다.”
+
 - 스케일링 : 기존 범위를 특정 숫자 범위(ex : 0~1)로 조정
+- 독립변수 간 범위가 다를때 사용
+    - 선형회귀 → 스케일링 사용하는게 좋음
+    - 트리모델(rf, lgb, xgb) → 스케일링 안해도 됨
+    - 신경망 → 스케일링 필수임
 - 민-맥스 스케일링 : 모든 값이 0과 1사이로 변경 → for i in range 안해도됨
     
     cols = [’age’, ‘fnlwgt’, ‘education.num’, ‘capital.gain’]
@@ -157,7 +217,7 @@ test_oh = data_oh.iloc[len(train):].copy()
     
     sclaer = MinMaxScaler()
     
-    train_copy[cols] = scaler.fit_transform(train_copy[cols])
+    train_copy[cols] = scaler.fit_transform(train_copy[cols]) ← 대괄호 두개 쓴거처럼 됨
     
     test_copy[cols] = scaler.tranform(test_copy[cols])
     
@@ -191,6 +251,11 @@ target = y_train.map({’<=50K’ : 0, ‘>50k’ : 1}) or
 target = y_train.replace(’<=50K’ , 0).replace(’>50K’, 1)
 
 - 차원축소
+    - 차원의 저주 : 차원의 증가함에 따라 vector 공간 내 space증가 → 빈공간 많아짐, 예측의 정확도 떨어짐
+    - 유사한 성격의 feature는 하나의 새로운 feature로 성분을 합칠 수 있음
+    - 정보소실을 최소화 하면서 차원을 축소해야함
+    - 선형대수학의 SVD(특이값 분해)를 이용하여 분산이 최대인 축을 찾음
+    - 데이터의 분산을 최대한 보존하면서 서로 직교하는 축을 찾아 고차원 공간의 표본들을 선형 연관성이 없는 저차원으로 변환
 
 from sklearn.decomposition import PCA
 
@@ -200,23 +265,39 @@ pca.fit(X)
 
 print(pca.explained_variance_ratio_)
 
-plt.plot(pca.explained_variance_ratio_, ‘o—’)
+plt.plot(pca.explained_variance_ratio_, ‘o—’) *#엘보우 포인트 확인*
 
-![image.png](image%201.png)
+![image.png](attachment:c1ae0f4e-4831-414b-83da-498206ce5d88:image.png)
 
 - 차원축소 (4차원 → 2차원)
 
 pca = PCA(n_components=2)
 
-pca_transformed = cpa.fit_transform(iris.data)
+X_train_pca = pca.fit_transform(X_train)
 
-df[’pca_1’] = pca_transformed[:,0]
+X_test_pca = pca.transform(X_test)
 
-df[’pca_2’] = pca_transformed[:,1]
-
-df.head()
-
-![image.png](image%202.png)
+- 차원 축소된 data 시각화
+    - 27개의 feature가 2개의 PCA로 차원축소 → 평면으로 시각화 가능해짐
+    
+    X1, X2 = X_train_pca[y_train==0, 0], X_train_pca[y_train == 0, 1]
+    
+    plt.scatter(X1, X2, color=’r’, label=’churn -0’)
+    
+    X1, X2 = X_train_pca[y_train==1, 0], X_train_pca[y_train == 1, 1]
+    
+    plt.scatter(X1, X2, color=’b’, label=’churn -1’)
+    
+    plt.title(’Dimension Reduction 27 → 2’)
+    
+    plt.xlbel(’PCA1’)
+    
+    plt.ylabel(’PCA2’)
+    
+    plt.legend
+    
+    ![image.png](attachment:c4b1d12f-eda6-4e49-8ea6-a6faebc9c906:image.png)
+    
 
 ### 검증데이터 분할
 
@@ -232,11 +313,30 @@ X_tr, X_val, y_tr, y_val = train_test_split(train, y_train, test_size=0.2, rando
 
 쏠렸는지 확인 → y_tr.value_counts(), y_vr.value_counts()
 
+- Training set, Testing set 섞이면 안됨, 동일한 분포 유지해야함
+- Cross Validation (교차검증)
+    - 훈련세트를 여러 개의 sub-set으로 나누고 각 모델을 이 sub-set 의 조합으로 훈련시키고 나머 부분으로 검증
+    - Data의 수가 적은 경우 사용
+    
+    ![image.png](attachment:22838ddd-1ef6-407d-b024-80afc07a172d:image.png)
+    
+
 ### 학습 : 분류
 
-- 머신러닝 모델 : 랜덤포레스트, lightGBM
 - 머신러닝 학습 및 예측 방법 : 모델불러오기 → 학습 fit(X,y) → 예측 predict(test) , predict_proba() ← 평가지표가 roc-auc일때 주로 사용(확률값으로 나옴)
 - 의사결정나무
+    - 모든 가능한 결정경로를 tree 형태로 구성
+    - node → test
+    - branch → test의 결과
+    - leaf node → classification
+    - 장점 : data preprocessing 불필요
+    - 단점 : overfitting 되기 쉬움, 훈련 데이터의 작은 변화에도 매우 민감함
+        - ID3 : 기본적 알고리즘. 정보이득을 이용한 트리구성 (criterion=‘entropy’)
+        - CART : Gini 불순도에 기반한 트리 구성
+        - C4.5, C5 : ID3 개선
+    - 엔트로피 : 주어진 데이터 집합의 혼잡도 (0~1)
+    - 정보이득 : 시스템에 대해 알게될수록 시스템의 엔트로피 감소
+    - 의사결정나무 → 엔트로피가 낮은 상태가 되도록 나무모양으로 구분해나감
 
 from sklearn.tree import DecisionTreeClassifier
 
@@ -246,27 +346,35 @@ df.fit(X_tr, y_tr)
 
 - 의사결정나무 시각화
 
-from sklearn.tree import export_graphviz
+plt.figure(figsize=(25,20))
 
-from subprocess import call
+_=tree.plot_tree(clf, feature_names=iris.feature_names, class_names=iris.target_names, filled=True)
 
-from IPython.display import image
+![image.png](attachment:45e8d58d-6c03-45f4-bf72-699cb770f756:image.png)
 
-export_graphbiz(dt, feature_names = X_train.columnsm out_filt=’tree.dot’) ← 의사결정나무 모델을 dot 파일로 추출
-
-call([’dot’, ‘-Tpng’, ‘tree.dot’, ‘-o’, ‘tree.png’, ‘=Gdpi=600’]) ← dot 파일을 .-png파일로 변환
-
-Image(filename = ‘tree.png’) ← png 출력
-
-![image.png](image%203.png)
-
-- 랜덤포레스트
+- 앙상블 : 다수의 약한 학습기를 조합하여 더 높은 성능 추출
+    - 배깅(부트스트래핑) → Variance 감소
+        - 부트스트랩 → 중복을 허용하는 랜덤 샘플링(복원추출) → variance 감소, mean 동일
+        - 배깅 트리 → RandomForest가 대표적 모델임
+    - 부스팅 → Bias 감소
+        - 잘못 분류된 데이터에 더 높은 가중치 부여
+        - AdaBoost, Gradient Boost(XGBoost, lightgbm)
+            - Gradient Boost
+                - random choce보다 약간 더 나은 성능의 weak 모델을 계속 생성하여 loss function을 optimize(경사하강법)
+                - 이전 tree에서 발생한 잔차를 next tree에서 보정
+- RandomForest (Bagging)
+    - 트리 베이스 모델 → white box 특징 유지(설명가능함)
+    - 훈련데이터에 스케일링 필요 없음
+    - 정확도 높음, 속도 빠름, 과적합 방지
+    - low bias, low variance
     
     from sklearn.ensemble import RandomForestClassifier
     
-    rf = RandomForestClassifier(random_state=0, max_depth=3, n_estimators=200) #max_depth=3~12
+    rf = RandomForestClassifier(random_state=0, max_depth=3, n_estimators=200)
     
-    #n_estimators=100 이 기본, 200 400으로 가보면됨 → 과적합 방지하기위한 제한
+    #max_depth (나무의 깊이)=3~12
+    
+    #n_estimators=100(나무가 몇개?) 이 기본, 200 400으로 가보면됨 → 과적합 방지하기위한 제한
     
     rf.fit(X_tr, y_tr)
     
@@ -276,12 +384,14 @@ Image(filename = ‘tree.png’) ← png 출력
     
     print(rf.calsses_) ← 클래스 확인
     
-- XGBoost
+- XGBoost (Gradient Boost)
 
 from xgboost import XGBClassifier, plot_importance
 
 rf = XGBClassifier(random_state=0, max_depth=5, n_estimators=200, learning_rate=0.01)
-#n_estimators 가 올라가면 learning_rate는 낮아져야함
+*#n_estimators 가 올라가면 learning_rate는 낮아져야함*
+
+*# learning_rate → 각 tree의 기여도 조정*
 
 rf.fit(X_tr, y_tr)
 
@@ -289,11 +399,11 @@ fig, ax = plt.subplots()
 
 plot_importance(xgb, ax=ax)
 
-![image.png](image%204.png)
+![image.png](attachment:e81819d8-7c72-4af8-8b25-71afb4168c99:image.png)
 
-- LightGBM
+- LightGBM (Gradient Boost)
 
-from lighrgbm import LGBMClassifer, plot_importance
+from lightgbm import LGBMClassifer, plot_importance
 
 lgbmc = lgb.LGBMClassfier(random_state=0, n_estimators= 300, verbose=-1)  →  verbose=-1 : 로그내용 숨기기
 
@@ -303,13 +413,78 @@ fig, ax = plt.subplots()
 
 plot_importance(lgb, ax=ax)
 
-![image.png](image%205.png)
+![image.png](attachment:0a31f258-925f-4888-855b-414fcf893d46:image.png)
 
-- KNN
+### Visualization of the Ensemble model
+
+from matplotlib.colors import ListedColormap
+
+cmap_bold = ListedColormap([’#FF0000’, ‘#00FF00’])
+
+cmap_light = ListedColormap([’#FFAAAA’, ‘#AAFFAA’])
+
+x1_min, x1_max = X_test[:,0].min() - 1, X_test[:,0].max() + 1
+
+x2_min, x2_max = X_test[:,1].min() - 1, X_test[:,1].max() + 1
+
+X1, X2 = np.meshgrid(np.arrange(x1_min, x1_max, 0.1),
+
+                                  np.arragne(x2_min, x2_max, 0.1))
+
+XX = np.cilumn_stack([X1.ravel(), X2.ravel()])
+
+Y_rf = rf.predict(XX)
+
+Y_gb = gb.predict(XX)
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4), sharey = True)
+
+ax1.pcolormesh(X1, X2, Y_rf.reshape(X1.shape)), cmap=cmap_light, shading = ‘auto’)
+
+for i in range(2):
+
+ax1.scatter(X_test[y_test ==i, 0], X_test[y_test == i, 1], color=cmap_bold(i), label=i, s=30, edgecolor=’k’)
+
+ax2.pcolormesh(X1, X2, Y_gb.reshape(X1.shape)), cmap=cmap_light, shading = ‘auto’)
+
+for i in range(2):
+
+ax2.scatter(X_test[y_test ==i, 0], X_test[y_test == i, 1], color=cmap_bold(i), label=i, s=30, edgecolor=’k’)
+
+ax1.set_title(’Random Fores’)
+
+ax2.set_title(’Gradient Boost’)
+
+ax1.legend()
+
+ax2.legend()
+
+![image.png](attachment:7ed3e245-a811-4ff1-acd8-5673e5216f4d:image.png)
+
+- KNN (회귀, 분류 다 가능)
+    - simple and easy
+    - datasets 많아지면 느려짐
+    - 결측값, outlier에 영향을 많이 받음
+    - K값 선택해야함
+    - weights 인자
+        - uniform : 모든 neighbor의 가중치를 동일하게 취급(거리 가중치 주지 않겠다)
+        - distance : neighbor의 거리에 반비례하여 가중치조정
 
 from sklearn. neighbors import KNneighborsClassifier
 
-knn = KNeighborsClassifier(n_neighbors=5) ←random_state 없음
+knn = KNeighborsClassifier(n_neighbors=5, weights=unifrom) ←random_state 없음
+
+for i in range(3):
+
+plt.scatter(X_train[y_train == i, 0], X_train[y_train == i, 1], label=i)
+
+plt.plot(X_test[20,0], X_test[20, 1], c=’r’, marker=’x’, markersize=20)
+
+plt.legend()
+
+clf.predict(X_test[20:21])
+
+![image.png](attachment:7a4fa3ea-0f3f-4c1d-b556-72e4a273c272:image.png)
 
 knn.fit(X_tr,y_tr)
 
@@ -341,6 +516,29 @@ lr = LogisticRegression()
 
 lr.fit(X_tr,y_tr)
 
+- 기본값 → 0.5 보다 높으면 1, 낮으면 0
+- threshold 조정
+    
+    y_pred_proba = lr.predict_proba(X_test)
+    
+    y_pred_proba[:,1]> 0.5
+    
+     # 조정
+    
+    threshold = 0.8 *#0.8 이상인경우에만 1로 판단*
+    
+    y_pred_proba = lr.predict_proba(X_test)
+    
+    y_pred_proba1 = y_pred_ptroba[:, 1] > threshold
+    
+    y_pred_ptroba1
+    
+    sum(y_pred_proba1 == y_test) / len(y_test) *#accuray 계산(떨어짐)*
+    
+    precision_score(y_test, y_pred_proba1) ← *떨어짐*
+    
+    recall_score(y_test, y_pred_proba1) ← *높아짐*
+    
 - GradientBoostingClassifier
 
 from sklearn.ensemble import GradientBoostingClassifier
@@ -365,13 +563,26 @@ gbc.fit(X_tr, y_tr)
     coef = pd.Series(data=np.round(lr.coef_, 1), index=df.columns)
     coef *#보기좋게 나열*
     
-    ![image.png](image%206.png)
+    ![image.png](attachment:63c5a173-76eb-4e7c-9716-18c09db531c0:image.png)
     
     coef_sort = coef.sort_values(ascending=False)
     sns.barplot(x=coef_sort.values, y=coef_sort.index)
     
-    ![image.png](image%207.png)
+    ![image.png](attachment:9835a763-e215-48dd-98c5-64f92790d065:image.png)
     
+
+plt.scatter(X_test, y_test, label=’True value’)
+
+plt.plot(X_test, y_pred, color=”r”, label=’Predicted’)
+
+plt.xlabel(’bmi’)
+
+plt.ylabel(’Progress’)
+
+plt.lengend()
+
+![image.png](attachment:5c783c2e-a436-4cb1-9f80-3c7a187a16f1:image.png)
+
 - DicisionTreeRegressior
     - 결과값을 그룹화하여 예측
     - 속성 간 상호작용을 학습 할 수 있음
@@ -381,7 +592,14 @@ gbc.fit(X_tr, y_tr)
 
 ### 학습 : 군집
 
+- 비지도학습
+    - 비슷한 object 들끼리 모으는 것
+    - label data가 없음
 - K Means
+    - 거리계산
+    - 랜덤하게 k개의 중심점을 정함
+        - k 정하기 → 엘보우 포인트
+    - 중심점이 변하지 않을 때 까지 반복
 
 from sklearn.cluster import KMeans
 
@@ -391,28 +609,74 @@ y_preds = km.fit_predict(X)
 
 df[’clusters’] = y_preds
 
+ # k-means 센터찾기
+
+centers = k_means.cluster_cneters_
+
+ # k-means 시각화
+
+from matplotlib.colors import ListedColormap
+
+colors_bold = ListedColormap([’#FF0000’, ‘#00FF00’, ‘#0000FF’])
+
+colors_light = ListedColormap([’#FFAAAA’, ‘#AAFFAA’, ‘#AAAAFF’])
+
+plt.figure(figsize=(8,6))
+
+for i in range(3):
+
+plt.scatter(X[members == i, 0], X[members == i,1], marker=’.’, color=colors_light(i), label=i)
+
+plt.plot(centers[i,0], centers[i,1], ‘o’, markersize=20, color=color_bold(i), markeredgecolor=’k’)
+
+plt.legned()
+
+![image.png](attachment:7bb133d2-2bf0-448a-8093-1c5462d561e1:image.png)
+
+- DBSCAN
+    
+    ![image.png](attachment:c71ced75-6350-494f-9a44-530b40f2f530:image.png)
+    
+    - 밀도가 높은 지역과 낮은 지역을 분리
+    - cluster 숫자 미리 지정 필요x
+    - outlier의 영향을 적게받음
+
+from sklearn.cluster import DBSCAN
+
+db = DBSCAN(eps=0.3, min_samples=7)
+
+db.fit(X)
+
+ *#  시각화*
+
+labels = list(set(db.labels_))
+
+color = plt.cm.Spectral(np.linspace(0, 1, len(labels)))
+
+list(zip(labels, colors))
+
+plt.figure(figsize=(8,6))
+
+for k, col in zip(labels, colors):
+
+members = (dv.labels == k)
+
+plt.scatter(X[members,0], X[members, 1], color=col, marker=’o’, s=10)
+
+![image.png](attachment:aa5c38fb-523e-4fe1-994e-b74f49e0b65b:image.png)
+
 ### 피쳐 엔지니어링
 
 - 피쳐 엔지니어링 → 학습 후 성능 개선을 위해 다시 조정(스케일링 등)
 - 스케일링
 - 교차검증
     
-    from sklearn.model_selection import cross_validate
-    
-    # cv: 3개의 train, test set fold 로 나누어 학습 
-    scores = cross_validate(lr_model, X, y, scoring="neg_mean_squared_error", cv=3, return_train_score=True, return_estimator=True)
-    print('Scores', scores)
-    
-    mse = (-1 * scores['train_score'])
-    print('MSE:', mse)
-    
-    rmse  = np.sqrt(-1 * scores['train_score'])
-    print('RMSE:', rmse)
-    
-    print('RMSE 평균: {0:.3f} '.format(np.mean(rmse)))
+    from sklearn.model_selection import cross_val_score
+    import numpy as np
+    scores = cross_val_score(rf, train, train_target, cv=5, scoring='neg_mean_absolute_error')
     
 
-![image.png](image%208.png)
+![image.png](attachment:e6ef7363-3ead-4140-b84a-c7f35d750b58:image.png)
 
 - K Fold
     
@@ -431,8 +695,6 @@ df[’clusters’] = y_preds
         scores = cross_validate(tree_model, X_train, y_train, cv=3, return_estimator=True)
         
         scores
-        
-        ![image.png](image%209.png)
         
 - 차원축소
 - 하이퍼 파라미터 튜닝
@@ -494,11 +756,11 @@ df[’clusters’] = y_preds
     import lightgbm as lgb ← 진행하면서 어떻게 변화했는지 확인
     lgb.plot_metric(lgb_model2)
     
-    ![image.png](image%2010.png)
+    ![image.png](attachment:2b149dc9-487e-42b7-888a-7bb71a26c958:image.png)
     
     lgb.plot_importance(lgb_model2) ← 어떤 변수에 영향 제일 많이 받는지 확인
     
-    ![image.png](image%2011.png)
+    ![image.png](attachment:22157f98-5bc1-487d-a6c2-5ee74b413859:image.png)
     
 - VotingClassifier
     - 앙상블 모델들을 생성/학습/평가
@@ -555,7 +817,7 @@ print('features = {}'.format(features))
     sns.histplot(x= X_selected.columns[2], data = X_selected, kde=True, bins=30, ax=axs[2])
     sns.histplot(x= target, data = df, kde=True, bins=30, ax=axs[3])
     
-    ![image.png](image%2012.png)
+    ![image.png](attachment:4f526682-b692-439a-b0a2-d150a76e19ea:image.png)
     
     # 왼쪽으로 치우쳐진 인구밀집도 <- 로그 변환
     X_selected['인구 밀집도'] = np.log1p(X_selected['인구 밀집도'])
@@ -576,7 +838,7 @@ print('features = {}'.format(features))
     print(X_selected.skew())
     print('\n평균 주택 가격: {0:.2f}'.format(y.skew()))
     
-    ![image.png](image%2013.png)
+    ![image.png](attachment:51edf063-d701-4ff5-9d5c-6618956551b7:image.png)
     
     X_train, X_test, y_train, y_test = train_test_split(X_selected, y, test_size=0.3, random_state=42)
     
@@ -600,6 +862,45 @@ pred = ~.predict(X_val)
 
 pred.proba = ~.predict_proba(X_val[:,1])
 
+- 혼동 행렬
+    - TP - 1 을 1로 제대로 분류
+    - TN - 0 을 0 으로 제대로 분류
+    - FP - 0 을 1 로 잘못 분류
+    - FN - 1 을 0 으로 잘못 분류
+        - Accuracy = TP+TN / TP+TN+FP+FN (단순 정확성, 전체 데이터 중 제대로 분류된 데이터 비율)
+        - Precision = TP / TP + FP → 전체 Positive 예측 중 실제 Postive(높을수록 1종오류 없음)
+        - Recall = TP / TP + FN → 실제 Positive 데이터 중 Positive로 예측한 비율(높을수록 2종오류 없음)
+            - Precision, Recall → 상충관계에 있음
+            - F1 Score → Precison, Recall의 조화평균
+                - Precision과 Recall의 균형을 통해서 종합적인 성능 평가
+                    
+                    → ★데이터가 불균형할때 F1 스코어 유용
+                    
+                    ![image.png](attachment:7dba8b7b-332d-4da6-8c63-0385b82d09f7:image.png)
+                    
+    
+    ![image.png](attachment:6629b4b7-1fec-439d-95d7-9196c2572247:image.png)
+    
+    from sklearn.metrics import confusion_matrix
+    
+    cm = confusion_matrix(y_test, y_pred)
+    
+    print(cm)
+    
+    ![image.png](attachment:0b816b4b-bb64-4026-b41b-6a79778ab3dd:image.png)
+    
+    import seaborn as sns
+    
+    plt.figure(figsize=(5,4))
+    
+    ax = sns.heatmap(cm, annot=True, fmt=’d’)
+    
+    ax.set_ylabel(’True’)
+    
+    ax.set_title(’Confusion Matrix\nPredicted’)
+    
+    ![image.png](attachment:9df3564a-6e95-4b4e-9888-cbc612058f2a:image.png)
+    
 - 정확도(accuracy) 확인
     
     from sklearn.metrics import accuracy_score
@@ -607,11 +908,34 @@ pred.proba = ~.predict_proba(X_val[:,1])
     result = accuracy_score(y_val, pred)
     
 - roc-auc
+    - ★분류기 간 성능 비교★가능
+    
+    ![image.png](attachment:6b1dbf4e-5047-4fb1-87de-53846f129deb:image.png)
     
     from sklearn.metrics import roc_auc_score
     
-    result = roc_auc_metrics(y_val, pred_proba([:,1])
+    result = roc_auc_metrics(y_val, pred_proba([:,1]) ← 1일 확률
     
+    - roc_auc 시각화
+        
+        y_porba = lr.predict_proba(X_test)
+        
+        y_scores = y_proba[:,1]
+        
+        fpr, tpr, _ = roc_curve(y_test, y_scores)
+        
+        auc = roc_auc_score(y_test, y_scores)
+        
+        plt.plot(fpq, tqr, label=”auc={:.2f}”.format(auc))
+        
+        plt.xlabel(’False Positive Rate’)
+        
+        plt.ylabel(’True Positive Rate’)
+        
+        plt.title(’ROC-AUC curve’)
+        
+        plt.legend()
+        
 - RMSE
     
     from sklearn.metrics import root_mean_squared_error
@@ -623,6 +947,29 @@ pred.proba = ~.predict_proba(X_val[:,1])
     from sklearn.metrics import f1_score
     
     result = f1(y_val, pred, average=’macro’)
+    
+- 이진 분류 시 threshold 조정
+    - threshold 조정
+    
+    y_pred_proba = lr.predict_proba(X_test)
+    
+    y_pred_proba[:,1]> 0.5
+    
+    - 조정
+    
+    threshold = 0.8 #0.8 이상인경우에만 1로 판단
+    
+    y_pred_proba = lr.predict_proba(X_test)
+    
+    y_pred_proba1 = y_pred_ptroba[:, 1] > threshold
+    
+    y_pred_ptroba1
+    
+    sum(y_pred_proba1 == y_test) / len(y_test) #accuray 계산(떨어짐)
+    
+    precision_score(y_test, y_pred_proba1) ← 떨어짐
+    
+    recall_score(y_test, y_pred_proba1) ← 높아짐
     
 
 ### 평가(군집)
@@ -644,14 +991,14 @@ for k in range(10):
   silhouette_avg.append(score)
   print("군집개수: {0}개, 평균 실루엣 점수 : {1:.4f}".format(k+2, score))
 
-![image.png](image%2014.png)
+![image.png](attachment:7b986c49-5c77-49fb-8a76-dee8c4aa033c:image.png)
 
 plt.plot(range(2,12), silhouette_avg, 'bo--')
 plt.xlabel('# of clusters')
 plt.ylabel('silhouette_avg')
 plt.show()
 
-![image.png](image%2015.png)
+![image.png](attachment:9de78f20-8ded-4ccc-93c7-33a6a8f483ad:image.png)
 
 ### 평가표 확인
 
@@ -680,7 +1027,7 @@ for model in model_list:
   print('\n{} 성능지표:'.format(model_name))
   get_clf_eval(y_test, pred)
 
-![image.png](image%2016.png)
+![image.png](attachment:52c713ef-f048-453a-aadd-7492e3a900d9:image.png)
 
 ### 평가 (회귀)
 
@@ -726,7 +1073,7 @@ def printRegressorResult(y_test, y_pred):
   print('MSE : {0:.3f} , RMSE : {1:3f}, r2 : {2:.3f}'.format(mse, rmse, r2))
 printRegressorResult(y_test, y_pred)
 
-![image.png](image%2017.png)
+![image.png](attachment:f0f0c300-2071-4b35-b300-43abc76ad76e:image.png)
 
 # 실제값과 예측값 얼마나 차이나는지 확인
 result = pd.DataFrame({'y' : y_test.values,
@@ -734,7 +1081,7 @@ result = pd.DataFrame({'y' : y_test.values,
                        'diff' : np.abs(y_test.values - y_pred)})
 result.sort_values('diff', ascending=False).head()
 
-![image.png](image%2018.png)
+![image.png](attachment:90cf2b52-dbcb-4c91-8688-45dc9e48b6a4:image.png)
 
 ### 예측 및 결과 파일 생성
 
@@ -842,11 +1189,3 @@ result = f1(y_val, pred, average=’macro’)
 - 메모리 효율성이 중요할 때
 - 범주형 특성이 많을 때
 - 학습 속도가 프로젝트의 핵심 요구사항일 때 (LightGBM이 다른 모델보다 **10배 이상 빠를 수 있습니다**)
-
-[머신러닝 실습1](https://www.notion.so/1-2a449b8bb7f88035b3aed43e728951b0?pvs=21)
-
-[머신러닝 실습2](https://www.notion.so/2-2a449b8bb7f880ce8b5ae37dbbcbe8dd?pvs=21)
-
-[머신러닝 실습3](https://www.notion.so/3-2a449b8bb7f880fd9f13f5e2a3a13da1?pvs=21)
-
-[](https://www.notion.so/2ad49b8bb7f8802fad06ff9033a1fbd6?pvs=21)
