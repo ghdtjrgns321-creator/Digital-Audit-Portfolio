@@ -112,77 +112,78 @@ CPA 디지털 감사 포트폴리오
 - **실습 파일:**
     - [`part3_statistics.md`](./part3_statistics.md):: 통계 분석 핵심 이론 및 코드 요약 노트, 문제풀이
     - 
-### Part 3-1: 데이터 시각화 기초
-- **목표:** : Matplotlib, Seaborn, Plotly를 사용한 핵심 그래프(Scatter, Line, Box, Histogram, Heatmap)의 기본 사용법과 주요 파라미터(인자)를 숙달
-- **학습 환경:**: Google Colab
+### Part 4: 데이터 시각화
+- **목표:** : Matplotlib, Seaborn, Plotly를 학습하고 단순 그래프 생성을 넘어 시각적 전달력을 극대화하는 세부 튜닝과 다차원 데이터 표현 기법을 숙달
+- **학습 환경:**: Google Colab, Jupyter Notebook
 - **주요 학습 내용:**
-    - 시각화 기본: Figure, Axes 개념
-    - Matplotlib & Seaborn (Axes-level):
-        - sns.scatterplot (산점도): hue, palette, style, markers, s, size
-        - sns.regplot (회귀선): ci, order(다항식), scatter_kws, line_kws
-        - sns.lineplot (선 그래프): hue, style, scatterplot과 겹치기
-        - sns.boxplot (박스 플롯): order
-        - sns.stripplot, sns.swarmplot (분포 확인)
-        - sns.histplot (히스토그램): bins, hue, multiple='stack'
-        - sns.heatmap (히트맵): annot, fmt, vmax/vmin, cmap
-    - Seaborn (Figure-level):
-        - sns.lmplot, sns.relplot (Figure-level의 개념)
-        - col, row, col_wrap (그룹별 subplot 나누기)
-        - sns.FacetGrid + .map_dataframe() (Axes-level을 Figure-level처럼 쓰기)
-    - Plotly Express (px):
-        - px.scatter: color, symbol, size
-        - Regression Plot : px.scatter 함수 내 trendline='ols' 인자를 사용
-        - px.line: line_dash
-        - px.box: points='all', category_orders
-        - px.histogram: nbins, color, barmode
-        - px.imshow (히트맵): text_auto, color_continuous_scale
-        - facet_col, facet_row (Plotly의 subplot 기능)
-    - 그래프 튜닝: tick_params, set_title, suptitle, grid, tight_layout, update_layout
-- **실습 파일:**
-    - [`part3-1_visualization_basics.md`](./part3-1_visualization_basics.md):: 시각화 기초 학습 노트
-    - [`part3-1_visualization_basics_quiz.ipynb`](./part3-1_visualization_basics_quiz.ipynb):: 시각화 기초 퀴즈 + 판다스 복습 퀴즈
 
-### Part 3-2: 데이터 시각화 심화
-- **목표:** : Matplotlib, Seaborn, Plotly를 활용하여 고급 그래프(Histogram, Heatmap)를 익히고, 여러 개의 그래프를 동시에 그리는 FacetGrid 및 facet_col의 원리를 이해하며, 그래프를 세부 튜닝하는 방법을 숙달
-- **학습 환경:**: Google Colab
-- **주요 학습 내용:**
-    - 고급 그래프 (Seaborn/Plotly):
-        - sns.histplot / px.histogram (히스토그램): bins, hue/color, multiple/barmode
-        - sns.heatmap / px.imshow (히트맵): annot/text_auto, fmt, cmap/color_continuous_scale
-    - 다중 그래프 (Facet):
-        - Seaborn: Axes-level vs Figure-level (lmplot) 비교, FacetGrid + .map_dataframe()
-        - Plotly: facet_col, facet_row, facet_col_wrap
-    - 그래프 세부 튜닝 (Matplotlib/Plotly):
-        - 축(Axis) 튜닝: tick_params (회전), update_xaxes (포맷), set_yscale('log'), grid
-        - 다중 축(Y-axis): ax.twinx(), make_subplots(specs=[...])
-        - 범례(Legend): ax.legend(bbox_to_anchor=...), update_layout(legend_x=...)
-        - 텍스트/주석: ax.text(), ax.annotate(), fig.add_annotation()
-        - 선/테두리: ax.axhline(), fig.add_hline(), ax.spines
-    - 고급 튜닝 (FacetGrid / Plotly):
-        - for 문 / def 함수를 활용한 '그룹별' 튜닝 (e.g., 그룹별 '평균선' 추가, '이상치' 강조)
-    - 색상 (Color):
-        - palette (Seaborn) / color_continuous_scale (Plotly)
-        - '수동' 색상 지정 (List, Dictionary)
-        - '커스텀' Color Map 만들기 (LinearSegmentedColormap)
+#### 1. 시각화 기초 및 핵심 그래프
+- **기본 개념:**
+    - `Figure`: 전체 그래프가 그려지는 캔버스 (공간)
+    - `Axes`: 실제 그래프가 그려지는 각 구역 (Subplot)
+- **Scatterplot (산점도):**
+    - **Matplotlib & Seaborn:** `sns.scatterplot(data=df, ax=ax, ...)`
+        - `hue`: 색상 구분, `style`: 마커 모양 구분, `size`: 크기 구분
+        - `palette`: 색상 테마, `markers`: 마커 지정, `hue_order`: 범례 순서
+    - **Plotly:** `px.scatter(data_frame=df, ...)`
+        - `color`: 색상, `symbol`: 모양, `size`: 크기
+        - `color_discrete_sequence`/`map`: 색상 직접 지정
+- **Regression Plot (회귀선):**
+    - **Seaborn:** `sns.regplot` ( `ci`: 신뢰구간, `order`: 다항식 차수, `scatter_kws`/`line_kws`: 스타일)
+    - **Plotly:** `px.scatter` 내 `trendline='ols'` ( `trendline_scope='overall'`로 전체 회귀 가능)
+- **Line Plot (선 그래프):**
+    - **Seaborn:** `sns.lineplot` (Scatter와 겹쳐 그리기 가능)
+    - **Plotly:** `px.line` ( `line_dash`: 점선 스타일 )
+- **Box Plot & Distribution:**
+    - **Seaborn:** `sns.boxplot` + `sns.stripplot`/`sns.swarmplot` (데이터 분포 오버레이)
+    - **Plotly:** `px.box` ( `points='all'`로 분포 표시, `category_orders`로 순서 지정)
+- **Histogram (히스토그램):**
+    - **Seaborn:** `sns.histplot` ( `bins`, `kde`, `multiple='stack'`)
+    - **Plotly:** `px.histogram` ( `nbins`, `barmode='overlay'/'relative'`)
+- **Heatmap (히트맵):**
+    - **Seaborn:** `sns.heatmap` (Input: Pivot Table, `annot`, `fmt`, `cmap`, `vmax`/`vmin`)
+    - **Plotly:** `px.imshow` ( `text_auto`, `color_continuous_scale`)
+
+#### 2. 다차원 시각화 (Facet & Subplots)
+- **Seaborn (Axes vs Figure Level):**
+    - **Axes-level:** `scatterplot`, `boxplot` 등 (ax 인자 사용 가능, 유연한 배치)
+    - **Figure-level:** `lmplot`, `relplot`, `catplot` (col, row 인자로 자동 분할)
+    - **FacetGrid:** Axes-level 플롯을 Figure-level 처럼 사용
+        - `g = sns.FacetGrid(...)` + `g.map_dataframe(...)`
+- **Plotly Facet:**
+    - `facet_col`, `facet_row`, `facet_col_wrap` 등을 사용하여 간편하게 서브플롯 생성
+- **다중 축 (Multi-Axis):**
+    - **Matplotlib:** `ax.twinx()` (2개 축), `ax.spines` 이동 (3개 이상 축)
+    - **Plotly:** `make_subplots(specs=[[{"secondary_y": True}]])` 또는 `go.Scatter(yaxis='y2')`
+
+#### 3. 그래프 세부 튜닝 (Graph Tuning)
+- **텍스트 및 제목:**
+    - Title: `set_title` / `suptitle` (Mat/Sea) vs `title` / `update_layout` (Plotly)
+    - Text: `ax.text` / `ax.annotate` (화살표 포함) vs `fig.add_annotation`
+- **축(Axis) 및 눈금(Tick):**
+    - 회전: `tick_params(labelrotation=90)` vs `update_xaxes(tickangle=90)`
+    - 시계열 포맷: `ConciseDateFormatter` vs `tickformat='%Y-%m-%d'`
+    - 로그 스케일: `set_yscale('log')` vs `log_y=True`
+- **범례(Legend) 및 테두리:**
+    - 위치: `bbox_to_anchor` vs `update_layout(legend_x=...)`
+    - 테두리 강조: `ax.spines` vs `update_xaxes(showline=True)`
+- **기준선 (Reference Line):**
+    - `ax.axhline` / `ax.axvline` vs `fig.add_hline` / `fig.add_vline`
+
+#### 4. 고급 커스터마이징 (Advanced Customization)
+- **FacetGrid 매핑 튜닝:**
+    - 사용자 정의 함수(`def custom(...)`)를 만들어 `g.map(custom, ...)`으로 각 서브플롯 별 기준선, 평균선, 텍스트 등을 개별 적용
+    - 조건부 강조: 특정 조건(`spec_out`) 만족 시 테두리 색상 변경 또는 화살표 표시
+- **회귀식 표시:**
+    - `scipy.stats.linregress`로 계수 산출 후 텍스트로 표시 (Matplotlib)
+    - `px.get_trendline_results`로 OLS 결과 추출 후 표시 (Plotly)
+- **색상 (Color Palette):**
+    - **Seaborn:** `palette` (범주형), `cmap` (연속형), `LinearSegmentedColormap` (커스텀)
+    - **Plotly:** `color_discrete_sequence`, `color_continuous_scale`
+
 - **실습 파일:**
-    - [`part3-2_visualization_advanced.md`](./part3-2_visualization_advanced.md):: 시각화 심화(히스토그램/히트맵/Facet/튜닝) 상세 학습 노트
-      
-### Part 4: 파이썬을 활용한 통계분석
-- **목표:** : 파이썬(Scipy, Statsmodels)을 활용한 가설 검정(Hypothesis Testing)의 기본 개념과 T-test, ANOVA, 카이제곱 검정(Chi-square), 회귀 분석(OLS)을 숙달
-- **학습 환경:**: Google Colab
-- **주요 학습 내용:**
-    - 가설 검정: 귀무가설, 대립가설, p-value
-    - T-test (1-sample, Paired, Independent): stats.ttest_1samp, ttest_rel, ttest_ind
-    - 비모수 검정 (T-test): stats.wilcoxon, stats.mannwhitneyu
-    - 전제 조건 검정: stats.shapiro (정규성), stats.levene (등분산성)
-    - 범주형 분석 (Chi-square): stats.chisquare (적합도), stats.chi2_contingency (독립성/동질성), pd.crosstab
-    - 상관/회귀 분석: .corr() (Pearson, Spearman), statsmodels.formula.api.ols, model.summary(), model.predict(), model.resid
-    - 분산 분석 (ANOVA): stats.f_oneway (일원), ols('y ~ C(f1) * C(f2)') (이원)
-    - 사후 검정: pairwise_tukeyhsd (Tukey), MultiComparison (Bonferroni)
-    - 비모수 검정 (ANOVA): stats.kruskal (Kruskal-Wallis)
-- **실습 파일:**
-    - [`part4_statistics.md`](./part4_statistics.md):: 통계 분석 상세 학습 노트
-    - [`part4_statistics_quiz.md`](./part4_statistics_quiz.md):: 판다스/시각화 복습퀴즈
+    - [`part4-1_visualization_basics.md`](./part3-1_visualization_basics.md):: 시각화 기초 학습 노트
+    - [`part4-2_visualization_advanced.md`](./part3-2_visualization_advanced.md):: 시각화 심화(히스토그램/히트맵/Facet/튜닝) 상세 학습 노트
 
 ### Part 5-1: 머신러닝 
 - **목표:** : 머신러닝의 전체 프로세스(EDA, 전처리, 모델링, 평가)를 이해하고, 고급 전처리 기법(스케일링, 인코딩, 차원 축소, 피처 엔지니어링)과 다양한 모델(RF, XGB, LGBM, SVM 등)을 실전에 적용하며, 모델 성능을 극대화하는 검증/튜닝 (K-Fold, GridSearchCV, Early Stopping) 방법을 숙달
