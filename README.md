@@ -35,7 +35,7 @@ CPA 디지털 감사 포트폴리오
         - 올림/내림: np.ceil, np.floor, np.trunc
 - **실습 파일:**
     - [`part1_python_basics.md`](./part1_python_basics.md):: 파이썬 및 Numpy 상세 학습 노트
-    - 
+      
 ### Part 2: 데이터 전처리 및 분석 심화 - Python Pandas
 - **목표:** : 데이터 분석의 필수 도구인 Pandas를 활용하여 데이터 불러오기부터 전처리, 파생변수 생성, 그룹핑, 시계열 처리, 그리고 데이터 재구조화까지 자유자재로 다루는 능력을 함양
 - **학습 환경:**: Google Colab
@@ -111,7 +111,7 @@ CPA 디지털 감사 포트폴리오
     8. **주문량 예측 (다중회귀):** 할인율, 온도, 광고비에 따른 주문량 예측 및 잔차 분석
 - **실습 파일:**
     - [`part3_statistics.md`](./part3_statistics.md):: 통계 분석 핵심 이론 및 코드 요약 노트, 문제풀이
-    - 
+
 ### Part 4: 데이터 시각화
 - **목표:** : Matplotlib, Seaborn, Plotly를 학습하고 단순 그래프 생성을 넘어 시각적 전달력을 극대화하는 세부 튜닝과 다차원 데이터 표현 기법을 숙달
 - **학습 환경:**: Google Colab, Jupyter Notebook
@@ -278,8 +278,8 @@ CPA 디지털 감사 포트폴리오
 - **Encoder-Decoder:** 번역(Seq2Seq) 등에 활용.
 
 - **실습 파일:**
-    - [`part6_deep_learning_basics.md`](./part6_deep_learning_md):: DeepLearning 학습노트
-    - 
+    - [`part6_deep_learning_basics.md`](./part6_deep_learning_basics.md):: DeepLearning 학습노트
+
 ### Part 6: 웹 대시보드 개발 (Streamlit)
 - **목표:** : Python만으로 데이터 분석 결과를 인터랙티브 웹 애플리케이션으로 구현하는 방법을 숙달, 실전 프로젝트 수행
 - **학습 환경:**: VS Code (로컬 개발), Jupyter Notebook (nbconvert), Terminal
