@@ -6,39 +6,43 @@ CPA 디지털 감사 포트폴리오
 본 저장소는 2026년 CPA 합격 후 빅펌 디지털 감사 직무를 목표로,
 파이썬(Pandas)과 SQL을 활용한 감사 포트폴리오를 구축하는 과정을 기록합니다.
 
+---
+
 ### Part 1: 파이썬 및 Numpy 기초
-- **목표:** : 데이터 분석을 위한 파이썬 핵심 문법, 자료구조(리스트, 딕셔너리 등), 제어문 및 수치 계산 라이브러리(Numpy)의 기초 숙달
-- **학습 환경:**: Google Colab
+- **목표:** 데이터 분석을 위한 파이썬 핵심 문법, 자료구조(리스트, 딕셔너리 등), 제어문 및 수치 계산 라이브러리(Numpy)의 기초 숙달
+- **학습 환경:** Google Colab
 - **주요 학습 내용:**
-    - 기본 문법:
-        - 입출력: print(), 주석(#)
-        - 자료형: int, float, str, bool, type() 확인
-        - 형변환: int(), str()
-        - 연산자: 산술(+, -, *, /, //, %, **), 비교(>, <, ==, !=)
-    - 문자열 처리:
-        - 포맷팅: f-string (추천), .format()
-        - 메서드: .split(), .replace(), .upper(), .lower()
-    - 자료구조 (Data Structures):
-        - 리스트(List): 생성, 추가(append), 정렬(sort), 인덱싱/슬라이싱([0], [::-1]), 내장함수(sum, len)
-        - 딕셔너리(Dict): Key-Value 구조, 수정, 조회, 메서드(keys, values, items)
+    - **기본 문법:**
+        - 입출력: `print()`, 주석(`#`)
+        - 자료형: `int`, `float`, `str`, `bool`, `type()` 확인
+        - 형변환: `int()`, `str()`
+        - 연산자: 산술(`+`, `-`, `*`, `/`, `//`, `%`, `**`), 비교(`>`, `<`, `==`, `!=`)
+    - **문자열 처리:**
+        - 포맷팅: f-string (추천), `.format()`
+        - 메서드: `.split()`, `.replace()`, `.upper()`, `.lower()`
+    - **자료구조 (Data Structures):**
+        - 리스트(List): 생성, 추가(`append`), 정렬(`sort`), 인덱싱/슬라이싱(`[0]`, `[::-1]`), 내장함수(`sum`, `len`)
+        - 딕셔너리(Dict): Key-Value 구조, 수정, 조회, 메서드(`keys`, `values`, `items`)
         - 튜플(Tuple) & 세트(Set): 불변성 및 중복 제거 특성
-    - 제어문 (Control Flow):
-        - 조건문: if, elif, else
-        - 반복문: for, while, range, enumerate (인덱스 동시 추출), zip (리스트 묶기), List Comprehension
-    - 함수 (Function):
-        - 정의: def, 매개변수, return
-        - 고급: lambda (익명 함수), map, filter
-    - Numpy (수치 계산):
-        - 배열(Array): np.array, 차원(ndim), 크기(shape), 랭크(rank)
-        - 생성 및 변형: np.arange, .reshape, 전치행렬(.T)
-        - 수학 연산: 내적(dot), 행렬 곱(matmul), 최댓값 인덱스(argmax)
-        - 올림/내림: np.ceil, np.floor, np.trunc
+    - **제어문 (Control Flow):**
+        - 조건문: `if`, `elif`, `else`
+        - 반복문: `for`, `while`, `range`, `enumerate` (인덱스 동시 추출), `zip` (리스트 묶기), List Comprehension
+    - **함수 (Function):**
+        - 정의: `def`, 매개변수, `return`
+        - 고급: `lambda` (익명 함수), `map`, `filter`
+    - **Numpy (수치 계산):**
+        - 배열(Array): `np.array`, 차원(`ndim`), 크기(`shape`), 랭크(`rank`)
+        - 생성 및 변형: `np.arange`, `.reshape`, 전치행렬(`.T`)
+        - 수학 연산: 내적(`dot`), 행렬 곱(`matmul`), 최댓값 인덱스(`argmax`)
+        - 올림/내림: `np.ceil`, `np.floor`, `np.trunc`
 - **실습 파일:**
-    - [`part1_python_basics.md`](./part1_python_basics.md):: 파이썬 및 Numpy 상세 학습 노트
-      
+    - [`part1_python_basics.md`](./part1_python_basics.md): 파이썬 및 Numpy 상세 학습 노트
+
+<br>
+
 ### Part 2: 데이터 전처리 및 분석 심화 - Python Pandas
-- **목표:** : 데이터 분석의 필수 도구인 Pandas를 활용하여 데이터 불러오기부터 전처리, 파생변수 생성, 그룹핑, 시계열 처리, 그리고 데이터 재구조화까지 자유자재로 다루는 능력을 함양
-- **학습 환경:**: Google Colab
+- **목표:** 데이터 분석의 필수 도구인 Pandas를 활용하여 데이터 불러오기부터 전처리, 파생변수 생성, 그룹핑, 시계열 처리, 그리고 데이터 재구조화까지 자유자재로 다루는 능력을 함양
+- **학습 환경:** Google Colab
 - **주요 학습 내용:**
     - **데이터 구조 및 조회:**
         - 기본 구조: 'Series'(1차원), 'DataFrame'(2차원) 생성 및 'dtype' 확인
@@ -74,9 +78,11 @@ CPA 디지털 감사 포트폴리오
     - [`part2-1_pandas_basics.md`](./part2-1_pandas_basics.md): 판다스 상세 학습 노트
     - [`part2-2_pandas_advanced.md`](./part2-2_pandas_advanced.md): 판다스 심화 메서드, 실전 프로세스 학습 노트
 
+<br>
+
 ### Part 3: 파이썬을 활용한 통계분석
-- **목표:** : 파이썬(Scipy, Statsmodels)을 활용하여 가설 검정의 기초부터 T-test, 분산분석(ANOVA), 카이제곱 검정, 상관/회귀분석까지 통계적 추론 능력을 함양
-- **학습 환경:**: Google Colab
+- **목표:** 파이썬(Scipy, Statsmodels)을 활용하여 가설 검정의 기초부터 T-test, 분산분석(ANOVA), 카이제곱 검정, 상관/회귀분석까지 통계적 추론 능력을 함양
+- **학습 환경:** Google Colab
 - **주요 학습 내용:**
     - **가설 검정 기초 (Hypothesis Testing):**
         - 개념: 모집단 vs 표본, 귀무가설($H_0$) vs 대립가설($H_1$)
@@ -110,11 +116,13 @@ CPA 디지털 감사 포트폴리오
     7. **캠프/세미나 등록 (독립성):** 캠프 종류와 세미나 등록의 연관성
     8. **주문량 예측 (다중회귀):** 할인율, 온도, 광고비에 따른 주문량 예측 및 잔차 분석
 - **실습 파일:**
-    - [`part3_statistics.md`](./part3_statistics.md):: 통계 분석 핵심 이론 및 코드 요약 노트, 문제풀이
+    - [`part3_statistics.md`](./part3_statistics.md): 통계 분석 핵심 이론 및 코드 요약 노트, 문제풀이
+
+<br>
 
 ### Part 4: 데이터 시각화
-- **목표:** : Matplotlib, Seaborn, Plotly를 학습하고 단순 그래프 생성을 넘어 시각적 전달력을 극대화하는 세부 튜닝과 다차원 데이터 표현 기법을 숙달
-- **학습 환경:**: Google Colab, Jupyter Notebook
+- **목표:** Matplotlib, Seaborn, Plotly를 학습하고 단순 그래프 생성을 넘어 시각적 전달력을 극대화하는 세부 튜닝과 다차원 데이터 표현 기법을 숙달
+- **학습 환경:** Google Colab, Jupyter Notebook
 - **주요 학습 내용:**
 
 #### 1. 시각화 기초 및 핵심 그래프
@@ -143,6 +151,7 @@ CPA 디지털 감사 포트폴리오
 - **Heatmap (히트맵):**
     - **Seaborn:** `sns.heatmap` (Input: Pivot Table, `annot`, `fmt`, `cmap`, `vmax`/`vmin`)
     - **Plotly:** `px.imshow` ( `text_auto`, `color_continuous_scale`)
+
 #### 2. 다차원 시각화 (Facet & Subplots)
 - **Seaborn (Axes vs Figure Level):**
     - **Axes-level:** `scatterplot`, `boxplot` 등 (ax 인자 사용 가능, 유연한 배치)
@@ -154,6 +163,7 @@ CPA 디지털 감사 포트폴리오
 - **다중 축 (Multi-Axis):**
     - **Matplotlib:** `ax.twinx()` (2개 축), `ax.spines` 이동 (3개 이상 축)
     - **Plotly:** `make_subplots(specs=[[{"secondary_y": True}]])` 또는 `go.Scatter(yaxis='y2')`
+
 #### 3. 그래프 세부 튜닝 (Graph Tuning)
 - **텍스트 및 제목:**
     - Title: `set_title` / `suptitle` (Mat/Sea) vs `title` / `update_layout` (Plotly)
@@ -167,6 +177,7 @@ CPA 디지털 감사 포트폴리오
     - 테두리 강조: `ax.spines` vs `update_xaxes(showline=True)`
 - **기준선 (Reference Line):**
     - `ax.axhline` / `ax.axvline` vs `fig.add_hline` / `fig.add_vline`
+
 #### 4. 고급 커스터마이징 (Advanced Customization)
 - **FacetGrid 매핑 튜닝:**
     - 사용자 정의 함수(`def custom(...)`)를 만들어 `g.map(custom, ...)`으로 각 서브플롯 별 기준선, 평균선, 텍스트 등을 개별 적용
@@ -177,14 +188,15 @@ CPA 디지털 감사 포트폴리오
 - **색상 (Color Palette):**
     - **Seaborn:** `palette` (범주형), `cmap` (연속형), `LinearSegmentedColormap` (커스텀)
     - **Plotly:** `color_discrete_sequence`, `color_continuous_scale`
-
 - **실습 파일:**
-    - [`part4-1_visualization_basics.md`](./part3-1_visualization_basics.md):: 시각화 기초 학습 노트
-    - [`part4-2_visualization_advanced.md`](./part3-2_visualization_advanced.md):: 시각화 심화(히스토그램/히트맵/Facet/튜닝) 상세 학습 노트
+    - [`part4-1_visualization_basics.md`](./part3-1_visualization_basics.md): 시각화 기초 학습 노트
+    - [`part4-2_visualization_advanced.md`](./part3-2_visualization_advanced.md): 시각화 심화(히스토그램/히트맵/Facet/튜닝) 상세 학습 노트
+
+<br>
 
 ### Part 5: 머신러닝 심화 & 실전
-- **목표:** : 머신러닝의 전체 파이프라인(전처리-학습-튜닝-평가)을 마스터하고, 특히 데이터 누수방지를 위한 전처리 원칙과 다양한 모델(Tree, Boosting, Ensemble)의 최적화 기법을 숙달
-- **학습 환경:**: Google Colab
+- **목표:** 머신러닝의 전체 파이프라인(전처리-학습-튜닝-평가)을 마스터하고, 특히 데이터 누수 방지를 위한 전처리 원칙과 다양한 모델(Tree, Boosting, Ensemble)의 최적화 기법을 숙달
+- **학습 환경:** Google Colab
 - **주요 학습 내용:**
 
 #### 1. 머신러닝 프로세스 & EDA
@@ -195,6 +207,7 @@ CPA 디지털 감사 포트폴리오
     - 기본 확인: `head()`, `info()`, `describe()` (수치형), `describe(include='object')` (범주형)
     - 시각화: `histplot` (분포), `heatmap` (상관관계 `df.corr()`)
     - 타겟 확인: `value_counts(normalize=True)` (비율 확인, 불균형 여부)
+
 #### 2. 데이터 전처리 (Preprocessing) **[핵심]**
 - **결측치 처리 (Missing Values):**
     - **Train:** 삭제(`dropna`) 가능.
@@ -208,6 +221,7 @@ CPA 디지털 감사 포트폴리오
     - **원칙:** `fit`은 **Train** 데이터로만, **Test**는 `transform`만 적용. (2차원 배열 입력 필수)
     - 종류: `MinMaxScaler`, `StandardScaler`, `RobustScaler` (이상치 강함).
     - 트리 모델은 스케일링 불필요, 선형/신경망 모델은 필수.
+
 #### 3. 모델 학습 (Model Training)
 - **알고리즘:**
     - **Tree 계열:** DecisionTree, **RandomForest** (Bagging), **XGBoost**, **LightGBM** (Boosting).
@@ -215,6 +229,7 @@ CPA 디지털 감사 포트폴리오
     - **기타:** KNN, SVC (정규화 필수), VotingClassifier (앙상블).
     - **비지도 학습:** KMeans (Elbow point 확인), DBSCAN (밀도 기반).
 - **검증 분할:** `train_test_split(stratify=target)` (분류 시 클래스 비율 유지).
+
 #### 4. 모델 튜닝 & 최적화
 - **GridSearchCV:** 하이퍼파라미터 격자 탐색 (`best_params_`, `best_score_`).
 - **Early Stopping:** XGBoost/LightGBM에서 과적합 방지 (`eval_set`, `early_stopping_rounds`).
@@ -222,20 +237,22 @@ CPA 디지털 감사 포트폴리오
     - 차원 축소: PCA (시각화 및 차원의 저주 해결).
     - 변수 선택: `SelectKBest`.
     - 파생 변수: 다항 회귀(`PolynomialFeatures`), 구간화(`cut`, `qcut`).
+
 #### 5. 모델 평가 (Evaluation)
 - **분류 (Classification):**
     - **Metrics:** Accuracy, Precision, Recall, F1-Score (불균형 데이터), ROC-AUC (확률 `predict_proba`).
-    - **Confusion Matrix:** TP, TN, FP, FN 확인. 
+    - **Confusion Matrix:** TP, TN, FP, FN 확인.
 - **회귀 (Regression):**
     - **Metrics:** RMSE (`root_mean_squared_error`), MSE, MAE, R2 Score.
 - **군집 (Clustering):** Silhouette Score.
-
 - **실습 파일:**
-    - [`part5-1_ml.md`](./part5-1_ml.md):: 머신러닝 기초/심화 프로세스 상세 학습 노트
+    - [`part5-1_ml.md`](./part5-1_ml.md): 머신러닝 기초/심화 프로세스 상세 학습 노트
+
+<br>
 
 ### Part 6: 딥러닝
-- **목표:** : 딥러닝의 기초 원리(퍼셉트론, 역전파)를 이해하고, TensorFlow/Keras를 활용하여 비정형 데이터(이미지, 시계열, 텍스트) 처리를 위한 핵심 네트워크(CNN, RNN, GAN)를 구현 및 최적화
-- **학습 환경:**: Google Colab, TensorFlow, Keras
+- **목표:** 딥러닝의 기초 원리(퍼셉트론, 역전파)를 이해하고, TensorFlow/Keras를 활용하여 비정형 데이터(이미지, 시계열, 텍스트) 처리를 위한 핵심 네트워크(CNN, RNN, GAN)를 구현 및 최적화
+- **학습 환경:** Google Colab, TensorFlow, Keras
 - **주요 학습 내용:**
 
 #### 1. 딥러닝 기초 (Fundamentals)
@@ -247,6 +264,7 @@ CPA 디지털 감사 포트폴리오
     - **Hyperparameter:** Epoch, Batch Size, Learning Rate, Dropout Rate.
 - **구현 패턴 (TensorFlow):**
     - `Sequential()` 모델 생성 $\rightarrow$ `add(Dense(...))` 레이어 적층 $\rightarrow$ `compile()` $\rightarrow$ `fit()` $\rightarrow$ `evaluate()`
+
 #### 2. 합성곱 신경망 (CNN) - 이미지 처리
 - **구조:**
     - **Convolution Layer:** 필터(Kernel)를 통해 지역적 특징(Feature Map) 추출. (Padding, Stride 활용)
@@ -258,6 +276,7 @@ CPA 디지털 감사 포트폴리오
 - **전이 학습 (Transfer Learning):**
     - Pre-trained Model (MobileNet, VGG, ResNet) 활용.
     - 전략: Feature Extractor(Freeze) + Fine Tuning (마지막 층만 재학습).
+
 #### 3. 순환 신경망 (RNN & LSTM) - 시계열/NLP
 - **특징:** 시퀀스(Sequence) 데이터 처리, 과거의 기억(Hidden State)을 현재 결과에 반영.
 - **한계 및 극복:**
@@ -265,6 +284,7 @@ CPA 디지털 감사 포트폴리오
 - **실습:**
     - **주식 가격 예측 (Many-to-One):** `Window` 단위 시계열 데이터 구성, `MinMaxScaler` 필수.
     - **감성 분석 (NLP):** `Embedding` 레이어(단어 벡터화) + `Bidirectional LSTM`.
+
 #### 4. 비지도 딥러닝 (Unsupervised Deep Learning)
 - **Autoencoder (AE):**
     - 구조: Encoder(압축) $\rightarrow$ Latent Space(잠재 공간) $\rightarrow$ Decoder(복원).
@@ -273,16 +293,18 @@ CPA 디지털 감사 포트폴리오
     - 구조: **Generator**(위조지폐범) vs **Discriminator**(경찰)의 경쟁적 학습.
     - 원리: Generator는 Discriminator를 속이도록(1), Discriminator는 가짜를 0으로 맞추도록 학습.
     - 활용: 가짜 이미지 생성, 스타일 변환 등.
+
 #### 5. 최신 트렌드 (Brief)
 - **Transformer:** RNN 구조 제거, Attention 메커니즘만으로 성능 극대화.
 - **Encoder-Decoder:** 번역(Seq2Seq) 등에 활용.
-
 - **실습 파일:**
-    - [`part6_deep_learning_basics.md`](./part6_deep_learning_basics.md):: DeepLearning 학습노트
+    - [`part6_deep_learning_basics.md`](./part6_deep_learning_basics.md): DeepLearning 학습노트
+
+<br>
 
 ### Part 7: 웹 대시보드 개발 (Streamlit)
-- **목표:** : HTML/CSS/JS 없이 Python만으로 데이터 분석 결과를 '인터랙티브 웹 애플리케이션(대시보드)'으로 구현하고 배포하는 과정을 학습
-- **학습 환경:**: VS Code, Terminal
+- **목표:** HTML/CSS/JS 없이 Python만으로 데이터 분석 결과를 '인터랙티브 웹 애플리케이션(대시보드)'으로 구현하고 배포하는 과정을 학습
+- **학습 환경:** VS Code, Terminal
 - **주요 학습 내용:**
 
 #### 1. 기본 설정 및 텍스트 위젯
@@ -296,6 +318,7 @@ CPA 디지털 감사 포트폴리오
     - `st.markdown`: 마크다운 문법 지원 (색상, 볼드 등 `:red[]`, `:blue[]`)
     - `st.code`: 코드 블록 출력 (`language='python'`)
     - `st.divider`: 구분선
+
 #### 2. 입력 위젯 (Interaction)
 - **버튼 및 선택:**
     - `st.button`: 클릭 이벤트 처리 (`on_click`, `type='primary'`)
@@ -308,23 +331,27 @@ CPA 디지털 감사 포트폴리오
     - `st.slider`: 값 또는 범위(Range) 선택 (시간, 수치 등)
     - `st.text_input`: 문자열 입력 (`type='password'`로 암호화 가능)
     - `st.file_uploader`: CSV 등 파일 업로드 (`accept_multiple_files`)
+
 #### 3. 시각화 및 미디어 (Visualization)
 - **Matplotlib & Seaborn:** `st.pyplot(fig)`
 - **Plotly Express:** `st.plotly_chart(fig)` (인터랙티브 차트)
 - **동적 그래프:** `selectbox`로 축(x, y, hue)을 선택받아 실시간으로 그래프 업데이트
 - **이미지:** `st.image(img)` (PIL 라이브러리 연동, `width`, `caption`)
+
 #### 4. 레이아웃 (Layout)
 - **화면 구성:**
     - `st.sidebar`: 사이드바 메뉴 구성 (`with st.sidebar:`)
     - `st.columns`: 화면을 가로 단으로 분할 (`col1, col2 = st.columns(2)`)
     - `st.tabs`: 탭 구성 (`tab1, tab2 = st.tabs(['Table', 'Graph'])`)
     - `st.expander`: 접기/펼치기 가능한 영역 (상세 데이터 숨김 등)
+
 #### 5. 고급 기능 (Advanced)
 - **Session State (상태 유지):**
     - Streamlit은 상호작용 시마다 전체 코드가 재실행되어 변수가 초기화됨.
     - `st.session_state`를 사용하여 버튼 클릭 후에도 변수 값(예: 카운터)을 유지.
 - **Caching (성능 최적화):**
     - `@st.cache_data`: 데이터 로드나 무거운 연산 결과를 메모리에 저장하여 재실행 시 속도 향상.
+
 #### 6. 실전 프로젝트: 자동차 CO2 배출량 대시보드
 - **기능 구현:**
     - **Data Load:** `pd.read_csv`로 데이터 로드.
@@ -334,15 +361,16 @@ CPA 디지털 감사 포트폴리오
         2. **Scatter Plot 1:** 엔진 크기 vs 연비 (회귀선 포함).
         3. **Scatter Plot 2:** 연비 vs 탄소 배출량 상관관계 (축 선택 기능 포함).
     - **State Management:** 필터링된 데이터를 `st.session_state`와 연동하여 동적 시각화 구현.
-    - 
 - **실습 파일:**
-    - [`part7_streamlit_study.md`](./part7_streamlit_study.md):: streamlit 상세 학습 노트
-    - [`part7_streamlit_dashboard.py`](./part7_streamlit_dashboard.py):: 실전 프로젝트 대시보드 전체 소스 코드
-    - https://digital-audit-portfolio-zkwnvfuoyhgcbwqhxyypbh.streamlit.app/ 실습 페이지
+    - [`part7_streamlit_study.md`](./part7_streamlit_study.md): streamlit 상세 학습 노트
+    - [`part7_streamlit_dashboard.py`](./part7_streamlit_dashboard.py): 실전 프로젝트 대시보드 전체 소스 코드
+    - [실습 페이지 링크](https://digital-audit-portfolio-zkwnvfuoyhgcbwqhxyypbh.streamlit.app/)
+
+<br>
 
 ### Part 8: SQL 데이터베이스 & 고급 쿼리 분석
-- **목표:** : 관계형 데이터베이스(RDBMS)의 구조와 DDL/DML 기초, 복잡한 데이터 분석을 위한 고급 쿼리(Join, Subquery, Window Function)와 트랜잭션 제어 능력을 함양
-- **학습 환경:**: MySQL, Python (PyMySQL)
+- **목표:** 관계형 데이터베이스(RDBMS)의 구조와 DDL/DML 기초, 복잡한 데이터 분석을 위한 고급 쿼리(Join, Subquery, Window Function)와 트랜잭션 제어 능력을 함양
+- **학습 환경:** MySQL, Python (PyMySQL)
 - **주요 학습 내용:**
 
 #### 1. RDBMS 이론 및 DDL (Data Definition)
@@ -350,6 +378,7 @@ CPA 디지털 감사 포트폴리오
 - **DDL (구조 정의):** `CREATE`, `ALTER`, `DROP`, `TRUNCATE`.
 - **제약 조건:** `PRIMARY KEY` (고유 식별), `FOREIGN KEY` (관계 형성), `NOT NULL`, `AUTO_INCREMENT`.
 - **인덱스(Index):** 검색 속도 향상 (Clustered vs Secondary).
+
 #### 2. SQL 쿼리 작동 원리 및 기초 (DML Basics)
 - **쿼리 실행 순서 (중요):**
     `FROM` $\rightarrow$ `ON` $\rightarrow$ `JOIN` $\rightarrow$ `WHERE` $\rightarrow$ `GROUP BY` $\rightarrow$ `HAVING` $\rightarrow$ `SELECT` $\rightarrow$ `DISTINCT` $\rightarrow$ `ORDER BY` $\rightarrow$ `LIMIT`
@@ -358,6 +387,7 @@ CPA 디지털 감사 포트폴리오
     - `LIMIT`: 출력 행 수 제한.
     - `GROUP BY` & `HAVING`: 그룹화 및 그룹 후 조건 필터링.
     - `ORDER BY`: 정렬 (`ASC`, `DESC`).
+
 #### 3. 주요 단일 행 함수 (Functions)
 - **문자열 함수:**
     - `LENGTH()`, `UPPER()`, `LOWER()`
@@ -370,6 +400,7 @@ CPA 디지털 감사 포트폴리오
     - `TIMESTAMPDIFF(unit, start, end)`: 시간 차이 계산.
     - `DATE_FORMAT(date, format)`: 형식 변환 (`%Y-%m-%d`).
 - **숫자 함수:** `ABS()`, `CEIL()`, `FLOOR()`, `ROUND()`, `SQRT()`.
+
 #### 4. 데이터 결합 및 집합 연산 (Joins & Sets)
 - **JOIN:**
     - `INNER JOIN`: 교집합 (매칭되는 데이터만).
@@ -377,6 +408,7 @@ CPA 디지털 감사 포트폴리오
 - **집합 연산:**
     - `UNION` (중복 제거 합집합), `UNION ALL` (중복 포함 합집합).
     - `INTERSECT` (교집합), `EXCEPT` (차집합).
+
 #### 5. 고급 쿼리 기법 (Advanced Techniques)
 - **서브쿼리 (Subquery):**
     - `WHERE`절 (필터링), `FROM`절 (인라인 뷰), `SELECT`절 (스칼라).
@@ -386,6 +418,7 @@ CPA 디지털 감사 포트폴리오
 - **조건 제어:** `CASE WHEN condition THEN result ELSE end`.
 - **문자열 집계:** `GROUP_CONCAT()` (여러 행을 하나의 문자열로 결합).
 - **트랜잭션:** `COMMIT` (저장), `ROLLBACK` (취소).
+
 #### 6. 윈도우 함수 (Window Functions) **[핵심]**
 - **개념:** `GROUP BY`와 달리 원본 행을 유지하면서 집계 및 순위 계산 수행.
 - **문법:** `FUNCTION() OVER (PARTITION BY ... ORDER BY ... ROWS/RANGE ...)`
@@ -398,9 +431,8 @@ CPA 디지털 감사 포트폴리오
     - `FIRST_VALUE()`, `LAST_VALUE()`: 파티션 내 처음/마지막 값.
 - **비율/분할:** `PERCENT_RANK()`, `CUME_DIST()`, `NTILE(n)`.
 - **집계:** `SUM() OVER()`, `AVG() OVER()` (누적 합계 등).
+
 #### 7. Python 연동 (PyMySQL)
-- `connect` $\rightarrow$ `cursor` $\rightarrow$ `execute(SQL)` $\rightarrow$ `commi
-
+- `connect` $\rightarrow$ `cursor` $\rightarrow$ `execute(SQL)` $\rightarrow$ `commit` $\rightarrow$ `close`
 - **실습 파일:**
-    - [`part8_sql.md`](./part8_sql.md):: sql 학습노트
-
+    - [`part8_sql.md`](./part8_sql.md): sql 학습노트
