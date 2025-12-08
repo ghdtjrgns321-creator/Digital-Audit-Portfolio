@@ -185,60 +185,67 @@ CPA 디지털 감사 포트폴리오
     - [`part4-1_visualization_basics.md`](./part3-1_visualization_basics.md):: 시각화 기초 학습 노트
     - [`part4-2_visualization_advanced.md`](./part3-2_visualization_advanced.md):: 시각화 심화(히스토그램/히트맵/Facet/튜닝) 상세 학습 노트
 
-### Part 5-1: 머신러닝 
-- **목표:** : 머신러닝의 전체 프로세스(EDA, 전처리, 모델링, 평가)를 이해하고, 고급 전처리 기법(스케일링, 인코딩, 차원 축소, 피처 엔지니어링)과 다양한 모델(RF, XGB, LGBM, SVM 등)을 실전에 적용하며, 모델 성능을 극대화하는 검증/튜닝 (K-Fold, GridSearchCV, Early Stopping) 방법을 숙달
+### Part 5: 머신러닝 심화 & 실전
+- **목표:** : 머신러닝의 전체 파이프라인(전처리-학습-튜닝-평가)을 마스터하고, 특히 데이터 누수방지를 위한 전처리 원칙과 다양한 모델(Tree, Boosting, Ensemble)의 최적화 기법을 숙달
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
-    - 머신러닝 프로세스: EDA ➡️ 데이터 전처리 ➡️ 검증 데이터 분할 ➡️ 모델 학습/평가 ➡️ 예측/제출
-    - EDA (탐색적 데이터 분석): .info(), .describe(), .isnull().sum(), sns.histplot (분포 확인)
-    - 데이터 전처리 (ML):
-        - 결측치 처리: dropna(), fillna() (mode, mean, 'X')
-        - 타겟 분리: .pop()
-        - 인코딩 (Encoding): pd.get_dummies (One-Hot), LabelEncoder, (Train/Test '합치기/쪼개기')
-        - 스케일링 (Scaling): MinMaxScaler, StandardScaler (SVC 필수), RobustScaler
-    - 피처 엔지니어링 (Feature Engineering):
-        - PCA (차원 축소)
-        - SelectKBest (특성 선택)
-        - PolynomialFeatures (다항 회귀)
-        - np.log1p (로그 변환) (치우친 데이터)
-    - 검증 데이터 분할: train_test_split (stratify=target 중요!), KFold, StratifiedKFold, cross_validate
-    - 모델 학습 (분류): DecisionTreeClassifier, RandomForestClassifier, XGBClassifier, LGBMClassifier, KNeighborsClassifier, SVC, LogisticRegression, GradientBoostingClassifier
-    - 모델 학습 (회귀): LinearRegression (coef_, intercept_), RandomForestRegressor, LGBMRegressor, XGBRegressor
-    - 모델 학습 (군집): KMeans
-    - 모델 튜닝 (Optimization):
-        - GridSearchCV (하이퍼파라미터 튜닝)
-        - Early Stopping (XGB/LGBM 조기 종료)
-        - VotingClassifier (앙상블)
-    - 모델 평가 (분류):
-        - .predict() (최종 결과) / predict_proba() (확률 ➡️ ROC-AUC용)
-        - confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
-        - 함수화, 평가표 자동화
-    - 모델 평가 (회귀): RMSE, MSE, MAE, r2_score
-    - 모델 평가 (군집): silhouette_score (최적의 K 찾기)
-    - 모델 시각화: export_graphviz (트리), plot_importance (XGB/LGBM), sns.barplot (LR 계수)
+
+#### 1. 머신러닝 프로세스 & EDA
+- **기본 원칙:**
+    - **Shape Check:** `train.shape`와 `test.shape`, 그리고 제출할 `result.shape`의 **행(Row)의 수**는 반드시 같아야 함.
+    - **접근 방식:** 데이터 + 해답 $\rightarrow$ 규칙 도출 (학습)
+- **탐색적 데이터 분석 (EDA):**
+    - 기본 확인: `head()`, `info()`, `describe()` (수치형), `describe(include='object')` (범주형)
+    - 시각화: `histplot` (분포), `heatmap` (상관관계 `df.corr()`)
+    - 타겟 확인: `value_counts(normalize=True)` (비율 확인, 불균형 여부)
+
+#### 2. 데이터 전처리 (Preprocessing) **[핵심]**
+- **결측치 처리 (Missing Values):**
+    - **Train:** 삭제(`dropna`) 가능.
+    - **Test:** 최빈값/평균값/중앙값으로 채우거나(`fillna`), 'X' 같은 새 범주로 대체.
+- **이상치 처리 (Outliers):**
+    - Train에서만 삭제 가능. Log 변환(`np.log1p`), Sqrt 변환, **PowerTransformer** (Yeo-Johnson) 활용 권장.
+- **인코딩 (Encoding):**
+    - **Label Encoding:** 트리 모델(RF, XGB, LGBM)에 적합. `fit`은 Train, `transform`은 Train/Test 모두.
+    - **One-Hot Encoding:** 선형 모델에 적합. `pd.get_dummies` (Train/Test 열 개수 불일치 시 `concat` 후 인코딩 추천).
+- **스케일링 (Scaling):**
+    - **원칙:** `fit`은 **Train** 데이터로만, **Test**는 `transform`만 적용. (2차원 배열 입력 필수)
+    - 종류: `MinMaxScaler`, `StandardScaler`, `RobustScaler` (이상치 강함).
+    - 트리 모델은 스케일링 불필요, 선형/신경망 모델은 필수.
+
+#### 3. 모델 학습 (Model Training)
+- **알고리즘:**
+    - **Tree 계열:** DecisionTree, **RandomForest** (Bagging), **XGBoost**, **LightGBM** (Boosting).
+    - **Linear 계열:** LinearRegression, LogisticRegression (분류).
+    - **기타:** KNN, SVC (정규화 필수), VotingClassifier (앙상블).
+    - **비지도 학습:** KMeans (Elbow point 확인), DBSCAN (밀도 기반).
+- **검증 분할:** `train_test_split(stratify=target)` (분류 시 클래스 비율 유지).
+
+#### 4. 모델 튜닝 & 최적화
+- **GridSearchCV:** 하이퍼파라미터 격자 탐색 (`best_params_`, `best_score_`).
+- **Early Stopping:** XGBoost/LightGBM에서 과적합 방지 (`eval_set`, `early_stopping_rounds`).
+- **Feature Engineering:**
+    - 차원 축소: PCA (시각화 및 차원의 저주 해결).
+    - 변수 선택: `SelectKBest`.
+    - 파생 변수: 다항 회귀(`PolynomialFeatures`), 구간화(`cut`, `qcut`).
+
+#### 5. 모델 평가 (Evaluation)
+- **분류 (Classification):**
+    - **Metrics:** Accuracy, Precision, Recall, F1-Score (불균형 데이터), ROC-AUC (확률 `predict_proba`).
+    - **Confusion Matrix:** TP, TN, FP, FN 확인. 
+
+[Image of confusion matrix]
+
+- **회귀 (Regression):**
+    - **Metrics:** RMSE (`root_mean_squared_error`), MSE, MAE, R2 Score.
+- **군집 (Clustering):** Silhouette Score.
+
+#### 6. 실전 Tip (Summary)
+- **RandomForest:** 결측치/이상치에 강함, 베이스라인 모델로 적합.
+- **Boosting (XGB/LGBM):** 성능 중요, 데이터가 많을 때, 속도가 필요할 때(LGBM).
+
 - **실습 파일:**
     - [`part5-1_ml.md`](./part5-1_ml.md):: 머신러닝 기초/심화 프로세스 상세 학습 노트
- 
-### Part 5-2: 머신러닝 실습
-- **목표:** : Part 5-1(ML 이론)에서 배운 머신러닝 프로세스(EDA, 전처리, 모델링, 평가)를 분류(Classification), 회귀(Regression), 군집(Clustering) 3가지 핵심 실전 프로젝트에 적용
-- **학습 환경:**: Google Colab
-- **주요 학습 내용:**
-    - 분류(Classification) 실습 (Project 1):
-        - EDA, .pop(), .drop(), LabelEncoder/pd.get_dummies(One-Hot) 비교
-        - train_test_split (검증 데이터 분리)
-        - 모델링: RandomForestClassifier
-        - 평가: accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
-    - 회귀(Regression) 실습 (Project 2):
-        - EDA, .drop(), fillna(0), LabelEncoder
-        - 모델링 (5종 비교): LinearRegression, Ridge, Lasso, RandomForestRegressor, XGBRegressor
-        - 평가: R2, MAE, MSE, RMSE, RMSLE, MAPE (사용자 정의 함수)
-    - 군집(Clustering) 실습 (Project 3):
-        - KMeans (비지도 학습)
-        - 평가: silhouette_score (최적의 K 찾기)
-- **실습 파일:**
-    - [`part5_2_ml_practice1_분류.ipynb`](./part5_2_ml_practice1_분류.ipynb):: 머신러닝 실전 프로젝트 1 (분류)
-    - [`part5_2_ml_practice2_회귀.ipynb`](./part5_2_ml_practice2_회귀.ipynb):: 머신러닝 실전 프로젝트 2 (회귀)
-    - [`part5_2_ml_practice3_군집.ipynb`](./part5_2_ml_practice3_군집.ipynb):: 머신러닝 실전 프로젝트 3 (군집)
 
 ### Part 6: 웹 대시보드 개발 (Streamlit)
 - **목표:** : Python만으로 데이터 분석 결과를 인터랙티브 웹 애플리케이션으로 구현하는 방법을 숙달, 실전 프로젝트 수행
