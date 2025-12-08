@@ -233,6 +233,53 @@ CPA 디지털 감사 포트폴리오
 - **실습 파일:**
     - [`part5-1_ml.md`](./part5-1_ml.md):: 머신러닝 기초/심화 프로세스 상세 학습 노트
 
+### Part 6: 딥러닝
+- **목표:** : 딥러닝의 기초 원리(퍼셉트론, 역전파)를 이해하고, TensorFlow/Keras를 활용하여 비정형 데이터(이미지, 시계열, 텍스트) 처리를 위한 핵심 네트워크(CNN, RNN, GAN)를 구현 및 최적화
+- **학습 환경:**: Google Colab, TensorFlow, Keras
+- **주요 학습 내용:**
+
+#### 1. 딥러닝 기초 (Fundamentals)
+- **개념:** Feature를 스스로 학습(Representation Learning)하며, 비정형 데이터(이미지, 소리, 언어)에 강점.
+- **핵심 요소:**
+    - **퍼셉트론 & 활성화 함수:** Sigmoid(기울기 소실 문제), **ReLU**(표준), Softmax(다중 분류), Tanh.
+    - **학습 원리:** 경사하강법(Gradient Descent), 오차역전파(Backpropagation), 손실함수(MSE, Cross-Entropy).
+    - **Optimizer:** **Adam** (가장 많이 사용), RMSprop, SGD.
+    - **Hyperparameter:** Epoch, Batch Size, Learning Rate, Dropout Rate.
+- **구현 패턴 (TensorFlow):**
+    - `Sequential()` 모델 생성 $\rightarrow$ `add(Dense(...))` 레이어 적층 $\rightarrow$ `compile()` $\rightarrow$ `fit()` $\rightarrow$ `evaluate()`
+#### 2. 합성곱 신경망 (CNN) - 이미지 처리
+- **구조:**
+    - **Convolution Layer:** 필터(Kernel)를 통해 지역적 특징(Feature Map) 추출. (Padding, Stride 활용)
+    - **Pooling Layer:** Max/Average Pooling으로 차원 축소 및 중요 정보 보존 (과적합 방지).
+    - **Flatten:** 1차원 배열로 변환하여 Fully Connected Layer(Dense)로 전달.
+- **전처리:**
+    - 스케일링 (`/ 255.0`), 차원 확장 (`expand_dims`), 원핫 인코딩 (`to_categorical`).
+    - **Image Augmentation:** `ImageDataGenerator` (이미지 증강을 통한 데이터 확보).
+- **전이 학습 (Transfer Learning):**
+    - Pre-trained Model (MobileNet, VGG, ResNet) 활용.
+    - 전략: Feature Extractor(Freeze) + Fine Tuning (마지막 층만 재학습).
+#### 3. 순환 신경망 (RNN & LSTM) - 시계열/NLP
+- **특징:** 시퀀스(Sequence) 데이터 처리, 과거의 기억(Hidden State)을 현재 결과에 반영.
+- **한계 및 극복:**
+    - Vanilla RNN의 기울기 소실 문제 $\rightarrow$ **LSTM** (Forget Gate로 기억 조절), **GRU**로 발전.
+- **실습:**
+    - **주식 가격 예측 (Many-to-One):** `Window` 단위 시계열 데이터 구성, `MinMaxScaler` 필수.
+    - **감성 분석 (NLP):** `Embedding` 레이어(단어 벡터화) + `Bidirectional LSTM`.
+#### 4. 비지도 딥러닝 (Unsupervised Deep Learning)
+- **Autoencoder (AE):**
+    - 구조: Encoder(압축) $\rightarrow$ Latent Space(잠재 공간) $\rightarrow$ Decoder(복원).
+    - 활용: 차원 축소, 노이즈 제거(Denoising), 이상치 탐지.
+- **GAN (Generative Adversarial Network):**
+    - 구조: **Generator**(위조지폐범) vs **Discriminator**(경찰)의 경쟁적 학습.
+    - 원리: Generator는 Discriminator를 속이도록(1), Discriminator는 가짜를 0으로 맞추도록 학습.
+    - 활용: 가짜 이미지 생성, 스타일 변환 등.
+#### 5. 최신 트렌드 (Brief)
+- **Transformer:** RNN 구조 제거, Attention 메커니즘만으로 성능 극대화.
+- **Encoder-Decoder:** 번역(Seq2Seq) 등에 활용.
+
+- **실습 파일:**
+    - [`part6_deep_learning_basics.md`](./part6_deep_learning_md):: DeepLearning 학습노트
+    - 
 ### Part 6: 웹 대시보드 개발 (Streamlit)
 - **목표:** : Python만으로 데이터 분석 결과를 인터랙티브 웹 애플리케이션으로 구현하는 방법을 숙달, 실전 프로젝트 수행
 - **학습 환경:**: VS Code (로컬 개발), Jupyter Notebook (nbconvert), Terminal
