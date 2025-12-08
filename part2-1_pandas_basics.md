@@ -2,7 +2,7 @@
 
 - 판다스 불러오기
     - import pandas as pd
-- 시리즈 만들기
+- 시리즈 만들기 → 1차원
     - menu = pd.Series([’비빔밥’, ‘김치찌개’, ‘된장찌개’]) 대문자주의
     
     |  | **0** |
@@ -31,6 +31,9 @@
 | **0** | 비빔밥 |
 | **1** | 김치찌개 |
 | **2** | 된장찌개 |
+
+![image.png](attachment:d08c2139-4c07-4a5f-8564-991230d53d98:image.png)
+
 - 데이터 프레임 한번에 만들기
     - df = pd.DataFrame({”메뉴” : [’비빔밥’, ‘김치찌개’, ‘된장찌개’],
 
@@ -93,7 +96,7 @@
     - df.tail(3)
 - 샘플 확인 : 랜덤으로 n개
     - df.sample(3)
-- 데이터 프레임 크기 확인 : 행, 열 **(괄호없음 주의)**
+- 데이터 프레임 크기 확인 : 행, 열 ****(괄호없음 주의)
     - df.shape
 - 컬럼 형태 확인 : 널값확인, 타입확인 문자: object, 정수 :int64, 실수 : float64
     - df.info()
@@ -324,11 +327,15 @@ loc, iloc 인덱싱은 리스트인덱싱이니까 대괄호 사용
 - 결측치 확인
     - df.isnull() ← 결측치 존재시 True, True=1, False=0
     - df.isnull().sum() ← 결측치 존재시 결측치 갯수가 합해짐
+- 결측값 확인 비율로하기
+    
+    df.isnull().mean()
+    
 - 결측값 채우기
     - df[’원산지’] = df[’원산지’].fillna(’코스타리카’) ← 결측치에 코스타리카 를삽입
 - dropna 메서드
 
-df = df.dropna(subset = ‘Review’, axis=0) ←Review 열에서 결측치 삭제
+★★df = df.dropna(subset = ‘Review’, axis=0) ←Review 열에서 결측치 삭제
 
 - 값 변경
     - df = df.replace(’아메리카노’, ‘룽고’) ← 아메리카노를 룽고로 변경
@@ -553,6 +560,8 @@ pd.melt(df, id_vars=[’Name’], var_name=’과목’, value_name=’점수’
 | **8** | 시바견 | 국어 | 83 |
 
 - groupby 메서드
+
+★mean → 0과 1 의 데이터에 사용하면 1의 비율을 찾아줌★
 
 #기본 사용법
 
@@ -913,7 +922,7 @@ cal = pd.DataFrame({
 
 두 데이터프레임을 ‘Menu’를 기준으로 병합
 
-menu_info = pd.merge(price, cal, on=’Menu’)
+★menu_info = pd.merge(price, cal, on=’Menu’, how=’inner’) ← 이너조인
 
 menu_info
 
@@ -1284,3 +1293,7 @@ df.resample(’7d).mean() ← 7일동안의 평균을 반환
 B ← 영업일
 
 d ← 모든일
+
+#total_seconds ← ★시간의 차이★에서 총 초를 뽑아내는거임
+
+(df[’실제도착시간’]-df[’예상도착시간’]).dt.total_seconds()
