@@ -42,7 +42,7 @@ CPA 디지털 감사 포트폴리오
 - **학습 환경:**: Google Colab
 - **주요 학습 내용:**
     - **데이터 구조 및 조회:**
-        - 기본 구조: 'Series'(1차원), 'DataFrame(2차원) 생성 및 dtype 확인
+        - 기본 구조: 'Series'(1차원), 'DataFrame'(2차원) 생성 및 'dtype' 확인
         - 데이터 I/O: `read_csv`, `to_csv` (index=False)
         - 탐색: `head`, `tail`, `shape`, `info`, `describe`(기초통계), `value_counts`, `unique`, `corr`
     - **인덱싱 및 필터링 (Indexing & Filtering):**
