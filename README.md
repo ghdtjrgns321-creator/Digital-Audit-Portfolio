@@ -34,7 +34,7 @@ CPA 디지털 감사 포트폴리오
         - 수학 연산: 내적(dot), 행렬 곱(matmul), 최댓값 인덱스(argmax)
         - 올림/내림: np.ceil, np.floor, np.trunc
 - **실습 파일:**
-    - [`part1_python_numpy_basics.md`](./part1_python_numpy_basics.md):: 파이썬 및 Numpy 상세 학습 노트
+    - [`part1_python_basics.md`](./part1_python_basics.md):: 파이썬 및 Numpy 상세 학습 노트
   
 ### Part 2-1: 판다스 기초
 - **목표:** 데이터 분석의 핵심 라이브러리인 판다스의 주요 기능 숙달, 실제 데이터 분석 문제(데이터 클리닝, 전처리, 그룹핑)를 해결하는 실습 진행
