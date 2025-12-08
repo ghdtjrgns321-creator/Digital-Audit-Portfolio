@@ -110,7 +110,7 @@ CPA 디지털 감사 포트폴리오
     7. **캠프/세미나 등록 (독립성):** 캠프 종류와 세미나 등록의 연관성
     8. **주문량 예측 (다중회귀):** 할인율, 온도, 광고비에 따른 주문량 예측 및 잔차 분석
 - **실습 파일:**
-    - [`part3_statistics_theory.md`](./part3_statistics_theory.md):: 통계 분석 핵심 이론 및 코드 요약 노트, 문제풀이
+    - [`part3_statistics.md`](./part3_statistics.md):: 통계 분석 핵심 이론 및 코드 요약 노트, 문제풀이
     - 
 ### Part 3-1: 데이터 시각화 기초
 - **목표:** : Matplotlib, Seaborn, Plotly를 사용한 핵심 그래프(Scatter, Line, Box, Histogram, Heatmap)의 기본 사용법과 주요 파라미터(인자)를 숙달
