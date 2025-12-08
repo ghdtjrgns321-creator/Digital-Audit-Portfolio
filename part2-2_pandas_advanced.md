@@ -62,6 +62,7 @@ df.loc[df[’Review’] == ‘Superb 9.0’, ‘Review’] = ‘Superb’ ← Re
 
 df[’Total_Review’].unique() ← 모든 고유값들 반환
 
+![스크린샷 2025-11-02 181606.png](attachment:911df3f7-f042-44dd-b36c-3fa9156412ea:스크린샷_2025-11-02_181606.png)
 
 cf) 모든 total review를 숫자로 바꾸기
 
@@ -215,7 +216,7 @@ df[’2015-02’ : ‘2015-02’] ← 2월 데이터 전부 반환
 
 #resample 메서드
 
-df.resample(’7d).mean() ← 7일동안의 평균을 반환
+★df.resample(’7d’).mean() ← 7일동안의 평균을 반환
 
 B ← 영업일
 
@@ -494,6 +495,8 @@ df[’Weigh’’] = df[’Weigh’].clip(50, 300)
 
 결측치를 주변의 값을 감안하여 보간 (method 방법에대한 풀이는 심화과정)
 
+★기본치 → 선형 보간법 method=’linear’ ← 안써도 자동적용★
+
 s.interpolate(method =”spline”, order=1, limit_direction=”foward”, limit=2)
 
 ## 정렬된 인덱스에서의 행 슬라이싱
@@ -540,9 +543,11 @@ df[’normalized1’] = df.groupby(’inspection_step’)[’value’].transform
 
 ★★transform → 계산값들을 각 행에 뿌려줌★★ (평균값을 1행 2행 3행 에 고대로 다 뿌려줌)
 
+- mean = df.groupby(['부서','성과등급'])['근속연수'].transform("mean") ← 결과값만 리턴됨 (결측치 채울때 씀)
+- df[’mean’] =  df.groupby(['부서','성과등급'])['근속연수'].transform("mean") ← 새로운 열 만들어줌
 - inspection_step 변수의 가장 첫 번째 값으로 표준화 진행
 
-temp = df.sort_values([’inspection_step’, ‘date’]).drop_duplicates(’inspection_step’) → drop_duplicates 중복행 제거
+temp = df.sort_values([’inspection_step’, ‘date’]).drop_duplicates(’inspection_step’) → ㅁㅁdrop_duplicates 중복행 제거
 
 temp = temp.set_index(’inspection_step’)[’value’] 
 
@@ -558,6 +563,7 @@ df = df.reset_index()
 
 df[’path’] = df.groupby(’product_id’)[’operator’].transform(lambda x : ‘_’.join(x))
 
+![스크린샷 2025-11-03 145117.png](attachment:e4b220db-2280-457b-9ced-a5303a4cc03d:스크린샷_2025-11-03_145117.png)
 
 df[’path’] = df[’factory’] + ‘_’ + df[’path’]
 
@@ -593,4 +599,15 @@ df.groupby([’passfail’])[’date’].value_counts()
         process_map = { ‘1’ : ‘P1’, ‘2’ : ‘P1’, ‘W’ : ‘P2’ , ‘V’ : ‘P2’, ‘X’ : ‘P3’, ‘Y’ : ‘P3’}
         
         df[’process’] = df[’path’].map(process_map)
-  
+        
+        ![스크린샷 2025-11-03 150431.png](attachment:8ef19f5c-dcfd-4117-a82b-ec2055263d38:스크린샷_2025-11-03_150431.png)
+        
+
+### 간단한 시각화
+
+df[’열’].hist()
+
+- 왜도 : df[’열’].skew()
+- 첨도 : df[’열].kurt()
+- 로그변환
+    - np.log1p(df[’열’])
