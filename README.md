@@ -233,16 +233,9 @@ CPA 디지털 감사 포트폴리오
 - **분류 (Classification):**
     - **Metrics:** Accuracy, Precision, Recall, F1-Score (불균형 데이터), ROC-AUC (확률 `predict_proba`).
     - **Confusion Matrix:** TP, TN, FP, FN 확인. 
-
-[Image of confusion matrix]
-
 - **회귀 (Regression):**
     - **Metrics:** RMSE (`root_mean_squared_error`), MSE, MAE, R2 Score.
 - **군집 (Clustering):** Silhouette Score.
-
-#### 6. 실전 Tip (Summary)
-- **RandomForest:** 결측치/이상치에 강함, 베이스라인 모델로 적합.
-- **Boosting (XGB/LGBM):** 성능 중요, 데이터가 많을 때, 속도가 필요할 때(LGBM).
 
 - **실습 파일:**
     - [`part5-1_ml.md`](./part5-1_ml.md):: 머신러닝 기초/심화 프로세스 상세 학습 노트
