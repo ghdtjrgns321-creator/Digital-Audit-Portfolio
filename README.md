@@ -73,7 +73,45 @@ CPA 디지털 감사 포트폴리오
 - **실습 파일:**
     - [`part2-1_pandas_basics.md`](./part2-1_pandas_basics.md): 판다스 상세 학습 노트
     - [`part2-2_pandas_advanced.md`](./part2-2_pandas_advanced.md): 판다스 심화 메서드, 실전 프로세스 학습 노트
-      
+
+### Part 3: 파이썬을 활용한 통계분석
+- **목표:** : 파이썬(Scipy, Statsmodels)을 활용하여 가설 검정의 기초부터 T-test, 분산분석(ANOVA), 카이제곱 검정, 상관/회귀분석까지 통계적 추론 능력을 함양
+- **학습 환경:**: Google Colab
+- **주요 학습 내용:**
+    - **가설 검정 기초 (Hypothesis Testing):**
+        - 개념: 모집단 vs 표본, 귀무가설($H_0$) vs 대립가설($H_1$)
+        - 판단 기준: p-value < 0.05 (유의수준) $\rightarrow$ 귀무가설 기각 (대립가설 채택)
+    - **T-test (평균 검정):**
+        - **단일표본 (1-Sample):** `stats.ttest_1samp` (정규성 X: `wilcoxon`)
+        - **대응표본 (Paired):** `stats.ttest_rel` (전/후 비교, 정규성 X: `wilcoxon`)
+        - **독립표본 (Independent):** `stats.ttest_ind` (정규성 X: `mannwhitneyu`, 등분산 X: `equal_var=False`)
+        - **전제 조건 검정:** 정규성(`shapiro`), 등분산성(`levene`)
+    - **범주형 데이터 분석 (Categorical Analysis):**
+        - **적합도 검정:** `chisquare` (관찰 빈도 vs 기대 빈도)
+        - **독립성/동질성 검정:** `chi2_contingency` (교차표 `pd.crosstab` 활용)
+    - **분산 분석 (ANOVA):**
+        - **일원 분산 분석 (One-way):** `stats.f_oneway` 또는 `ols` 모델 활용
+        - **이원 분산 분석 (Two-way):** `ols('y ~ C(A) * C(B)')` (상호작용 효과 확인)
+        - **비모수 검정:** `stats.kruskal` (Kruskal-Wallis)
+        - **사후 검정:** `pairwise_tukeyhsd` (Tukey), `MultiComparison` (Bonferroni)
+    - **상관 및 회귀 분석 (Correlation & Regression):**
+        - **상관분석:** `corr` (Pearson, Spearman, Kendall), `pearsonr` (유의성 검정)
+        - **단순/다중 선형 회귀:** `ols` (Statsmodels), `summary()` 해석 (R-squared, Coef, P-value)
+        - **로지스틱 회귀:** `logit`, 오즈비(Odds Ratio) 계산
+        - **모델 평가:** 잔차($y - \hat{y}$), MSE, 신뢰구간/예측구간 (`get_prediction`)
+        - **범주형 변수 처리:** `pd.get_dummies` (One-Hot Encoding, `drop_first=True`)
+- **실습 문제 풀이 (Key Scenarios):**
+    1. **커피 중량 (단일표본):** 120g 주장 검증 (단측검정)
+    2. **교육 프로그램 효과 (대응표본):** 전/후 점수 비교
+    3. **충전기 속도 비교 (독립표본):** New vs Old 그룹 간 차이
+    4. **수학 성적 비교 (일원 ANOVA):** 4개 교육 방법 간 차이 및 사후 검정
+    5. **토마토 수확량 (이원 ANOVA):** 비료와 물 주기의 상호작용 효과
+    6. **교통사고 경험 (적합도):** 도시 vs 전국 분포 비교
+    7. **캠프/세미나 등록 (독립성):** 캠프 종류와 세미나 등록의 연관성
+    8. **주문량 예측 (다중회귀):** 할인율, 온도, 광고비에 따른 주문량 예측 및 잔차 분석
+- **실습 파일:**
+    - [`part3_statistics_theory.md`](./part3_statistics_theory.md):: 통계 분석 핵심 이론 및 코드 요약 노트, 문제풀이
+    - 
 ### Part 3-1: 데이터 시각화 기초
 - **목표:** : Matplotlib, Seaborn, Plotly를 사용한 핵심 그래프(Scatter, Line, Box, Histogram, Heatmap)의 기본 사용법과 주요 파라미터(인자)를 숙달
 - **학습 환경:**: Google Colab
