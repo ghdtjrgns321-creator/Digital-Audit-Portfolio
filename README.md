@@ -143,7 +143,6 @@ CPA 디지털 감사 포트폴리오
 - **Heatmap (히트맵):**
     - **Seaborn:** `sns.heatmap` (Input: Pivot Table, `annot`, `fmt`, `cmap`, `vmax`/`vmin`)
     - **Plotly:** `px.imshow` ( `text_auto`, `color_continuous_scale`)
-
 #### 2. 다차원 시각화 (Facet & Subplots)
 - **Seaborn (Axes vs Figure Level):**
     - **Axes-level:** `scatterplot`, `boxplot` 등 (ax 인자 사용 가능, 유연한 배치)
@@ -155,7 +154,6 @@ CPA 디지털 감사 포트폴리오
 - **다중 축 (Multi-Axis):**
     - **Matplotlib:** `ax.twinx()` (2개 축), `ax.spines` 이동 (3개 이상 축)
     - **Plotly:** `make_subplots(specs=[[{"secondary_y": True}]])` 또는 `go.Scatter(yaxis='y2')`
-
 #### 3. 그래프 세부 튜닝 (Graph Tuning)
 - **텍스트 및 제목:**
     - Title: `set_title` / `suptitle` (Mat/Sea) vs `title` / `update_layout` (Plotly)
@@ -169,7 +167,6 @@ CPA 디지털 감사 포트폴리오
     - 테두리 강조: `ax.spines` vs `update_xaxes(showline=True)`
 - **기준선 (Reference Line):**
     - `ax.axhline` / `ax.axvline` vs `fig.add_hline` / `fig.add_vline`
-
 #### 4. 고급 커스터마이징 (Advanced Customization)
 - **FacetGrid 매핑 튜닝:**
     - 사용자 정의 함수(`def custom(...)`)를 만들어 `g.map(custom, ...)`으로 각 서브플롯 별 기준선, 평균선, 텍스트 등을 개별 적용
@@ -198,7 +195,6 @@ CPA 디지털 감사 포트폴리오
     - 기본 확인: `head()`, `info()`, `describe()` (수치형), `describe(include='object')` (범주형)
     - 시각화: `histplot` (분포), `heatmap` (상관관계 `df.corr()`)
     - 타겟 확인: `value_counts(normalize=True)` (비율 확인, 불균형 여부)
-
 #### 2. 데이터 전처리 (Preprocessing) **[핵심]**
 - **결측치 처리 (Missing Values):**
     - **Train:** 삭제(`dropna`) 가능.
@@ -212,7 +208,6 @@ CPA 디지털 감사 포트폴리오
     - **원칙:** `fit`은 **Train** 데이터로만, **Test**는 `transform`만 적용. (2차원 배열 입력 필수)
     - 종류: `MinMaxScaler`, `StandardScaler`, `RobustScaler` (이상치 강함).
     - 트리 모델은 스케일링 불필요, 선형/신경망 모델은 필수.
-
 #### 3. 모델 학습 (Model Training)
 - **알고리즘:**
     - **Tree 계열:** DecisionTree, **RandomForest** (Bagging), **XGBoost**, **LightGBM** (Boosting).
@@ -220,7 +215,6 @@ CPA 디지털 감사 포트폴리오
     - **기타:** KNN, SVC (정규화 필수), VotingClassifier (앙상블).
     - **비지도 학습:** KMeans (Elbow point 확인), DBSCAN (밀도 기반).
 - **검증 분할:** `train_test_split(stratify=target)` (분류 시 클래스 비율 유지).
-
 #### 4. 모델 튜닝 & 최적화
 - **GridSearchCV:** 하이퍼파라미터 격자 탐색 (`best_params_`, `best_score_`).
 - **Early Stopping:** XGBoost/LightGBM에서 과적합 방지 (`eval_set`, `early_stopping_rounds`).
@@ -228,7 +222,6 @@ CPA 디지털 감사 포트폴리오
     - 차원 축소: PCA (시각화 및 차원의 저주 해결).
     - 변수 선택: `SelectKBest`.
     - 파생 변수: 다항 회귀(`PolynomialFeatures`), 구간화(`cut`, `qcut`).
-
 #### 5. 모델 평가 (Evaluation)
 - **분류 (Classification):**
     - **Metrics:** Accuracy, Precision, Recall, F1-Score (불균형 데이터), ROC-AUC (확률 `predict_proba`).
