@@ -244,3 +244,175 @@ print(”box는 5미만입니다”)
     return sum(data) / len(data)
     
     mean(listbox) → 43.8
+
+    ## Numpy Array
+
+- 1차원 - vector
+- 2차원 - matrix
+- 3차원 이상 - tensor
+- rank - array의 dimension(차원)
+- shape - 각 dimension의 size
+- dtype - tensor 의 data type
+
+![image.png](attachment:cdd5ab24-cc12-4984-a746-c113aa516cf3:image.png)
+
+![image.png](attachment:6cf31e7e-f7fd-4223-9232-8146ac9bb134:image.png)
+
+- Matrix의 numpy 표현
+    
+    ![image.png](attachment:72c091e1-8302-49bd-ada9-de7c791d6c06:image.png)
+    
+    - np.array([[8,5,3], [1,2,9]]) → [[8,5,3]
+        
+                                                           [1, 2, 9]]
+        
+        ![image.png](attachment:b7bf4087-fa43-4b70-94fc-7a99df06e842:image.png)
+        
+    - np.array([[[1,2], [3,4,]], [[5,6], [7,8]]])
+    
+    → [[[1 2]
+    
+           [3 4]]
+    
+           [[5 6]
+    
+             [7 8]]]
+    
+- concatenate
+
+![image.png](attachment:e10dfae3-ae67-4561-b42d-105db87dc598:image.png)
+
+- slicing
+
+![image.png](attachment:ecc0f126-ed87-465f-aa9e-2f38856bfebf:image.png)
+
+## Numpy와 선형대수
+
+### ndarray
+
+- n_dimensional array(다차원 배열 객체)로 구성
+
+import numpy as np
+
+- 스칼라
+
+x = 6
+
+- 1차원 array(vector)
+
+x = np.array([1, 2, 3]) *#엘리멘트 갯수가 3인 벡터*
+
+np.argmax(x) *#가장 큰 **인덱스** 값 반환*
+
+→ 2 (인덱스 : 0, 1, 2)
+
+= x.argmax()
+
+- 2차원 array(matrix)
+
+y = np.array([[1,2,3], [2,3,4], [5,6,7], [8,9,10]])
+
+print(y)
+
+![image.png](attachment:2c87e0e9-5fb4-467a-a9f7-2000752aa7a5:image.png)
+
+y.shape
+
+→ (4, 3)
+
+- 3차원 array(tensor)
+
+z = np.array([[1,2,3], [2,3,4,]], [[5,6,7], [8,9,10]]])
+
+print(z)
+
+![image.png](attachment:1b8fc02c-7515-4215-ba47-129b5383ae7f:image.png)
+
+z.shape
+
+(2, 2, 3)
+
+![image.png](attachment:d49ac748-3137-4994-b13a-9e3bd0fbd1b3:image.png)
+
+![image.png](attachment:f6b3d875-af54-469c-8d1f-65b944d70ed5:image.png)
+
+- 슬라이싱
+
+![image.png](attachment:aff9878c-7cb7-4bb4-a4c1-870f01d6d0d5:image.png)
+
+arr = np.array([[1,2,3], [4,5,6], [7,8,9]])
+
+print(arr)
+
+![image.png](attachment:09c523b8-4e2b-44be-af99-721abd07062e:image.png)
+
+print(arr[:2, 1:])
+
+![image.png](attachment:05bd4636-a070-4642-aff1-1c86cf965cd6:image.png)
+
+print(arr[2::])
+
+![image.png](attachment:d3c06fe4-1939-48d9-85e9-5ddb92d58c1f:image.png)
+
+print(arr[:, :2])
+
+![image.png](attachment:9c433dd4-a2f0-49d5-97d2-a6a077b03327:image.png)
+
+print(arr[1, :2])
+
+![image.png](attachment:b7af8eae-2dc7-499d-a6b4-7c38be95c263:image.png)
+
+### 벡터의 내적(inner product)
+
+- 내적이 되려면 두 벡터의 dimension이 같아야함.
+- 내적은 각 element 의 곱을 모두 더한 것
+- inner product는 dot product(점곱) 이라고도 불림
+
+a=np.array([2,5,1])
+
+print(a)
+
+![image.png](attachment:36a23656-fa74-4fe7-8804-63082d55102a:image.png)
+
+b= np.array([4,3,5])
+
+print(b)
+
+![image.png](attachment:a05f6fd6-f620-499c-be38-9c8ffb68238e:image.png)
+
+a, b의 내적 —> scalar
+
+np.dot(a, b)
+
+→ 28
+
+![image.png](attachment:40b1b1ad-4eba-4dc2-9f1c-5c3468efd1b8:image.png)
+
+### Matrix 곱셈 (행렬 곱셈, dot product)
+
+- 두 행렬 A, B는 A의 열 갯수가 B의 행 갯수와 같을 때 곱할 수 있음
+- 결과 행렬 C의 shape은 A의 row x B의 Column이 됨
+
+![image.png](attachment:4d599860-cb10-476e-8b27-fb805f86e268:image.png)
+
+a = np.array([[2,1], [1,4]])
+
+b = np.array([[1,2,0],[0,1,2]])
+
+np.matmul(a,b)
+
+![image.png](attachment:d1c59057-4b17-4d59-bfed-1dc25b61fb0a:image.png)
+
+### 전치행렬 (Transposed Matrix)
+
+list(range(9)) → [0,1,2,3,4,5,6,7,8]
+
+np.arrange(9) → array([0,1,2,3,4,5,6,7,8])
+
+np.arragne(9).reshape(3,3)
+
+![image.png](attachment:d71d45e6-ce60-4333-932b-7a1c5391e35f:image.png)
+
+np.arrange(9).reshape(3,3).T *#행, 열 바뀜*
+
+![image.png](attachment:fc369f1c-d5ae-4fa2-9db7-365b82e29d2f:image.png)
