@@ -35,7 +35,6 @@ CPA 디지털 감사 포트폴리오
         - 올림/내림: np.ceil, np.floor, np.trunc
 - **실습 파일:**
     - [`part1_python_basics.md`](./part1_python_basics.md):: 파이썬 및 Numpy 상세 학습 노트
-    - [`part1_python_basics_quiz.ipynb`](./part1_python_basics_quiz.ipynb):: 파이썬 복습 퀴
     - 
 ### Part 2: 데이터 전처리 및 분석 심화 - Python Pandas
 - **목표:** : 데이터 분석의 필수 도구인 Pandas를 활용하여 데이터 불러오기부터 전처리, 파생변수 생성, 그룹핑, 시계열 처리, 그리고 데이터 재구조화까지 자유자재로 다루는 능력을 함양
@@ -73,10 +72,7 @@ CPA 디지털 감사 포트폴리오
         - 시간 연산: `dt.total_seconds()` (시간 차 계산), `resample` (주/월 단위 집계)
 - **실습 파일:**
     - [`part2-1_pandas_basics.md`](./part2-1_pandas_basics.md): 판다스 상세 학습 노트
-    - [`part2-1_pandas_basics_quiz1.ipynb`](./part2-1_pandas_basics_quiz1.ipynb): 판다스 실습과 퀴즈1
-    - [`part2-1_pandas_basics_quiz2.ipynb`](./part2-1_pandas_basics_quiz2.ipynb): 판다스 실습과 퀴즈2
     - [`part2-2_pandas_advanced.md`](./part2-2_pandas_advanced.md): 판다스 심화 메서드, 실전 프로세스 학습 노트
-    - [`part2-2_pandas_advanced_quiz.ipynb`](./part2-2_pandas_advanced_quiz.ipynb): 판다스 심화 메서드, 실전 프로세스 퀴즈
       
 ### Part 3-1: 데이터 시각화 기초
 - **목표:** : Matplotlib, Seaborn, Plotly를 사용한 핵심 그래프(Scatter, Line, Box, Histogram, Heatmap)의 기본 사용법과 주요 파라미터(인자)를 숙달
