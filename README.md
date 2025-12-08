@@ -35,44 +35,46 @@ CPA 디지털 감사 포트폴리오
         - 올림/내림: np.ceil, np.floor, np.trunc
 - **실습 파일:**
     - [`part1_python_basics.md`](./part1_python_basics.md):: 파이썬 및 Numpy 상세 학습 노트
-  
-### Part 2-1: 판다스 기초
-- **목표:** 데이터 분석의 핵심 라이브러리인 판다스의 주요 기능 숙달, 실제 데이터 분석 문제(데이터 클리닝, 전처리, 그룹핑)를 해결하는 실습 진행
-- **학습 환경:** Google Colab
+    - [`part1_python_basics_quiz.ipynb`](./part1_python_basics_quiz.ipynb):: 파이썬 복습 퀴
+    - 
+### Part 2: 데이터 전처리 및 분석 심화 - Python Pandas
+- **목표:** : 데이터 분석의 필수 도구인 Pandas를 활용하여 데이터 불러오기부터 전처리, 파생변수 생성, 그룹핑, 시계열 처리, 그리고 데이터 재구조화까지 자유자재로 다루는 능력을 함양
+- **학습 환경:**: Google Colab
 - **주요 학습 내용:**
-    - 데이터 구조 (Series, DataFrame)
-    - 데이터 입출력 (CSV Read/Write)
-    - 데이터 탐색 (head, info, describe, value_counts)
-    - 데이터 전처리 (loc/iloc, fillna, drop, astype, apply)
-    - 필터링 (Boolean Indexing, isin, contains)
-    - 그룹핑 및 집계 (groupby, agg, pivot_table, unstack)
-    - 시계열 데이터 (to_datetime, .dt.dayofweek, Timedelta)
-    - 결측치 처리: fillna(median/mode), dropna(subset=[...]), fillna(method='bfill')
-    - 데이터 변환: replace(), map(), select_dtypes(), .T (전치)
-    - 이상치 탐지(Outlier): IQR 로직 (Q3-Q1), 고급 필터링 (~, != round())
-    - 데이터 집계: groupby().agg(), groupby().sum(numeric_only=True), sort_values(), .iloc[]
+    - **데이터 구조 및 조회:**
+        - 기본 구조: 'Series'(1차원), 'DataFrame(2차원) 생성 및 dtype 확인
+        - 데이터 I/O: `read_csv`, `to_csv` (index=False)
+        - 탐색: `head`, `tail`, `shape`, `info`, `describe`(기초통계), `value_counts`, `unique`, `corr`
+    - **인덱싱 및 필터링 (Indexing & Filtering):**
+        - `loc` (라벨 기준), `iloc` (인덱스 번호 기준)
+        - 조건 필터링: Boolean Indexing, `query` 메서드 (외부 변수 참조 `@`), `isin`
+        - 데이터 선택: `select_dtypes` (include/exclude), `filter` (like, regex)
+    - **데이터 전처리 (Preprocessing):**
+        - 결측치 처리: `isna().sum()`, `dropna` (subset), `fillna` (mean, mode, bfill, ffill), `interpolate`
+        - 이상치 처리: `quantile` (IQR 방식), `clip` (상/하한 제한)
+        - 중복 처리: `drop_duplicates`
+        - 형 변환: `astype`, `pd.to_numeric` (errors='coerce')
+        - 컬럼 관리: `rename`, `drop` (axis=0 행, axis=1 열), `reset_index`
+    - **고급 연산 및 파생변수 (Advanced Operations):**
+        - 함수 적용: `apply` (lambda), `map` (딕셔너리 매핑)
+        - 구간 나누기: `pd.cut` (절대 구간), `pd.qcut` (비율 구간)
+        - 윈도우/시차: `shift`, `diff`, `cumsum` (누적합), `rolling`
+    - **그룹핑 및 집계 (Grouping & Aggregation):**
+        - `groupby`: `mean`, `sum`, `count`, `size`, `agg` (여러 함수 적용)
+        - `transform`: 그룹별 통계값을 행마다 적용 (결측치 대체, 표준화 등에 활용)
+        - `filter`: 그룹별 조건 필터링
+    - **데이터 재구조화 및 병합 (Reshaping & Merging):**
+        - 피벗: `pivot_table` (index, columns, values, aggfunc)
+        - 변형: `melt` (Wide to Long), `unstack` / `stack`, `explode` (리스트 분리)
+        - 병합: `pd.concat` (축 기준 연결), `pd.merge` (SQL Join 방식)
+    - **문자열 및 시계열 처리 (String & Time Series):**
+        - 문자열(`str` accessor): `split`, `contains`, `replace`, `len`, `slice`
+        - 시계열(`dt` accessor): `pd.to_datetime`, `year/month/day`, `dayofweek`, `to_period`
+        - 시간 연산: `dt.total_seconds()` (시간 차 계산), `resample` (주/월 단위 집계)
 - **실습 파일:**
     - [`part2-1_pandas_basics.md`](./part2-1_pandas_basics.md): 판다스 상세 학습 노트
     - [`part2-1_pandas_basics_quiz1.ipynb`](./part2-1_pandas_basics_quiz1.ipynb): 판다스 실습과 퀴즈1
     - [`part2-1_pandas_basics_quiz2.ipynb`](./part2-1_pandas_basics_quiz2.ipynb): 판다스 실습과 퀴즈2
-      
-### Part 2-2: 판다스 심화
-- **목표:** : 판다스 스킬 다지기. loc/iloc 등 기본 복습부터 groupby 심화, 시계열(resample), 실전 처리 워크플로우, 다양한 모의문제까지 총정리.
-- **학습 환경:**: Google Colab
-- **주요 학습 내용:**
-    - 데이터 선택: loc/iloc, select_dtype, filter, query (외부 변수 @ 활용)
-    - 데이터 변환: set_index, rename, .map(lambda ...) (문자열 정제), astype
-    - 데이터 집계 (심화): groupby + agg(다중 함수), apply(사용자 정의 함수), 그룹별 fillna
-    - 시계열 데이터: to_datetime, set_index (시계열), resample (7d, B)
-    - 데이터 범주화: pd.cut (길이 기준), pd.qcut (개수 기준)
-    - 알고리즘: '조건을 만족하는 최대 연속 횟수' (cumsum/mul/diff/where/ffill/add) 로직 복습 및 실전 적용
-    - 판다스 퀴즈 복습: 필터링(loc), 결측치(fillna), 시계열(dt.day), 인덱싱(index[0]), 파생 변수, 정렬(sort_values), iloc
-    - 핵심 메서드 복습: select_dtype, set_index, filter, rename, value_counts, unique, map(lambda), query(@)
-    - GroupBy 심화: agg(다중 함수), apply(사용자 정의 함수), 그룹별 fillna
-    - 시계열 심화: resample, pd.Grouper
-    - 데이터 처리 실전: clip(이상치), interpolate(결측치), explode(행 쪼개기)
-    - '연속 횟수' 로직을 실전 데이터(애플 주가)에 적용
-- **실습 파일:**
     - [`part2-2_pandas_advanced.md`](./part2-2_pandas_advanced.md): 판다스 심화 메서드, 실전 프로세스 학습 노트
     - [`part2-2_pandas_advanced_quiz.ipynb`](./part2-2_pandas_advanced_quiz.ipynb): 판다스 심화 메서드, 실전 프로세스 퀴즈
       
