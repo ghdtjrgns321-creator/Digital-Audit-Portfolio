@@ -11,6 +11,16 @@
         - print(3.44+5)
     - 문자열 더하기 가능
         - print(’he’+’llo’)
+    - 올림, 내림, 버림
+    
+    import numpy as np
+    
+    올림 : np.ceil()
+    
+    내림 : np.floor()
+    
+    버림 : np.trunc()
+    
 - 자료형(타입)
     - 정수형 int
     - 실수형 float
@@ -21,14 +31,13 @@
             - type(False) → bool
 - 등호 1개 (=)
     - 오른쪽 값을 왼쪽에 대입한다
-- 변수
+- 변수 → 숫자로 시작하면 안됨
     - box = 10
     - print(box) → 10
     - box2 = 20
     - print(box+box2) → 30
     - box3 = box + box2
     - print(box3) → 30
-    
     - box = box + box
     - print(box) → 20
     - box = box + box
@@ -59,27 +68,87 @@ print(”box는 5미만입니다”)
 
 → box는 5이상 10미만입니다
 
+- print.format
+
+.format() 사용
+
+print("제 이름은 {}이고, 나이는 {}살입니다.".format(name, age))
+
+- f스트링
+
+f-string 사용
+
+print(f"제 이름은 {name}이고, 나이는 {age}살입니다.")
+
+숫자 = 88.5555
+print(f"소숫점 2자리: {숫자:.2f}")
+
+*# .2f = 소숫점 2자리 고정*
+
+print(f"소숫점 1자리: {숫자:.1f}")
+
+*# 출력:*
+
+*# 소숫점 2자리: 88.56*
+
+*# 소숫점 1자리: 88.6*
+
+print(f"생존자: {생존자}명 ({비율:.2%})")
+
+*# 출력: 생존자: 342명 (38.38%)*
+
+*# :.2% = 소숫점 2자리까지 백분율로 표시*
+
+*# :.1% = 소숫점 1자리까지 백분율로 표시*
+
 - 리스트
+    - 빈 리스트 만들기 : list = []
     - 리스트 → 대괄호
     - listbox = [’a’,’b’,3,4,’c’,’d’,’e’]
     - 리스트 마지막에 추가 → listbox.append(’f’)
     - 리스트 정렬 → listbox.sort() , 문자와 숫자 섞어서 소팅은 불가능함
+    - 리스트 안에 값 찾기
+        - list[0] → a
+        - list[-1] → e
+    - 리스트 안의 리스트 값 찾기
+        - list = [1, 2, 3, [’a’, ‘b’, ‘c’]]
+        - list[3][0] → a
 - 딕셔너리
     - dictbox = {’name’ : ‘sam’, ‘level’ : 5}
-    - print(dictbox[’name’]) → sam
-    - print(dictbox[’level’]) → 5
-    
+    - dictbox[’name’] → sam
+    - dictbox[’level’] → 5
     - dictbox[’name’] = sugar → sam이 sugar로 바뀜
-    
     - dictbox.keys() → dict_keys([’name’,’level’])
     - dictbox.values() → dict_values([’sugar’,5])
+- 리스트 안의 딕셔너리
+    
+    products[0]
+    
+    *# {'name': '노트북', 'price': 1000, 'stock': 5}*
+    
+    products[0]['name']
+    
+    *# '노트북'*
+    
+    products[0]['price']
+    
+    *# 1000*
+    
+- 튜플 ← 값을 못 바꿈
+    - t=(1,2,3)
+- 세트 ← 수학의 집합과 같음 ( 중복 제거 됨)
+    
+    {1,2,3,1,2,3,1,2,3,1,2,2,1,2,1,3,}
+    
+    → {1,2,3,}
+    
 - 인덱싱과 슬라이싱
     - listbox = [2,4,6,8,10]
     - 처음이 0, 마지막이 -1
     - listbox[0] → 2
     - listbox[1] → 4
     - listbox[-1] → 10
-    - listbox[0:3] → 0번, 1번, 2번 3번x!!!
+    - listbox[0:3] → 0번, 1번, 2번 3번x
     - listbox[::2] → 한칸 건너띄기
 - 리스트 내장함수
     - sum(listbox) → 리스트 다 더함
@@ -175,17 +244,85 @@ print(”box는 5미만입니다”)
     
     별
     
-- f스트링
-    - print(f’인덱스{index}인 값은{item}입니다.’)
+- enumerate
     
-    인덱스0인 값은네모입니다.
+    seq = [’a’, ‘b’, ‘c’, ‘d’]
     
-    인덱스1인 값은세모입니다.
+    list(enumerate(seq)) → [(0,’a’), (1,’b’), (2,’c’), (3,’d’)]
     
-    인덱스2인 값은동그라미입니다.
+    for i, x in enumerate(seq):
     
-    인덱스3인 값은별입니다.
+    print(i, x)
     
+    0 a
+    
+    1 b
+    
+    2 c
+    
+    3 d
+    
+- while ← 참일동안 반복
+    
+    i = 1
+    
+    while i < 5:
+    
+    print(’i is: {}.format(i))
+    
+
+→   i is: 1
+
+i is: 2
+
+i is: 3
+
+i is: 4
+
+- range ← 0부터 범위 지정
+    
+    for i in range(1, 11):
+    
+    print(i)
+    
+    1
+    
+    2
+    
+    3
+    
+    4
+    
+    5
+    
+    6
+    
+    7
+    
+    8
+    
+    9
+    
+    10
+    
+- list comprehension
+
+x=[1,2,3,4,5]
+
+out = []
+
+for i in x:
+
+out.append(i**2)
+
+out
+
+→ [1, 4, 9, 16, 25]
+
+한줄로 표현 
+
+[i**2 for i in x] → [1, 4, 9, 16, 25]
+
 - 함수 1
     
     def hello():
@@ -244,6 +381,50 @@ print(”box는 5미만입니다”)
     return sum(data) / len(data)
     
     mean(listbox) → 43.8
+    
+- lambda expressions
+
+def test(x):
+
+return x*10
+
+test(10) 
+
+→ 100
+
+을 lambda로 한줄표현
+
+(lambda x : x*10)(10)
+
+→ 100
+
+- map and filter
+
+seq = [1,2,3,4,5]
+
+list(map(lambda x:x*2 seq))
+
+→ [2,4,6,8,10]
+
+list(filter(lambda x:x%2 == 0, seq))
+
+→ [2,4]
+
+- 메서드
+
+st.lower() → 소문자
+
+st.upper() → 대문자
+
+st.split() → 괄호 안에 있는것 기준으로 쪼개기
+
+딕셔너리에서
+
+d.keys() ← 키값들 반환
+
+d.items() ←키와 밸류값 같이 반환
+
+# Numpy
 
     ## Numpy Array
 
@@ -254,19 +435,13 @@ print(”box는 5미만입니다”)
 - shape - 각 dimension의 size
 - dtype - tensor 의 data type
 
-![image.png](attachment:cdd5ab24-cc12-4984-a746-c113aa516cf3:image.png)
-
-![image.png](attachment:6cf31e7e-f7fd-4223-9232-8146ac9bb134:image.png)
-
 - Matrix의 numpy 표현
     
-    ![image.png](attachment:72c091e1-8302-49bd-ada9-de7c791d6c06:image.png)
-    
+
     - np.array([[8,5,3], [1,2,9]]) → [[8,5,3]
         
                                                            [1, 2, 9]]
-        
-        ![image.png](attachment:b7bf4087-fa43-4b70-94fc-7a99df06e842:image.png)
+
         
     - np.array([[[1,2], [3,4,]], [[5,6], [7,8]]])
     
@@ -280,11 +455,7 @@ print(”box는 5미만입니다”)
     
 - concatenate
 
-![image.png](attachment:e10dfae3-ae67-4561-b42d-105db87dc598:image.png)
-
 - slicing
-
-![image.png](attachment:ecc0f126-ed87-465f-aa9e-2f38856bfebf:image.png)
 
 ## Numpy와 선형대수
 
@@ -314,7 +485,6 @@ y = np.array([[1,2,3], [2,3,4], [5,6,7], [8,9,10]])
 
 print(y)
 
-![image.png](attachment:2c87e0e9-5fb4-467a-a9f7-2000752aa7a5:image.png)
 
 y.shape
 
@@ -326,41 +496,26 @@ z = np.array([[1,2,3], [2,3,4,]], [[5,6,7], [8,9,10]]])
 
 print(z)
 
-![image.png](attachment:1b8fc02c-7515-4215-ba47-129b5383ae7f:image.png)
-
 z.shape
 
 (2, 2, 3)
 
-![image.png](attachment:d49ac748-3137-4994-b13a-9e3bd0fbd1b3:image.png)
-
-![image.png](attachment:f6b3d875-af54-469c-8d1f-65b944d70ed5:image.png)
 
 - 슬라이싱
-
-![image.png](attachment:aff9878c-7cb7-4bb4-a4c1-870f01d6d0d5:image.png)
-
+  
 arr = np.array([[1,2,3], [4,5,6], [7,8,9]])
 
 print(arr)
 
-![image.png](attachment:09c523b8-4e2b-44be-af99-721abd07062e:image.png)
 
 print(arr[:2, 1:])
 
-![image.png](attachment:05bd4636-a070-4642-aff1-1c86cf965cd6:image.png)
-
 print(arr[2::])
-
-![image.png](attachment:d3c06fe4-1939-48d9-85e9-5ddb92d58c1f:image.png)
 
 print(arr[:, :2])
 
-![image.png](attachment:9c433dd4-a2f0-49d5-97d2-a6a077b03327:image.png)
-
 print(arr[1, :2])
 
-![image.png](attachment:b7af8eae-2dc7-499d-a6b4-7c38be95c263:image.png)
 
 ### 벡터의 내적(inner product)
 
@@ -372,13 +527,9 @@ a=np.array([2,5,1])
 
 print(a)
 
-![image.png](attachment:36a23656-fa74-4fe7-8804-63082d55102a:image.png)
-
 b= np.array([4,3,5])
 
 print(b)
-
-![image.png](attachment:a05f6fd6-f620-499c-be38-9c8ffb68238e:image.png)
 
 a, b의 내적 —> scalar
 
@@ -386,22 +537,16 @@ np.dot(a, b)
 
 → 28
 
-![image.png](attachment:40b1b1ad-4eba-4dc2-9f1c-5c3468efd1b8:image.png)
-
 ### Matrix 곱셈 (행렬 곱셈, dot product)
 
 - 두 행렬 A, B는 A의 열 갯수가 B의 행 갯수와 같을 때 곱할 수 있음
 - 결과 행렬 C의 shape은 A의 row x B의 Column이 됨
-
-![image.png](attachment:4d599860-cb10-476e-8b27-fb805f86e268:image.png)
 
 a = np.array([[2,1], [1,4]])
 
 b = np.array([[1,2,0],[0,1,2]])
 
 np.matmul(a,b)
-
-![image.png](attachment:d1c59057-4b17-4d59-bfed-1dc25b61fb0a:image.png)
 
 ### 전치행렬 (Transposed Matrix)
 
@@ -411,8 +556,4 @@ np.arrange(9) → array([0,1,2,3,4,5,6,7,8])
 
 np.arragne(9).reshape(3,3)
 
-![image.png](attachment:d71d45e6-ce60-4333-932b-7a1c5391e35f:image.png)
-
 np.arrange(9).reshape(3,3).T *#행, 열 바뀜*
-
-![image.png](attachment:fc369f1c-d5ae-4fa2-9db7-365b82e29d2f:image.png)
