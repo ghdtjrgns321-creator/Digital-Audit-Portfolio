@@ -280,20 +280,127 @@ CPA 디지털 감사 포트폴리오
 - **실습 파일:**
     - [`part6_deep_learning_basics.md`](./part6_deep_learning_basics.md):: DeepLearning 학습노트
 
-### Part 6: 웹 대시보드 개발 (Streamlit)
-- **목표:** : Python만으로 데이터 분석 결과를 인터랙티브 웹 애플리케이션으로 구현하는 방법을 숙달, 실전 프로젝트 수행
-- **학습 환경:**: VS Code (로컬 개발), Jupyter Notebook (nbconvert), Terminal
+### Part 7: 웹 대시보드 개발 (Streamlit)
+- **목표:** : HTML/CSS/JS 없이 Python만으로 데이터 분석 결과를 '인터랙티브 웹 애플리케이션(대시보드)'으로 구현하고 배포하는 과정을 학습
+- **학습 환경:**: VS Code, Terminal
 - **주요 학습 내용:**
-    - 기본 위젯: st.title/header, st.text/markdown (색상/강조), st.code, st.divider
-    - 입력 위젯: st.button (primary), st.checkbox, st.toggle, st.radio, st.selectbox, st.multiselect, st.slider (시간/범위), st.text_input (password), st.file_uploader (CSV 로드)
-    - 시각화 연동: st.pyplot (Matplotlib/Seaborn), st.plotly_chart (Plotly)
-    - 레이아웃(Layout): st.sidebar (사이드바), st.columns (단 나누기), st.tabs (탭), st.expander (접기/펼치기)
-    - 고급 기능:
-        - Session State: st.session_state (사용자 상호작용 시 변수 값 유지)
-        - Caching: @st.cache_data (대용량 연산 속도 최적화)
-    - 실전 프로젝트: '자동차 CO2 배출량 분석 대시보드' 제작 (Pandas 필터링 + Plotly 시각화 + Streamlit 인터랙티브 위젯 결합)
+
+#### 1. 기본 설정 및 텍스트 위젯
+- **설치 및 실행:**
+    - 설치: `pip install streamlit`
+    - 실행: `streamlit run app.py` (터미널)
+    - 변환: `jupyter nbconvert --to script` (ipynb -> py)
+- **텍스트 출력:**
+    - `st.title`, `st.header`, `st.subheader`: 제목 계층 구조
+    - `st.text`, `st.write`: 기본 텍스트 출력
+    - `st.markdown`: 마크다운 문법 지원 (색상, 볼드 등 `:red[]`, `:blue[]`)
+    - `st.code`: 코드 블록 출력 (`language='python'`)
+    - `st.divider`: 구분선
+#### 2. 입력 위젯 (Interaction)
+- **버튼 및 선택:**
+    - `st.button`: 클릭 이벤트 처리 (`on_click`, `type='primary'`)
+    - `st.checkbox`: True/False 반환 (`if`문 제어)
+    - `st.toggle`: 스위치 형태의 토글
+    - `st.radio`: 단일 선택
+    - `st.selectbox`: 드롭다운 선택 (`index=None`, `placeholder`)
+    - `st.multiselect`: 다중 선택 (리스트 반환)
+- **수치 및 파일:**
+    - `st.slider`: 값 또는 범위(Range) 선택 (시간, 수치 등)
+    - `st.text_input`: 문자열 입력 (`type='password'`로 암호화 가능)
+    - `st.file_uploader`: CSV 등 파일 업로드 (`accept_multiple_files`)
+#### 3. 시각화 및 미디어 (Visualization)
+- **Matplotlib & Seaborn:** `st.pyplot(fig)`
+- **Plotly Express:** `st.plotly_chart(fig)` (인터랙티브 차트)
+- **동적 그래프:** `selectbox`로 축(x, y, hue)을 선택받아 실시간으로 그래프 업데이트
+- **이미지:** `st.image(img)` (PIL 라이브러리 연동, `width`, `caption`)
+#### 4. 레이아웃 (Layout)
+- **화면 구성:**
+    - `st.sidebar`: 사이드바 메뉴 구성 (`with st.sidebar:`)
+    - `st.columns`: 화면을 가로 단으로 분할 (`col1, col2 = st.columns(2)`)
+    - `st.tabs`: 탭 구성 (`tab1, tab2 = st.tabs(['Table', 'Graph'])`)
+    - `st.expander`: 접기/펼치기 가능한 영역 (상세 데이터 숨김 등)
+#### 5. 고급 기능 (Advanced)
+- **Session State (상태 유지):**
+    - Streamlit은 상호작용 시마다 전체 코드가 재실행되어 변수가 초기화됨.
+    - `st.session_state`를 사용하여 버튼 클릭 후에도 변수 값(예: 카운터)을 유지.
+- **Caching (성능 최적화):**
+    - `@st.cache_data`: 데이터 로드나 무거운 연산 결과를 메모리에 저장하여 재실행 시 속도 향상.
+#### 6. 실전 프로젝트: 자동차 CO2 배출량 대시보드
+- **기능 구현:**
+    - **Data Load:** `pd.read_csv`로 데이터 로드.
+    - **Sidebar:** 제조사(`multiselect`) 및 엔진 크기(`slider`) 필터링 기능 구현.
+    - **Main Page:**
+        1. **Box Plot:** 제조사별 엔진 크기 분포.
+        2. **Scatter Plot 1:** 엔진 크기 vs 연비 (회귀선 포함).
+        3. **Scatter Plot 2:** 연비 vs 탄소 배출량 상관관계 (축 선택 기능 포함).
+    - **State Management:** 필터링된 데이터를 `st.session_state`와 연동하여 동적 시각화 구현.
+    - 
 - **실습 파일:**
-    - [`part6_streamlit_study.md`](./part6_streamlit_study.md):: streamlit 상세 학습 노트
-    - [`part6_streamlit_dashboard.py`](./part6_streamlit_dashboard.py):: 실전 프로젝트 대시보드 전체 소스 코드
+    - [`part7_streamlit_study.md`](./part7_streamlit_study.md):: streamlit 상세 학습 노트
+    - [`part7_streamlit_dashboard.py`](./part7_streamlit_dashboard.py):: 실전 프로젝트 대시보드 전체 소스 코드
     - https://digital-audit-portfolio-zkwnvfuoyhgcbwqhxyypbh.streamlit.app/ 실습 페이지
+
+### Part 8: SQL 데이터베이스 & 고급 쿼리 분석
+- **목표:** : 관계형 데이터베이스(RDBMS)의 구조와 DDL/DML 기초, 복잡한 데이터 분석을 위한 고급 쿼리(Join, Subquery, Window Function)와 트랜잭션 제어 능력을 함양
+- **학습 환경:**: MySQL, Python (PyMySQL)
+- **주요 학습 내용:**
+
+#### 1. RDBMS 이론 및 DDL (Data Definition)
+- **데이터베이스(DB):** 데이터의 집합, 중복 최소화 및 무결성 유지.
+- **DDL (구조 정의):** `CREATE`, `ALTER`, `DROP`, `TRUNCATE`.
+- **제약 조건:** `PRIMARY KEY` (고유 식별), `FOREIGN KEY` (관계 형성), `NOT NULL`, `AUTO_INCREMENT`.
+- **인덱스(Index):** 검색 속도 향상 (Clustered vs Secondary).
+#### 2. SQL 쿼리 작동 원리 및 기초 (DML Basics)
+- **쿼리 실행 순서 (중요):**
+    `FROM` $\rightarrow$ `ON` $\rightarrow$ `JOIN` $\rightarrow$ `WHERE` $\rightarrow$ `GROUP BY` $\rightarrow$ `HAVING` $\rightarrow$ `SELECT` $\rightarrow$ `DISTINCT` $\rightarrow$ `ORDER BY` $\rightarrow$ `LIMIT`
+- **기본 문법:**
+    - `SELECT`: `DISTINCT`(중복제거), `AS`(별칭).
+    - `LIMIT`: 출력 행 수 제한.
+    - `GROUP BY` & `HAVING`: 그룹화 및 그룹 후 조건 필터링.
+    - `ORDER BY`: 정렬 (`ASC`, `DESC`).
+#### 3. 주요 단일 행 함수 (Functions)
+- **문자열 함수:**
+    - `LENGTH()`, `UPPER()`, `LOWER()`
+    - `CONCAT(str1, str2)`: 문자열 연결.
+    - `SUBSTRING(str, start, len)`: 문자열 추출.
+- **날짜/시간 함수:**
+    - `NOW()`, `CURDATE()`, `CURTIME()`
+    - `DATE_ADD()`, `DATE_SUB()`: 날짜 연산 (`INTERVAL 7 DAY`).
+    - `EXTRACT(unit FROM date)`: 연/월/일 추출.
+    - `TIMESTAMPDIFF(unit, start, end)`: 시간 차이 계산.
+    - `DATE_FORMAT(date, format)`: 형식 변환 (`%Y-%m-%d`).
+- **숫자 함수:** `ABS()`, `CEIL()`, `FLOOR()`, `ROUND()`, `SQRT()`.
+#### 4. 데이터 결합 및 집합 연산 (Joins & Sets)
+- **JOIN:**
+    - `INNER JOIN`: 교집합 (매칭되는 데이터만).
+    - `LEFT/RIGHT OUTER JOIN`: 기준 테이블 모두 + 매칭되는 데이터.
+- **집합 연산:**
+    - `UNION` (중복 제거 합집합), `UNION ALL` (중복 포함 합집합).
+    - `INTERSECT` (교집합), `EXCEPT` (차집합).
+#### 5. 고급 쿼리 기법 (Advanced Techniques)
+- **서브쿼리 (Subquery):**
+    - `WHERE`절 (필터링), `FROM`절 (인라인 뷰), `SELECT`절 (스칼라).
+    - **상관 서브쿼리:** 메인 쿼리의 컬럼을 참조하여 수행.
+- **CTE (Common Table Expression):** `WITH` 절을 사용한 임시 테이블 (가독성 향상).
+- **VIEW:** 가상 테이블 생성 (`CREATE VIEW`).
+- **조건 제어:** `CASE WHEN condition THEN result ELSE end`.
+- **문자열 집계:** `GROUP_CONCAT()` (여러 행을 하나의 문자열로 결합).
+- **트랜잭션:** `COMMIT` (저장), `ROLLBACK` (취소).
+#### 6. 윈도우 함수 (Window Functions) **[핵심]**
+- **개념:** `GROUP BY`와 달리 원본 행을 유지하면서 집계 및 순위 계산 수행.
+- **문법:** `FUNCTION() OVER (PARTITION BY ... ORDER BY ... ROWS/RANGE ...)`
+- **순위 함수:**
+    - `RANK()`: 1, 2, 2, 4... (건너뜀)
+    - `DENSE_RANK()`: 1, 2, 2, 3... (연속)
+    - `ROW_NUMBER()`: 1, 2, 3, 4... (고유 번호)
+- **데이터 참조:**
+    - `LEAD()`: 다음 행 값, `LAG()`: 이전 행 값.
+    - `FIRST_VALUE()`, `LAST_VALUE()`: 파티션 내 처음/마지막 값.
+- **비율/분할:** `PERCENT_RANK()`, `CUME_DIST()`, `NTILE(n)`.
+- **집계:** `SUM() OVER()`, `AVG() OVER()` (누적 합계 등).
+#### 7. Python 연동 (PyMySQL)
+- `connect` $\rightarrow$ `cursor` $\rightarrow$ `execute(SQL)` $\rightarrow$ `commi
+
+- **실습 파일:**
+    - [`part8_sql.md`](./part8_sql.md):: sql 학습노트
 
